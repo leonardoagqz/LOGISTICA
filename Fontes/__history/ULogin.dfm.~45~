@@ -1,0 +1,119 @@
+object FLogin: TFLogin
+  Left = 0
+  Top = 0
+  BorderStyle = bsSizeToolWin
+  Caption = 'Login'
+  ClientHeight = 235
+  ClientWidth = 329
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblUsuario: TLabel
+    Left = 27
+    Top = 39
+    Width = 36
+    Height = 13
+    Caption = 'Usu'#225'rio'
+  end
+  object LblSenha: TLabel
+    Left = 27
+    Top = 111
+    Width = 30
+    Height = 13
+    Caption = 'Senha'
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 329
+    Height = 17
+    Align = alTop
+    Color = clHighlightText
+    ParentBackground = False
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 17
+    Width = 329
+    Height = 16
+    Align = alTop
+    Color = clScrollBar
+    ParentBackground = False
+    TabOrder = 3
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 218
+    Width = 329
+    Height = 17
+    Align = alBottom
+    Color = clScrollBar
+    ParentBackground = False
+    TabOrder = 4
+  end
+  object LkComboBoxUsuario: TDBLookupComboBox
+    Left = 27
+    Top = 56
+    Width = 265
+    Height = 21
+    KeyField = 'LOGIN'
+    ListField = 'LOGIN'
+    ListSource = dsUsuarios
+    TabOrder = 1
+    OnKeyPress = LkComboBoxUsuarioKeyPress
+  end
+  object EdtSenha: TEdit
+    Left = 27
+    Top = 127
+    Width = 265
+    Height = 21
+    CharCase = ecUpperCase
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    MaxLength = 10
+    ParentFont = False
+    PasswordChar = '*'
+    TabOrder = 2
+    OnChange = EdtSenhaChange
+  end
+  object BtnConfirmar: TButton
+    Left = 149
+    Top = 181
+    Width = 70
+    Height = 25
+    Caption = 'Confirmar'
+    TabOrder = 5
+  end
+  object BtnCancelar: TButton
+    Left = 225
+    Top = 181
+    Width = 70
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 6
+  end
+  object dsUsuarios: TDataSource
+    DataSet = DM.cdsUsuarios
+    Left = 8
+    Top = 176
+  end
+  object ApplicationEvents1: TApplicationEvents
+    OnMessage = ApplicationEvents1Message
+    Left = 48
+    Top = 176
+  end
+end

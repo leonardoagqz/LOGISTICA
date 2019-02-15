@@ -1,0 +1,84 @@
+object DM: TDM
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 444
+  Width = 607
+  object BDConnectionSQL: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
+      'fo=False;Initial Catalog=LOGISTICA'
+    LoginPrompt = False
+    Provider = 'SQLOLEDB.1'
+    Left = 80
+    Top = 80
+  end
+  object DtsUsuarios: TADODataSet
+    Active = True
+    Connection = BDConnectionSQL
+    CursorType = ctStatic
+    CommandText = 'USUARIOS'
+    CommandType = cmdTable
+    Parameters = <>
+    Left = 176
+    Top = 88
+    object DtsUsuariosID_USUARIO: TAutoIncField
+      FieldName = 'ID_USUARIO'
+    end
+    object DtsUsuariosLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object DtsUsuariosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 10
+    end
+    object DtsUsuariosMASTER: TStringField
+      FieldName = 'MASTER'
+      FixedChar = True
+      Size = 10
+    end
+  end
+  object dspUsuarios: TDataSetProvider
+    DataSet = DtsUsuarios
+    Left = 176
+    Top = 144
+  end
+  object cdsUsuarios: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuarios'
+    Left = 176
+    Top = 208
+    object cdsUsuariosID_USUARIO: TAutoIncField
+      FieldName = 'ID_USUARIO'
+    end
+    object cdsUsuariosLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object cdsUsuariosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 10
+    end
+    object cdsUsuariosMASTER: TStringField
+      FieldName = 'MASTER'
+      FixedChar = True
+      Size = 10
+    end
+  end
+  object QryIdUsuario: TADOQuery
+    Active = True
+    Connection = BDConnectionSQL
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT (ID_USUARIO) FROM USUARIOS')
+    Left = 168
+    Top = 328
+    object QryIdUsuarioID_USUARIO: TAutoIncField
+      FieldName = 'ID_USUARIO'
+    end
+  end
+end
