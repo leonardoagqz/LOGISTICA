@@ -80,7 +80,7 @@ object FCadUsuario: TFCadUsuario
     DoubleBuffered = False
     ParentDoubleBuffered = False
     TabOrder = 0
-    Text = 'MONYQUE'
+    Text = 'MARIA'
   end
   object EdtSenha: TEdit
     Left = 24
@@ -97,7 +97,7 @@ object FCadUsuario: TFCadUsuario
     ParentFont = False
     PasswordChar = '*'
     TabOrder = 1
-    Text = '456'
+    Text = '123'
   end
   object CbMaster: TCheckBox
     Left = 24

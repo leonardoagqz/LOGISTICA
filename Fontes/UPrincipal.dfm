@@ -2,8 +2,8 @@ object FPrincipal: TFPrincipal
   Left = 0
   Top = 0
   Caption = ' Sistema de Log'#237'stica'
-  ClientHeight = 619
-  ClientWidth = 958
+  ClientHeight = 443
+  ClientWidth = 771
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +13,7 @@ object FPrincipal: TFPrincipal
   Menu = Menu
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13

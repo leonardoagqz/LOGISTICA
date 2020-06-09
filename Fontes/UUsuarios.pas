@@ -18,12 +18,15 @@ type
     BtnIncluir: TBitBtn;
     BtnAlterar: TBitBtn;
     BtnExcluir: TBitBtn;
+    BtnSair: TButton;
     procedure EdtLocalizarUsuariosChange(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BtnIncluirClick(Sender: TObject);
     procedure G1GridDblClick(Sender: TObject);
     procedure BtnAlterarClick(Sender: TObject);
     procedure BtnExcluirClick(Sender: TObject);
+    procedure BtnSairClick(Sender: TObject);
+    procedure DsUsuariosDataChange(Sender: TObject; Field: TField);
 
   private
     { Private declarations }
@@ -70,10 +73,22 @@ procedure TFUsuarios.BtnIncluirClick(Sender: TObject);//procedimento ao clicar n
 begin                                                 //inicie
     Self.Visible :=False;                             //esconde formulario UUsuario
     dm.cdsUsuarios.Append;                            //acrescentar em uma nova linha
-    dm.cdsUsuariosMASTER.Text:='S';                   //campo MASTER.text iniciar com S
+    dm.cdsUsuariosMASTER.Text:='False';               //campo MASTER.text iniciar com S
     dm.CriarFormulario(TFCadUsuario,FCadUsuario);     //chamar procedimento para criar/abrir formulario UCadUsuario
     Self.Visible:=True;                               //mostrar formulario UUsuario
-end;                                                  //fim
+end;
+
+procedure TFUsuarios.BtnSairClick(Sender: TObject);
+begin
+    Close;
+end;
+
+procedure TFUsuarios.DsUsuariosDataChange(Sender: TObject; Field: TField);
+begin
+
+end;
+
+//fim
 
 procedure TFUsuarios.EdtLocalizarUsuariosChange(Sender: TObject);//procedimento quando houver algumamudança no campo
 begin                                                            //inicie

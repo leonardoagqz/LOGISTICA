@@ -33,6 +33,7 @@ type
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -46,29 +47,34 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarios, UDM, UProdutos;
+uses UUsuarios, UDM, UProdutos, ULogin;
+
+procedure TFPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Application.Terminate;
+  FPrincipal := nil;
+end;
 
 procedure TFPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-   if key=VK_ESCAPE then
-   Application.Terminate;
-
+  if key=VK_ESCAPE then
+  Application.Terminate;
 end;
 
 procedure TFPrincipal.Produtos1Click(Sender: TObject);
 begin
-   Dm.CriarFormulario(TFProdutos,FProdutos);
+  Dm.CriarFormulario(TFProdutos,FProdutos);
 end;
 
 procedure TFPrincipal.Sair1Click(Sender: TObject);
 begin
-Application.Terminate;
+  Application.Terminate;
 end;
 
-procedure TFPrincipal.Usurios1Click(Sender: TObject);  //procedimento ao clicar no menu usuários
+procedure TFPrincipal.Usurios1Click(Sender: TObject);
 begin
-    DM.CriarFormulario(TFUsuarios,FUsuarios);          //abrir tela usuários via procedimento CriarFormulario
+  DM.CriarFormulario(TFUsuarios,FUsuarios);
 end;
 
 end.

@@ -4,7 +4,7 @@ object FUsuarios: TFUsuarios
   BorderStyle = bsDialog
   Caption = 'Cadastro de Usu'#225'rios'
   ClientHeight = 508
-  ClientWidth = 787
+  ClientWidth = 767
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -92,7 +92,7 @@ object FUsuarios: TFUsuarios
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 787
+    Width = 767
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
@@ -102,7 +102,7 @@ object FUsuarios: TFUsuarios
   object PainelUsuarios2: TPanel
     Left = 0
     Top = 464
-    Width = 787
+    Width = 767
     Height = 44
     Align = alBottom
     Color = clWhite
@@ -111,7 +111,7 @@ object FUsuarios: TFUsuarios
   end
   object BtnIncluir: TBitBtn
     Left = 656
-    Top = 136
+    Top = 184
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -127,7 +127,7 @@ object FUsuarios: TFUsuarios
   end
   object BtnAlterar: TBitBtn
     Left = 656
-    Top = 192
+    Top = 223
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -137,7 +137,7 @@ object FUsuarios: TFUsuarios
   end
   object BtnExcluir: TBitBtn
     Left = 656
-    Top = 248
+    Top = 262
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -145,8 +145,19 @@ object FUsuarios: TFUsuarios
     TabOrder = 6
     OnClick = BtnExcluirClick
   end
+  object BtnSair: TButton
+    Left = 656
+    Top = 301
+    Width = 89
+    Height = 33
+    Cursor = crHandPoint
+    Caption = 'Sair'
+    TabOrder = 7
+    OnClick = BtnSairClick
+  end
   object DsUsuarios: TDataSource
     DataSet = DM.cdsUsuarios
+    OnDataChange = DsUsuariosDataChange
     Left = 464
     Top = 448
   end

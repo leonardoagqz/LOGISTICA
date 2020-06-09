@@ -4,7 +4,7 @@ object FProdutos: TFProdutos
   BorderStyle = bsDialog
   Caption = 'Tabela de Produtos'
   ClientHeight = 496
-  ClientWidth = 857
+  ClientWidth = 773
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,6 +14,8 @@ object FProdutos: TFProdutos
   KeyPreview = True
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object LblLocalizarUsuarios: TLabel
@@ -23,14 +25,15 @@ object FProdutos: TFProdutos
     Height = 13
     Caption = 'Localizar:'
   end
-  object EdtLocalizarUsuarios: TEdit
+  object EdtLocalizarProdutos: TEdit
     Left = 40
-    Top = 72
+    Top = 71
     Width = 705
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
     TabOrder = 0
+    OnChange = EdtLocalizarProdutosChange
   end
   object G1Grid: TDBGrid
     Left = 40
@@ -54,6 +57,7 @@ object FProdutos: TFProdutos
         FieldName = 'ID_PRODUTO'
         Title.Alignment = taCenter
         Title.Caption = 'C'#243'digo'
+        Width = 53
         Visible = True
       end
       item
@@ -84,28 +88,26 @@ object FProdutos: TFProdutos
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 857
+    Width = 773
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 2
-    ExplicitWidth = 787
   end
   object PainelUsuarios2: TPanel
     Left = 0
     Top = 452
-    Width = 857
+    Width = 773
     Height = 44
     Align = alBottom
     Color = clWhite
     ParentBackground = False
     TabOrder = 3
-    ExplicitWidth = 787
   end
   object BtnIncluir: TBitBtn
     Left = 656
-    Top = 136
+    Top = 184
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -117,24 +119,37 @@ object FProdutos: TFProdutos
     Font.Style = []
     ParentFont = False
     TabOrder = 4
+    OnClick = BtnIncluirClick
   end
   object BtnAlterar: TBitBtn
     Left = 656
-    Top = 192
+    Top = 223
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Alterar'
     TabOrder = 5
+    OnClick = BtnAlterarClick
   end
   object BtnExcluir: TBitBtn
     Left = 656
-    Top = 248
+    Top = 262
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Excluir'
     TabOrder = 6
+    OnClick = BtnExcluirClick
+  end
+  object BtnSair: TButton
+    Left = 656
+    Top = 301
+    Width = 89
+    Height = 33
+    Cursor = crHandPoint
+    Caption = 'Sair'
+    TabOrder = 7
+    OnClick = BtnSairClick
   end
   object DsProduto: TDataSource
     DataSet = DM.cdsProdutos

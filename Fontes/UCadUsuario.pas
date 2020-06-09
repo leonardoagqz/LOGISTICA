@@ -66,8 +66,7 @@ begin                                                   //inicie
      begin                                              //inicie
          ShowMessage('Usuário não Informado!');         //exibir menssagem
          EdtLogin.SetFocus;                             //logo após exibir a msg voltat o foco do mouse para EdtLogin
-
-                                                        //e sair, para não executar o próximo bloco de instrução
+                                                               //e sair, para não executar o próximo bloco de instrução
 
          Exit
      end;

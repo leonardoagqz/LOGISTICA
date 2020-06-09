@@ -1,0 +1,307 @@
+object DM: TDM
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 422
+  Width = 499
+  object BDConnectionSQL: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
+      'fo=False;Initial Catalog=LOGISTICA'
+    LoginPrompt = False
+    Provider = 'SQLOLEDB.1'
+    Left = 80
+    Top = 80
+  end
+  object DtsUsuarios: TADODataSet
+    Active = True
+    Connection = BDConnectionSQL
+    CursorType = ctStatic
+    CommandText = 'USUARIOS'
+    CommandType = cmdTable
+    Parameters = <>
+    Left = 176
+    Top = 88
+    object DtsUsuariosID_USUARIO: TAutoIncField
+      FieldName = 'ID_USUARIO'
+      KeyFields = 'ID_USUARIO'
+    end
+    object DtsUsuariosLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object DtsUsuariosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 10
+    end
+    object DtsUsuariosMASTER: TStringField
+      FieldName = 'MASTER'
+      FixedChar = True
+      Size = 10
+    end
+  end
+  object dspUsuarios: TDataSetProvider
+    DataSet = DtsUsuarios
+    Left = 176
+    Top = 144
+  end
+  object cdsUsuarios: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuarios'
+    Left = 176
+    Top = 208
+    object cdsUsuariosID_USUARIO: TAutoIncField
+      FieldName = 'ID_USUARIO'
+    end
+    object cdsUsuariosLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object cdsUsuariosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 10
+    end
+    object cdsUsuariosMASTER: TStringField
+      FieldName = 'MASTER'
+      FixedChar = True
+      Size = 10
+    end
+  end
+  object QryIdUsuario: TADOQuery
+    Active = True
+    Connection = BDConnectionSQL
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT *  FROM USUARIOS')
+    Left = 176
+    Top = 280
+    object QryIdUsuarioID_USUARIO: TAutoIncField
+      FieldName = 'ID_USUARIO'
+      ReadOnly = True
+    end
+    object QryIdUsuarioLOGIN: TStringField
+      FieldName = 'LOGIN'
+      Size = 10
+    end
+    object QryIdUsuarioSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 10
+    end
+    object QryIdUsuarioMASTER: TStringField
+      FieldName = 'MASTER'
+      FixedChar = True
+      Size = 10
+    end
+  end
+  object DtsProdutos: TADODataSet
+    Active = True
+    Connection = BDConnectionSQL
+    CursorType = ctStatic
+    CommandText = 'PRODUTOS'
+    CommandType = cmdTable
+    Parameters = <>
+    Left = 264
+    Top = 88
+    object DtsProdutosID_PRODUTO: TAutoIncField
+      FieldName = 'ID_PRODUTO'
+      ReadOnly = True
+    end
+    object DtsProdutosNOME: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object DtsProdutosQUANTIDADE: TIntegerField
+      FieldName = 'QUANTIDADE'
+    end
+    object DtsProdutosID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+    end
+    object DtsProdutosVALOR: TBCDField
+      FieldName = 'VALOR'
+      Precision = 10
+      Size = 2
+    end
+    object DtsProdutosTIPO: TStringField
+      FieldName = 'TIPO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object dspProdutos: TDataSetProvider
+    DataSet = DtsProdutos
+    Left = 264
+    Top = 144
+  end
+  object cdsProdutos: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspProdutos'
+    Left = 264
+    Top = 208
+    object cdsProdutosID_PRODUTO: TAutoIncField
+      FieldName = 'ID_PRODUTO'
+      ReadOnly = True
+    end
+    object cdsProdutosNOME: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object cdsProdutosQUANTIDADE: TIntegerField
+      FieldName = 'QUANTIDADE'
+    end
+    object cdsProdutosID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+    end
+    object cdsProdutosVALOR: TBCDField
+      FieldName = 'VALOR'
+      Precision = 10
+      Size = 2
+    end
+    object cdsProdutosTIPO: TStringField
+      FieldName = 'TIPO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object QryIdProduto: TADOQuery
+    Active = True
+    Connection = BDConnectionSQL
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT *  FROM PRODUTOS')
+    Left = 264
+    Top = 280
+    object QryIdProdutoID_PRODUTO: TAutoIncField
+      FieldName = 'ID_PRODUTO'
+      ReadOnly = True
+    end
+    object QryIdProdutoNOME: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object QryIdProdutoQUANTIDADE: TIntegerField
+      FieldName = 'QUANTIDADE'
+    end
+    object QryIdProdutoID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+    end
+    object QryIdProdutoVALOR: TBCDField
+      FieldName = 'VALOR'
+      Precision = 10
+      Size = 2
+    end
+    object QryIdProdutoTIPO: TStringField
+      FieldName = 'TIPO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object DtsPessoas: TADODataSet
+    Connection = BDConnectionSQL
+    CursorType = ctStatic
+    CommandText = 'PESSOAS'
+    CommandType = cmdTable
+    Parameters = <>
+    Left = 344
+    Top = 88
+    object AutoIncField1: TAutoIncField
+      FieldName = 'ID_PRODUTO'
+      ReadOnly = True
+    end
+    object StringField1: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object IntegerField1: TIntegerField
+      FieldName = 'QUANTIDADE'
+    end
+    object IntegerField2: TIntegerField
+      FieldName = 'ID_PESSOA'
+    end
+    object BCDField1: TBCDField
+      FieldName = 'VALOR'
+      Precision = 10
+      Size = 2
+    end
+    object StringField2: TStringField
+      FieldName = 'TIPO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object dspPessoas: TDataSetProvider
+    DataSet = DtsPessoas
+    Left = 344
+    Top = 144
+  end
+  object cdsPessoas: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPessoas'
+    Left = 344
+    Top = 208
+    object AutoIncField2: TAutoIncField
+      FieldName = 'ID_PRODUTO'
+      ReadOnly = True
+    end
+    object StringField3: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object IntegerField3: TIntegerField
+      FieldName = 'QUANTIDADE'
+    end
+    object IntegerField4: TIntegerField
+      FieldName = 'ID_PESSOA'
+    end
+    object BCDField2: TBCDField
+      FieldName = 'VALOR'
+      Precision = 10
+      Size = 2
+    end
+    object StringField4: TStringField
+      FieldName = 'TIPO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object QryIdPessoa: TADOQuery
+    Active = True
+    Connection = BDConnectionSQL
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT *  FROM PRODUTOS')
+    Left = 344
+    Top = 280
+    object AutoIncField3: TAutoIncField
+      FieldName = 'ID_PRODUTO'
+      ReadOnly = True
+    end
+    object StringField5: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object IntegerField5: TIntegerField
+      FieldName = 'QUANTIDADE'
+    end
+    object IntegerField6: TIntegerField
+      FieldName = 'ID_PESSOA'
+    end
+    object BCDField3: TBCDField
+      FieldName = 'VALOR'
+      Precision = 10
+      Size = 2
+    end
+    object StringField6: TStringField
+      FieldName = 'TIPO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+end

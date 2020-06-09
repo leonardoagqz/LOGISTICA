@@ -9,16 +9,19 @@
     <Transaction>2019/01/28 20:06:01.000.980,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UDM.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.pas</Transaction>
     <Transaction>2019/01/28 20:06:01.000.980,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UDM.dfm=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.dfm</Transaction>
     <Transaction>2019/01/28 21:02:24.000.647,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.pas</Transaction>
-    <Transaction>2019/01/28 21:04:39.000.219,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\ULogin.pas</Transaction>
     <Transaction>2019/01/28 21:04:39.000.219,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.dfm=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\ULogin.dfm</Transaction>
+    <Transaction>2019/01/28 21:04:39.000.219,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\ULogin.pas</Transaction>
     <Transaction>2019/01/29 19:42:23.000.515,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
     <Transaction>2019/01/29 19:42:42.000.837,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UUsuarios.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
     <Transaction>2019/01/29 19:42:42.000.837,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UUsuarios.dfm=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.dfm</Transaction>
     <Transaction>2019/02/01 19:52:10.000.563,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
-    <Transaction>2019/02/01 19:52:45.000.507,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.pas</Transaction>
     <Transaction>2019/02/01 19:52:45.000.507,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.dfm=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.dfm</Transaction>
-    <Transaction>2019/02/14 22:18:31.860,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
-    <Transaction>2019/02/14 22:18:44.876,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UProdutos.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
-    <Transaction>2019/02/14 22:18:44.876,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UProdutos.dfm=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.dfm</Transaction>
+    <Transaction>2019/02/01 19:52:45.000.507,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.pas</Transaction>
+    <Transaction>2019/02/14 22:18:31.000.860,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
+    <Transaction>2019/02/14 22:18:44.000.876,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UProdutos.dfm=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.dfm</Transaction>
+    <Transaction>2019/02/14 22:18:44.000.876,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UProdutos.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
+    <Transaction>2019/02/26 19:24:53.000.117,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
+    <Transaction>2019/02/26 19:27:50.000.065,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadProduto.pas</Transaction>
+    <Transaction>2019/02/26 19:27:50.000.065,C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.dfm=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadProduto.dfm</Transaction>
   </Transactions>
 </BorlandProject>
