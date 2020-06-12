@@ -1,0 +1,4 @@
+Database=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Sistema Logistica\Banco Firebird\LOGISTICA.FDB
+Password=masterkey
+User_Name=sysdba
+DriverID=FB

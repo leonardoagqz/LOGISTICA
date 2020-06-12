@@ -4,7 +4,13 @@ interface
 
 uses
   System.SysUtils, System.Classes, Forms, Data.DB, Data.Win.ADODB, Dialogs,
-  Datasnap.DBClient, Datasnap.Provider, Data.FMTBcd, Data.SqlExpr;
+  Datasnap.DBClient, Datasnap.Provider, Data.FMTBcd, Data.SqlExpr,
+  Data.DBXInterBase, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
+  FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef,
+  FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.VCLUI.Wait, FireDAC.Phys.IBBase,
+  FireDAC.Comp.UI;
 
 type
   TDM = class(TDataModule)
@@ -69,6 +75,22 @@ type
     QryIdPessoaTELEFONE: TStringField;
     QryIdPessoaTIPO: TStringField;
     QryIdPessoaID_PAIS: TIntegerField;
+    BDConnectionFB: TFDConnection;
+    ds_usuario: TDataSource;
+    sql_usuario: TFDQuery;
+    sql_usuarioID_USUARIO: TIntegerField;
+    sql_usuarioLOGIN: TStringField;
+    sql_usuarioSENHA: TStringField;
+    sql_usuarioMASTER: TStringField;
+    tb_usuario: TFDTable;
+    tb_usuarioID_USUARIO: TIntegerField;
+    tb_usuarioLOGIN: TStringField;
+    tb_usuarioSENHA: TStringField;
+    tb_usuarioMASTER: TStringField;
+    WaitCursor: TFDGUIxWaitCursor;
+    FireBird: TFDPhysFBDriverLink;
+    sql_Gen_usuario: TFDQuery;
+    sql_Gen_usuarioID: TLargeintField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
   private
@@ -100,17 +122,25 @@ begin
 end;
 
 procedure TDM.DataModuleCreate(Sender: TObject);
+var
+vPath:string;
 begin
+  //exportar as configurações de conexão para um arquivo texto
+  //BDConnectionSQL.Params.SaveToFile('C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Sistema Logistica\Config.txt');
 
+  vPath:= ExtractFilePath(Application.ExeName)+'Config.txt';
 
-    try // tentar executar um blocode comandos
-      BDConnectionSQL.Close;
-      BDConnectionSQL.Open;
+  try // tentar executar um blocode comandos
+    //variavel as informações que esta dentro do Config.txt
+
+    BDConnectionFB.Close;
+    BDConnectionFB.Params.LoadFromFile(vPath);
+    BDConnectionFB.Open;
 
       //tentar criar/abrir o form login
-      {Application.CreateForm(TFLogin,FLogin);//TFLogin é a classe, FLogin é o nome do formulário a ser chamado
+      Application.CreateForm(TFLogin,FLogin);//TFLogin é a classe, FLogin é o nome do formulário a ser chamado
       FLogin.ShowModal;                      //mostrar tela de login na tela
-      FLogin.Free; }                         //depois que abrir o formulário e finalizar é preciso liberar ele da memória
+      FLogin.Free;                          //depois que abrir o formulário e finalizar é preciso liberar ele da memória
 
 
       //iniciar aplicaçao, chamar form Principal

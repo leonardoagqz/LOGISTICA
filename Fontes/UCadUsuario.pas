@@ -31,6 +31,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BtnSalvarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BtnSalvarKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -59,43 +61,111 @@ begin                                                                     //inic
     BtnCancelar.Click;                                                    //btncancelarclick será acionado
 end;                                                                      //fimbegin
 
-procedure TFCadUsuario.BtnSalvarClick(Sender: TObject); //procedimento ao clicar no botão salvar
-begin                                                   //inicie
-                                                        //validando usuário
-     if EdtLogin.Text = '' then                         //se o usuário estiver vazio então
-     begin                                              //inicie
-         ShowMessage('Usuário não Informado!');         //exibir menssagem
-         EdtLogin.SetFocus;                             //logo após exibir a msg voltat o foco do mouse para EdtLogin
-                                                               //e sair, para não executar o próximo bloco de instrução
+procedure TFCadUsuario.BtnSalvarClick(Sender: TObject);
+begin
+  {if EdtLogin.Text = '' then
+  begin
+    ShowMessage('Usuário não Informado!');
+    EdtLogin.SetFocus;
+    Exit
+  end;
 
-         Exit
-     end;
+  if EdtSenha.Text = '' then
+  begin
+    ShowMessage('Senha não Informada!');
+    EdtSenha.SetFocus;
+    Exit
+  end;
 
-                                              //validando senha
-     if EdtSenha.Text = '' then               //se a senha estiver vazia
-     begin                                    //inicie
-         ShowMessage('Senha não Informada!'); //exibir msg
-         EdtSenha.SetFocus;                   //setar foco do mouse no campo senha
-                                              //sair para não executar o próximo bloco de instrução
-         Exit
-     end;                                     //fim
+  if dm.cdsUsuarios.State=dsInsert then
+  begin
+    dm.QryIdUsuario.Close;
+    dm.QryIdUsuario.Open;
+    dm.cdsUsuariosLOGIN.AsString:=EdtLogin.Text;
+    dm.cdsUsuariosSENHA.AsInteger:=StrToInt(EdtSenha.Text);
+  end;
+  dm.cdsUsuarios.Post;
+  dm.cdsUsuarios.ApplyUpdates(0);
+  ShowMessage('Informações Armazenadas com sucesso!');
+  dm.cdsUsuarios.Refresh;
+  Close;}
+
+  //--
+
+   if EdtLogin.Text = '' then
+  begin
+    ShowMessage('Usuário não Informado!');
+    EdtLogin.SetFocus;
+    Exit
+  end;
+
+  if EdtSenha.Text = '' then
+  begin
+    ShowMessage('Senha não Informada!');
+    EdtSenha.SetFocus;
+    Exit
+  end;
+
+  if DM.sql_usuario.State=dsInsert then
+  begin
+
+    DM.sql_Gen_usuario.Close;
+    DM.sql_Gen_usuario.Open;
+    DM.sql_usuarioID_USUARIO.AsInteger :=DM.sql_Gen_usuarioID.Value;
+    dm.sql_usuarioLOGIN.AsString       :=EdtLogin.Text;
+    dm.sql_usuarioSENHA.AsString       :=EdtSenha.Text;
+    if CbMaster.Checked = True then
+    begin
+      dm.sql_usuarioMASTER.AsString    :='S';
+    end
+    else
+    dm.sql_usuarioMASTER.AsString      :='N';
+    DM.sql_usuario.Post;
+
+    ShowMessage('Usuário cadastrado com sucesso!');
+    DM.sql_usuario.Refresh;
+    Close;
+  end;
+
+  if DM.sql_usuario.State=dsEdit then
+  begin
+
+    dm.sql_usuarioLOGIN.AsString       :=EdtLogin.Text;
+    dm.sql_usuarioSENHA.AsString       :=EdtSenha.Text;
+    if CbMaster.Checked = True then
+    begin
+      dm.sql_usuarioMASTER.AsString    :='S';
+    end
+    else
+    dm.sql_usuarioMASTER.AsString      :='N';
+    DM.sql_usuario.Post;
+
+    ShowMessage('Usuário alterado com sucesso!');
+    DM.sql_usuario.Refresh;
+    Close;
+  end;
 
 
 
-                                                               //cadastrando usuário
-     if dm.cdsUsuarios.State=dsInsert then                     //se o estado for igual a INSERT então
-     begin                                                     //inicie
-        dm.QryIdUsuario.Close;                                 //fechar query
-        dm.QryIdUsuario.Open;                                  //abrir query
-        dm.cdsUsuariosLOGIN.AsString:=EdtLogin.Text;           //quero que o campo login no BD seja igual ao login do campo edtlogin
-        dm.cdsUsuariosSENHA.AsInteger:=StrToInt(EdtSenha.Text);//quero que a senha no BD seja igual a senha do campo edtsenha
-     end;                                                      //fim
-        dm.cdsUsuarios.Post;                                   //postar
-        dm.cdsUsuarios.ApplyUpdates(0);                        //aplicar modificações
-        ShowMessage('Informações Armazenadas com sucesso!');   //exibir mensagem
-        dm.cdsUsuarios.Refresh;                                //atualizar cdsusuarios
-        Close;                                                 //fechar
 
+
+  {dm.sql_usuario.Close;
+  dm.sql_usuario.open;
+  dm.tb_usuarioLOGIN.AsString := EdtLogin.Text;
+  dm.tb_usuarioSENHA.AsString := EdtSenha.Text;
+  dm.tb_usuario.ApplyUpdates(0);
+  ShowMessage('Informações Armazenadas com sucesso!');
+  dm.tb_usuario.Refresh; }
+
+
+
+end;
+
+procedure TFCadUsuario.BtnSalvarKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key=VK_ESCAPE then
+  BtnCancelar.Click;
 end;
 
 procedure TFCadUsuario.FormClose(Sender: TObject; var Action: TCloseAction);//procedimento ao fechar form

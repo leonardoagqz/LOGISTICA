@@ -1,0 +1,160 @@
+unit ULogin;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.DBCtrls, Data.DB, Vcl.AppEvnts, Vcl.ComCtrls;
+
+type
+  TFLogin = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    LkComboBoxUsuario: TDBLookupComboBox;
+    LblUsuario: TLabel;
+    EdtSenha: TEdit;
+    LblSenha: TLabel;
+    dsUsuarios: TDataSource;
+    ApplicationEvents1: TApplicationEvents;
+    BtnConfirmar: TButton;
+    BtnCancelar: TButton;
+    Bevel1: TBevel;
+    Shape1: TShape;
+    pbStatus: TProgressBar;
+    procedure BtnCancelarClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
+    procedure BtnConfirmarClick(Sender: TObject);
+    procedure LkComboBoxUsuarioKeyPress(Sender: TObject; var Key: Char);
+    procedure ApplicationEvents1Message(var Msg: tagMSG; var Handled: Boolean);
+    procedure EdtSenhaChange(Sender: TObject);
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FLogin: TFLogin;
+
+implementation
+
+{$R *.dfm}
+
+uses UDM, UPrincipal;
+
+procedure TFLogin.ApplicationEvents1Message(var Msg: tagMSG;
+  var Handled: Boolean);
+begin
+  if Msg.wParam = VK_TAB then
+    if LkComboBoxUsuario.Text = '' then
+    begin
+      ShowMessage('Usuário não Informado!');
+      LkComboBoxUsuario.SetFocus;
+    end
+end;
+
+procedure TFLogin.BtnCancelarClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TFLogin.BtnConfirmarClick(Sender: TObject);
+var
+i:Integer;
+begin
+  for i := 0 to pbStatus.Max do
+  pbStatus.Position:=pbStatus.Position+1;
+  Application.ProcessMessages;
+  if LkComboBoxUsuario.Text = '' then
+    begin
+      ShowMessage('Usuário não Informado!');
+      LkComboBoxUsuario.SetFocus;
+      pbStatus.Position:=0;
+      Exit
+    end;
+
+  for i := 0 to pbStatus.Max do
+  pbStatus.Position:=pbStatus.Position+1;
+  Application.ProcessMessages;
+  if EdtSenha.Text = '' then
+    begin
+      ShowMessage('Senha não Informada!');
+      pbStatus.Position:=0;
+      EdtSenha.SetFocus;
+      Exit
+    end;
+
+
+    //liberando acesso ao sistema
+
+  for i := 0 to pbStatus.Max do
+  pbStatus.Position:=pbStatus.Position+1;
+  Application.ProcessMessages;
+  if EdtSenha.Text = DM.cdsUsuariosSENHA.AsString then
+    begin
+      dm.vLogin:=True;
+      FLogin.hide;
+      Application.CreateForm(TFPrincipal,FPrincipal);
+      FPrincipal.ShowModal;
+      FPrincipal.Free;
+    end
+    else
+      ShowMessage('Senha Inválida');
+      pbStatus.Position:=0;
+
+end;
+
+
+procedure TFLogin.EdtSenhaChange(Sender: TObject);
+begin
+  if EdtSenha.Text = DM.cdsUsuariosSENHA.AsString then
+    begin
+      keybd_event(WM_NEXTDLGCTL, 0, 0, 0);
+    end
+end;
+
+procedure TFLogin.FormCreate(Sender: TObject);
+begin
+  //sql server
+  DM.cdsUsuarios.Close;
+  DM.cdsUsuarios.Open;
+
+  //firebird
+  DM.sql_usuario.Close;
+  DM.sql_usuario.Open;
+
+end;
+
+procedure TFLogin.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key=VK_ESCAPE then
+    BtnCancelar.Click;
+
+  if key = VK_TAB then
+    ShowMessage('Usuário não Informado!') ;
+
+
+  if key = VK_RETURN then
+    keybd_event(VK_TAB, 0, 0, 0);
+end;
+
+procedure TFLogin.LkComboBoxUsuarioKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13  then
+    if LkComboBoxUsuario.Text = '' then
+      ShowMessage('Usuário não Informado!');
+      LkComboBoxUsuario.SetFocus;
+
+   {  //validar ao clicar TAB, se usuário estiver vazio exibir mensagem...
+    if key = (#9) then
+    if LkComboBoxUsuario.Text = ''  then
+    ShowMessage('Usuário não Informado!');//NÃO TA FUNCIONANDO!!}
+end;
+
+end.

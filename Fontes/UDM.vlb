@@ -4,9 +4,6 @@ Coordinates=189,1,107,33
 [DtsUsuarios]
 Coordinates=10,10,75,123
 
-[BDConnectionSQL]
-Coordinates=189,53,107,33
-
 [cdsUsuarios]
 Coordinates=90,10,76,123
 
@@ -40,4 +37,7 @@ Coordinates=345,209,107,33
 []
 Coordinates=190,100,115,51
 ExplicitSubNodes=
+
+[BDConnectionSQL]
+Coordinates=189,53,107,33
 

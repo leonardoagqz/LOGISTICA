@@ -45,38 +45,65 @@ uses UDM, UCadUsuario;
 
 procedure TFUsuarios.BtnAlterarClick(Sender: TObject);//procedimento ao clicar no botão alterar
 begin                                                 //inicie
-    if not dm.cdsUsuarios.IsEmpty then                //se não estiver vazio então
+   { if not dm.cdsUsuarios.IsEmpty then                //se não estiver vazio então
     begin                                             //inicie
     Self.Visible:=False;                              //esconde formulario UUsuario
     dm.cdsUsuarios.Edit;                              //editar cadastro de usuários
     dm.CriarFormulario(TFCadUsuario,FCadUsuario);     //criar form
     Self.Visible:=True;                               //mostrar formulario UUsuario
-    end;                                              //fimse
-end;                                                  //fimbegin
+    end;}
 
-procedure TFUsuarios.BtnExcluirClick(Sender: TObject);//procedimento ao clicar no botão excluir
-begin                                                 //inicie
-  if not dm.cdsUsuarios.IsEmpty then                  //se não estiver vazio então
-    begin                                             //inicie
+
+  Self.Visible :=False;
+  DM.sql_usuario.Edit;
+  dm.CriarFormulario(TFCadUsuario,FCadUsuario);
+  Self.Visible:=True;
+
+
+end;
+
+procedure TFUsuarios.BtnExcluirClick(Sender: TObject);
+begin
+  {if not dm.cdsUsuarios.IsEmpty then
+    begin
         if MessageDlg('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
      //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
-        begin                                         //inicie
-            dm.cdsUsuarios.Delete;                    //delete o registro na tabela usuario
-            dm.cdsUsuarios.ApplyUpdates(0);           //aplicar modificações na tabela
-            ShowMessage('Informações Excluídas com Sucesso!'); //exibir mensagem
-        end;                                          //fimse
+        begin
+            dm.cdsUsuarios.Delete;
+            dm.cdsUsuarios.ApplyUpdates(0);
+            ShowMessage('Informações Excluídas com Sucesso!');
+        end;
 
-    end;                                              //fimbegin
-end;                                                  //fimbegin
+    end; }
+
+     if not dm.sql_usuario.IsEmpty then
+    begin
+        if MessageDlg('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+     //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
+        begin
+            dm.sql_usuario.Delete;
+            ShowMessage('Informações Excluídas com Sucesso!');
+        end;
+
+    end;
+
+end;
 
 procedure TFUsuarios.BtnIncluirClick(Sender: TObject);//procedimento ao clicar no botão incluir
-begin                                                 //inicie
-    Self.Visible :=False;                             //esconde formulario UUsuario
-    dm.cdsUsuarios.Append;                            //acrescentar em uma nova linha
-    dm.cdsUsuariosMASTER.Text:='False';               //campo MASTER.text iniciar com S
-    dm.CriarFormulario(TFCadUsuario,FCadUsuario);     //chamar procedimento para criar/abrir formulario UCadUsuario
-    Self.Visible:=True;                               //mostrar formulario UUsuario
-end;
+begin                                               //inicie
+  {Self.Visible :=False;                            //esconde formulario UUsuario
+  dm.cdsUsuarios.Append;                            //acrescentar em uma nova linha
+  dm.cdsUsuariosMASTER.Text:='False';               //campo MASTER.text iniciar com S
+  dm.CriarFormulario(TFCadUsuario,FCadUsuario);     //chamar procedimento para criar/abrir formulario UCadUsuario
+  Self.Visible:=True; }                             //mostrar formulario UUsuario
+
+  Self.Visible :=False;
+  DM.sql_usuario.Active := True;
+  DM.sql_usuario.Insert;
+  dm.CriarFormulario(TFCadUsuario,FCadUsuario);
+  Self.Visible:=True;
+
+ end;
 
 procedure TFUsuarios.BtnSairClick(Sender: TObject);
 begin

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/09/15 15:40:56.000.778,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/09/15 15:41:59.000.666,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2019/09/15 15:42:00.000.811,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\ServerConst1.pas</Transaction>
+    <Transaction>2019/10/03 19:26:40.000.449,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/10/03 19:28:06.000.783,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/12/14 18:16:53.000.040,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/12/23 21:13:33.000.729,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/01/02 08:50:05.000.118,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/01/28 19:43:40.000.098,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/09 21:14:31.502,=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/09 21:15:05.326,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Unit1.pas=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/09 21:15:05.326,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Unit1.dfm=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2020/06/09 21:15:19.986,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Logistica.dproj=C:\Users\Administrador\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2020/06/09 21:17:49.715,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UPrincipal.pas</Transaction>
+    <Transaction>2020/06/09 21:18:01.325,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadProduto.pas</Transaction>
+    <Transaction>2020/06/09 21:18:18.132,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.pas</Transaction>
+    <Transaction>2020/06/09 21:18:19.471,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UDM.pas</Transaction>
+    <Transaction>2020/06/09 21:18:19.536,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\ULogin.pas</Transaction>
+    <Transaction>2020/06/09 21:18:19.600,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UProdutos.pas</Transaction>
+    <Transaction>2020/06/09 21:18:19.661,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UUsuarios.pas</Transaction>
+    <Transaction>2020/06/09 21:19:01.700,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Unit1.pas=</Transaction>
+  </Transactions>
+</BorlandProject>

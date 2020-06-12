@@ -3,8 +3,8 @@ object FUsuarios: TFUsuarios
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Cadastro de Usu'#225'rios'
-  ClientHeight = 508
-  ClientWidth = 767
+  ClientHeight = 470
+  ClientWidth = 539
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,16 +18,16 @@ object FUsuarios: TFUsuarios
   PixelsPerInch = 96
   TextHeight = 13
   object LblLocalizarUsuarios: TLabel
-    Left = 40
-    Top = 52
+    Left = 16
+    Top = 39
     Width = 45
     Height = 13
     Caption = 'Localizar:'
   end
   object EdtLocalizarUsuarios: TEdit
-    Left = 40
-    Top = 72
-    Width = 705
+    Left = 16
+    Top = 59
+    Width = 465
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
@@ -35,13 +35,13 @@ object FUsuarios: TFUsuarios
     OnChange = EdtLocalizarUsuariosChange
   end
   object G1Grid: TDBGrid
-    Left = 40
-    Top = 112
-    Width = 585
+    Left = 16
+    Top = 99
+    Width = 377
     Height = 313
     Cursor = crHandPoint
     Color = clWhite
-    DataSource = DsUsuarios
+    DataSource = DM.ds_usuario
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     TabOrder = 1
@@ -76,8 +76,8 @@ object FUsuarios: TFUsuarios
         FieldName = 'SENHA'
         Title.Alignment = taCenter
         Title.Caption = 'Senha'
-        Width = 80
-        Visible = True
+        Width = -1
+        Visible = False
       end
       item
         Alignment = taCenter
@@ -92,7 +92,7 @@ object FUsuarios: TFUsuarios
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 767
+    Width = 539
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
@@ -101,8 +101,8 @@ object FUsuarios: TFUsuarios
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 464
-    Width = 767
+    Top = 426
+    Width = 539
     Height = 44
     Align = alBottom
     Color = clWhite
@@ -110,8 +110,8 @@ object FUsuarios: TFUsuarios
     TabOrder = 3
   end
   object BtnIncluir: TBitBtn
-    Left = 656
-    Top = 184
+    Left = 408
+    Top = 163
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -126,8 +126,8 @@ object FUsuarios: TFUsuarios
     OnClick = BtnIncluirClick
   end
   object BtnAlterar: TBitBtn
-    Left = 656
-    Top = 223
+    Left = 408
+    Top = 202
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -136,8 +136,8 @@ object FUsuarios: TFUsuarios
     OnClick = BtnAlterarClick
   end
   object BtnExcluir: TBitBtn
-    Left = 656
-    Top = 262
+    Left = 408
+    Top = 241
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -146,8 +146,8 @@ object FUsuarios: TFUsuarios
     OnClick = BtnExcluirClick
   end
   object BtnSair: TButton
-    Left = 656
-    Top = 301
+    Left = 408
+    Top = 280
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -156,9 +156,9 @@ object FUsuarios: TFUsuarios
     OnClick = BtnSairClick
   end
   object DsUsuarios: TDataSource
-    DataSet = DM.cdsUsuarios
+    DataSet = DM.sql_usuario
     OnDataChange = DsUsuariosDataChange
     Left = 464
-    Top = 448
+    Top = 360
   end
 end

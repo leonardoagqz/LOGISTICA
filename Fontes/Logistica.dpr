@@ -2,20 +2,19 @@ program Logistica;
 
 uses
   Vcl.Forms,
-  UPrincipal in 'UPrincipal.pas' {FPrincipal},
+  UCadProduto in 'UCadProduto.pas' {FCadProduto},
+  UCadUsuario in 'UCadUsuario.pas' {FCadUsuario},
   UDM in 'UDM.pas' {DM: TDataModule},
   ULogin in 'ULogin.pas' {FLogin},
-  UUsuarios in 'UUsuarios.pas' {FUsuarios},
-  UCadUsuario in 'UCadUsuario.pas' {FCadUsuario},
+  UPrincipal in 'UPrincipal.pas' {FPrincipal},
   UProdutos in 'UProdutos.pas' {FProdutos},
-  UCadProduto in 'UCadProduto.pas' {FCadProduto};
+  UUsuarios in 'UUsuarios.pas' {FUsuarios};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.MainFormOnTaskbar := False;
+  Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TFLogin, FLogin);
   Application.Run;
 end.
