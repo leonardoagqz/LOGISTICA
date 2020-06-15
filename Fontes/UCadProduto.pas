@@ -16,20 +16,19 @@ type
     Panel2: TPanel;
     BtnCancelar: TButton;
     BtnSalvar: TButton;
-    DsProdutos: TDataSource;
-    EdtNome: TDBEdit;
-    EdtQtd: TDBEdit;
     CbTipo: TComboBox;
     LblTipo: TLabel;
     LblValor: TLabel;
-    EdtValor: TDBEdit;
     LkFornecedor: TDBLookupComboBox;
     LblFornecedor: TLabel;
-    DsPessoas: TDataSource;
+    EdtValor: TDBEdit;
+    EdtQtd: TDBEdit;
+    EdtNome: TDBEdit;
     procedure BtnCancelarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BtnSalvarClick(Sender: TObject);
     procedure CbTipoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,17 +42,21 @@ implementation
 
 {$R *.dfm}
 
-uses UDM;
+uses
+UDM, UProdutos;
 
 procedure TFCadProduto.BtnCancelarClick(Sender: TObject);
 begin
-    dm.cdsProdutos.Cancel;
+    {dm.cdsProdutos.Cancel;
+    Close;}
+
+    DM.sql_produto.Cancel;
     Close;
 end;
 
 procedure TFCadProduto.BtnSalvarClick(Sender: TObject);
 begin
-    if EdtNome.Text = '' then                         //se o produto estiver vazio então
+    {if EdtNome.Text = '' then                         //se o produto estiver vazio então
      begin                                            //inicie
          ShowMessage('Produto não Informado!');       //exibir menssagem
          EdtNome.SetFocus;                            //logo após exibir a msg voltat o foco do mouse para EdtLogin
@@ -72,7 +75,7 @@ begin
          Exit
      end;                                     //fim
 
-      if DM.cdsProdutosVALOR.AsFloat = 0 then               //se a senha estiver vazia
+      if DM.tb_produtoVALOR.AsFloat = 0 then               //se a senha estiver vazia
      begin                                    //inicie
          ShowMessage('Valor não Informada!'); //exibir msg
          EdtValor.SetFocus;                   //setar foco do mouse no campo senha
@@ -100,11 +103,66 @@ begin
         dm.cdsProdutos.ApplyUpdates(0);                        //aplicar modificações
         ShowMessage('Informações Armazenadas com sucesso!');   //exibir mensagem
         dm.cdsProdutos.Refresh;                                //atualizar cdsusuarios
-        Close;
+        Close; }
 
 
 
 
+  if EdtNome.Text = '' then
+  begin
+    ShowMessage('Produto não Informado!');
+    EdtNome.SetFocus;
+    Exit
+  end;
+
+  if EdtQtd.Text = '' then
+  begin
+    ShowMessage('Quantidade não Informada!');
+    EdtQtd.SetFocus;
+    Exit
+  end;
+
+  if DM.sql_produtoVALOR_PRODUTO.AsFloat = 0 then
+  begin
+    ShowMessage('Valor não Informada!');
+    EdtValor.SetFocus;
+    Exit
+  end;
+
+  if CbTipo.ItemIndex<>1 then
+  if LkFornecedor.Text='' then
+  begin
+    ShowMessage('Informe o Fornecedor');
+    LkFornecedor.SetFocus;
+    Exit
+  end;
+
+  if dm.sql_produto.State=dsInsert then
+  begin
+    dm.sql_Gen_usuario.Close;
+    DM.sql_Gen_usuario.Open;
+    DM.sql_produtoID_PRODUTO.AsInteger :=DM.sql_Gen_usuarioID.Value;
+    dm.sql_produtoNOME_PRODUTO.AsString:= EdtNome.Text;
+    dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
+    DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
+    DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
+    dm.sql_produto.Post;
+    ShowMessage('Informações Armazenadas com sucesso!');
+    dm.sql_produto.Refresh;
+    Close;
+  end;
+
+  if dm.sql_produto.State=dsEdit then
+  begin
+    dm.sql_produtoNOME_PRODUTO.AsString:=EdtNome.Text;
+    dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
+    DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
+    DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
+    dm.sql_produto.Post;
+    ShowMessage('Informações Armazenadas com sucesso!');
+    dm.sql_produto.Refresh;
+    Close;
+  end;
 end;
 
 procedure TFCadProduto.CbTipoClick(Sender: TObject);
@@ -122,6 +180,12 @@ begin
         LkFornecedor.KeyValue:=Null;
         LkFornecedor.Color := clSilver;
     end;
+end;
+
+procedure TFCadProduto.FormCreate(Sender: TObject);
+begin
+  DM.sql_pessoa.Close;
+  DM.sql_pessoa.open;
 end;
 
 procedure TFCadProduto.FormKeyDown(Sender: TObject; var Key: Word;

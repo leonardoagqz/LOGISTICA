@@ -4,7 +4,7 @@ object FUsuarios: TFUsuarios
   BorderStyle = bsDialog
   Caption = 'Cadastro de Usu'#225'rios'
   ClientHeight = 470
-  ClientWidth = 539
+  ClientWidth = 510
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,16 +18,16 @@ object FUsuarios: TFUsuarios
   PixelsPerInch = 96
   TextHeight = 13
   object LblLocalizarUsuarios: TLabel
-    Left = 16
+    Left = 8
     Top = 39
     Width = 45
     Height = 13
     Caption = 'Localizar:'
   end
   object EdtLocalizarUsuarios: TEdit
-    Left = 16
+    Left = 8
     Top = 59
-    Width = 465
+    Width = 377
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
@@ -35,7 +35,7 @@ object FUsuarios: TFUsuarios
     OnChange = EdtLocalizarUsuariosChange
   end
   object G1Grid: TDBGrid
-    Left = 16
+    Left = 8
     Top = 99
     Width = 377
     Height = 313
@@ -44,7 +44,7 @@ object FUsuarios: TFUsuarios
     DataSource = DM.ds_usuario
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
-    TabOrder = 1
+    TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -76,7 +76,6 @@ object FUsuarios: TFUsuarios
         FieldName = 'SENHA'
         Title.Alignment = taCenter
         Title.Caption = 'Senha'
-        Width = -1
         Visible = False
       end
       item
@@ -92,25 +91,27 @@ object FUsuarios: TFUsuarios
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 539
+    Width = 510
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
-    TabOrder = 2
+    TabOrder = 6
+    ExplicitWidth = 539
   end
   object PainelUsuarios2: TPanel
     Left = 0
     Top = 426
-    Width = 539
+    Width = 510
     Height = 44
     Align = alBottom
     Color = clWhite
     ParentBackground = False
-    TabOrder = 3
+    TabOrder = 7
+    ExplicitWidth = 539
   end
   object BtnIncluir: TBitBtn
-    Left = 408
+    Left = 400
     Top = 163
     Width = 89
     Height = 33
@@ -122,37 +123,37 @@ object FUsuarios: TFUsuarios
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 1
     OnClick = BtnIncluirClick
   end
   object BtnAlterar: TBitBtn
-    Left = 408
+    Left = 400
     Top = 202
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Alterar'
-    TabOrder = 5
+    TabOrder = 2
     OnClick = BtnAlterarClick
   end
   object BtnExcluir: TBitBtn
-    Left = 408
+    Left = 400
     Top = 241
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Excluir'
-    TabOrder = 6
+    TabOrder = 3
     OnClick = BtnExcluirClick
   end
   object BtnSair: TButton
-    Left = 408
+    Left = 400
     Top = 280
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Sair'
-    TabOrder = 7
+    TabOrder = 4
     OnClick = BtnSairClick
   end
   object DsUsuarios: TDataSource

@@ -15,6 +15,7 @@ object FCadProduto: TFCadProduto
   KeyPreview = True
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
@@ -61,7 +62,7 @@ object FCadProduto: TFCadProduto
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
-    TabOrder = 0
+    TabOrder = 7
   end
   object Panel2: TPanel
     Left = 0
@@ -80,7 +81,7 @@ object FCadProduto: TFCadProduto
     Height = 25
     Cursor = crHandPoint
     Caption = 'Cancelar'
-    TabOrder = 7
+    TabOrder = 6
     OnClick = BtnCancelarClick
   end
   object BtnSalvar: TButton
@@ -90,26 +91,8 @@ object FCadProduto: TFCadProduto
     Height = 25
     Cursor = crHandPoint
     Caption = 'Salvar'
-    TabOrder = 6
+    TabOrder = 5
     OnClick = BtnSalvarClick
-  end
-  object EdtNome: TDBEdit
-    Left = 15
-    Top = 48
-    Width = 305
-    Height = 21
-    DataField = 'NOME'
-    DataSource = DsProdutos
-    TabOrder = 1
-  end
-  object EdtQtd: TDBEdit
-    Left = 15
-    Top = 97
-    Width = 89
-    Height = 21
-    DataField = 'QUANTIDADE'
-    DataSource = DsProdutos
-    TabOrder = 2
   end
   object CbTipo: TComboBox
     Left = 122
@@ -119,7 +102,7 @@ object FCadProduto: TFCadProduto
     Cursor = crHandPoint
     Style = csDropDownList
     ItemIndex = 2
-    TabOrder = 3
+    TabOrder = 2
     Text = 'Todos'
     OnClick = CbTipoClick
     Items.Strings = (
@@ -127,35 +110,41 @@ object FCadProduto: TFCadProduto
       'Venda'
       'Todos')
   end
-  object EdtValor: TDBEdit
-    Left = 236
-    Top = 97
-    Width = 89
-    Height = 21
-    DataField = 'VALOR'
-    DataSource = DsProdutos
-    TabOrder = 4
-  end
   object LkFornecedor: TDBLookupComboBox
     Left = 15
     Top = 149
     Width = 204
     Height = 21
-    DataField = 'ID_PESSOA'
-    DataSource = DsProdutos
     KeyField = 'ID_PESSOA'
-    ListField = 'NOME'
-    ListSource = DsPessoas
-    TabOrder = 5
+    ListField = 'NOME_PESSOA'
+    ListSource = DM.ds_pessoa
+    TabOrder = 4
   end
-  object DsProdutos: TDataSource
-    DataSet = DM.cdsProdutos
-    Left = 152
-    Top = 16
+  object EdtValor: TDBEdit
+    Left = 236
+    Top = 95
+    Width = 89
+    Height = 21
+    DataField = 'VALOR_PRODUTO'
+    DataSource = DM.ds_produto
+    TabOrder = 3
   end
-  object DsPessoas: TDataSource
-    DataSet = DM.cdsPessoas
-    Left = 208
-    Top = 16
+  object EdtQtd: TDBEdit
+    Left = 12
+    Top = 95
+    Width = 89
+    Height = 21
+    DataField = 'QUANTIDADE_PRODUTO'
+    DataSource = DM.ds_produto
+    TabOrder = 1
+  end
+  object EdtNome: TDBEdit
+    Left = 15
+    Top = 46
+    Width = 194
+    Height = 21
+    DataField = 'NOME_PRODUTO'
+    DataSource = DM.ds_produto
+    TabOrder = 0
   end
 end

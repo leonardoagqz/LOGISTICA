@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef,
   FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
   FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.VCLUI.Wait, FireDAC.Phys.IBBase,
-  FireDAC.Comp.UI;
+  FireDAC.Comp.UI, Controls, StdCtrls ;
 
 type
   TDM = class(TDataModule)
@@ -91,8 +91,41 @@ type
     FireBird: TFDPhysFBDriverLink;
     sql_Gen_usuario: TFDQuery;
     sql_Gen_usuarioID: TLargeintField;
+    tb_produto: TFDTable;
+    ds_produto: TDataSource;
+    sql_produto: TFDQuery;
+    tb_pessoa: TFDTable;
+    ds_pessoa: TDataSource;
+    sql_pessoa: TFDQuery;
+    sql_pessoaID_PESSOA: TIntegerField;
+    sql_pessoaNOME_PESSOA: TStringField;
+    sql_pessoaDOCUMENTO_PESSOA: TStringField;
+    sql_pessoaFONE_PESSOA: TStringField;
+    sql_pessoaTIPO_PESSOA: TStringField;
+    sql_pessoaID_PAIS_PESSOA: TIntegerField;
+    tb_pessoaID_PESSOA: TIntegerField;
+    tb_pessoaNOME_PESSOA: TStringField;
+    tb_pessoaDOCUMENTO_PESSOA: TStringField;
+    tb_pessoaFONE_PESSOA: TStringField;
+    tb_pessoaTIPO_PESSOA: TStringField;
+    tb_pessoaID_PAIS_PESSOA: TIntegerField;
+    tb_produtoID_PRODUTO: TIntegerField;
+    tb_produtoNOME_PRODUTO: TStringField;
+    tb_produtoQUANTIDADE_PRODUTO: TIntegerField;
+    tb_produtoID_PESSOA_PROD: TIntegerField;
+    tb_produtoVALOR_PRODUTO: TBCDField;
+    tb_produtoTIPO_PRODUTO: TStringField;
+    sql_produtoID_PRODUTO: TIntegerField;
+    sql_produtoNOME_PRODUTO: TStringField;
+    sql_produtoQUANTIDADE_PRODUTO: TIntegerField;
+    sql_produtoID_PESSOA_PROD: TIntegerField;
+    sql_produtoVALOR_PRODUTO: TBCDField;
+    sql_produtoTIPO_PRODUTO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
+   function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;
+   IndiceHelp: LongInt; DefButton: TModalResult=MrNone): Word;
+
   private
     { Private declarations }
   public
@@ -128,16 +161,18 @@ begin
   //exportar as configurações de conexão para um arquivo texto
   //BDConnectionSQL.Params.SaveToFile('C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Sistema Logistica\Config.txt');
 
+
+  //CONEXÃO BANCO FIREBIRD
   vPath:= ExtractFilePath(Application.ExeName)+'Config.txt';
 
-  try // tentar executar um blocode comandos
+  try
     //variavel as informações que esta dentro do Config.txt
 
     BDConnectionFB.Close;
     BDConnectionFB.Params.LoadFromFile(vPath);
     BDConnectionFB.Open;
 
-      //tentar criar/abrir o form login
+
       Application.CreateForm(TFLogin,FLogin);//TFLogin é a classe, FLogin é o nome do formulário a ser chamado
       FLogin.ShowModal;                      //mostrar tela de login na tela
       FLogin.Free;                          //depois que abrir o formulário e finalizar é preciso liberar ele da memória
@@ -160,6 +195,57 @@ begin
 
 
     end;
+
+
+end;
+
+
+function TDM.MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;
+                                IndiceHelp: LongInt; DefButton: TModalResult=MrNone): Word;
+var
+I:Integer;
+Mensagem:TForm;
+begin
+Mensagem:=CreateMessageDialog(Msg, AType, Abuttons);
+Mensagem.HelpConText:=IndiceHelp;
+with Mensagem do
+begin
+for i :=0 To ComponentCount -1 do
+begin
+if (Components[i] is TButton) then
+begin
+if (TButton(Components[i]).ModalResult=DefButton) then
+begin
+ActiveControl:=TWincontrol(Components[i]);
+end;
+end;
+end;
+
+{if Atype=mtConfirmation then
+Caption:='Confirmação'
+else
+if AType=mtWarning then
+Caption:='Atenção'
+else
+if AType=mtError then
+Caption := 'Erro'
+else
+if AType=mtInFormation then
+Caption:='InFormação';}
+
+Caption:=Application.Title;
+
+TButton(Mensagem.FindComponent('YES')).Caption :='&Sim';
+TButton(Mensagem.FindComponent('NO')).Caption :='&Não';
+TButton(Mensagem.FindComponent('CANCEL')).Caption :='&Cancelar';
+TButton(Mensagem.FindComponent('ABORT')).Caption :='&Abortar';
+TButton(Mensagem.FindComponent('RETRY')).Caption :='&Repetir';
+TButton(Mensagem.FindComponent('IGNORE')).Caption :='&Ignorar';
+TButton(Mensagem.FindComponent('ALL')).Caption :='&Todos';
+TButton(Mensagem.FindComponent('HELP')).Caption :='A&juda';
+Result:=Mensagem.ShowModal;
+Mensagem.Free;
+end;
 end;
 
 end.

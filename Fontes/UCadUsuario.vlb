@@ -1,10 +1,6 @@
 ﻿[BtnSalvar]
 Coordinates=10,234,62,51
 
-[EdtSenha]
-Coordinates=130,240,61,51
-Visible=True
-
 [DsCadUsuario]
 Coordinates=274,78,85,33
 
@@ -13,9 +9,6 @@ Coordinates=247,10,75,51
 
 [Panel1]
 Coordinates=342,10,47,51
-
-[EdtLogin]
-Coordinates=0,170,58,51
 
 [DM.cdsUsuarios]
 Coordinates=128,10,95,33
@@ -38,7 +31,8 @@ Coordinates=250,130,46,51
 Coordinates=313,130,46,51
 
 []
-Coordinates=410,155,91,36
+Coordinates=130,240,61,51
+Visible=True
 
 [BSDBCadUsuario]
 Coordinates=140,0,101,141

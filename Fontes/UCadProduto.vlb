@@ -1,8 +1,4 @@
-﻿[DsProdutos]
-Visible=True
-Coordinates=133,166,88,190
-
-[Label1]
+﻿[Label1]
 Coordinates=426,1,53,58
 
 [DM.cdsProdutos]
@@ -36,7 +32,7 @@ Coordinates=279,364,109,146
 Coordinates=71,437,85,58
 
 []
-Coordinates=426,155,114,58
+Coordinates=133,166,88,190
 Visible=True
 
 [LblQtd]

@@ -1,0 +1,147 @@
+unit UUsuarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Data.DB, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
+
+type
+  TFUsuarios = class(TForm)
+    EdtLocalizarUsuarios: TEdit;
+    LblLocalizarUsuarios: TLabel;
+    G1Grid: TDBGrid;
+    PainelUsuarios1: TPanel;
+    PainelUsuarios2: TPanel;
+    DsUsuarios: TDataSource;
+    BtnIncluir: TBitBtn;
+    BtnAlterar: TBitBtn;
+    BtnExcluir: TBitBtn;
+    BtnSair: TButton;
+    procedure EdtLocalizarUsuariosChange(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure BtnIncluirClick(Sender: TObject);
+    procedure G1GridDblClick(Sender: TObject);
+    procedure BtnAlterarClick(Sender: TObject);
+    procedure BtnExcluirClick(Sender: TObject);
+    procedure BtnSairClick(Sender: TObject);
+    procedure DsUsuariosDataChange(Sender: TObject; Field: TField);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FUsuarios: TFUsuarios;
+
+implementation
+
+{$R *.dfm}
+
+uses UDM, UCadUsuario;
+
+procedure TFUsuarios.BtnAlterarClick(Sender: TObject);//procedimento ao clicar no botão alterar
+begin                                                 //inicie
+   { if not dm.cdsUsuarios.IsEmpty then                //se não estiver vazio então
+    begin                                             //inicie
+    Self.Visible:=False;                              //esconde formulario UUsuario
+    dm.cdsUsuarios.Edit;                              //editar cadastro de usuários
+    dm.CriarFormulario(TFCadUsuario,FCadUsuario);     //criar form
+    Self.Visible:=True;                               //mostrar formulario UUsuario
+    end;}
+
+  if not DM.sql_usuario.IsEmpty then
+  begin
+  Self.Visible :=False;
+  DM.sql_usuario.Edit;
+
+  dm.CriarFormulario(TFCadUsuario,FCadUsuario);
+  Self.Visible:=True;
+  end;
+
+end;
+
+procedure TFUsuarios.BtnExcluirClick(Sender: TObject);
+begin
+  {if not dm.cdsUsuarios.IsEmpty then
+    begin
+        if MessageDlg('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+     //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
+        begin
+            dm.cdsUsuarios.Delete;
+            dm.cdsUsuarios.ApplyUpdates(0);
+            ShowMessage('Informações Excluídas com Sucesso!');
+        end;
+
+    end; }
+
+     if not dm.sql_usuario.IsEmpty then
+    begin
+        if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+      //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
+        begin
+            dm.sql_usuario.Delete;
+            ShowMessage('Informações Excluídas com Sucesso!');
+        end;
+
+    end;
+
+end;
+
+procedure TFUsuarios.BtnIncluirClick(Sender: TObject);
+begin
+   //SQLServer
+  {Self.Visible :=False;
+  dm.cdsUsuarios.Append;
+  dm.cdsUsuariosMASTER.Text:='False';
+  dm.CriarFormulario(TFCadUsuario,FCadUsuario);
+  Self.Visible:=True; }
+
+  //Firebird
+  Self.Visible :=False;
+  DM.sql_usuario.Active := True;
+  DM.sql_usuario.Insert;
+  dm.CriarFormulario(TFCadUsuario,FCadUsuario);
+  Self.Visible:=True;
+
+ end;
+
+procedure TFUsuarios.BtnSairClick(Sender: TObject);
+begin
+    Close;
+end;
+
+procedure TFUsuarios.DsUsuariosDataChange(Sender: TObject; Field: TField);
+begin
+
+end;
+
+//fim
+
+procedure TFUsuarios.EdtLocalizarUsuariosChange(Sender: TObject);//procedimento quando houver algumamudança no campo
+begin                                                            //inicie
+                                                                 //criando busca de usuários
+    if EdtLocalizarUsuarios.Text<> '' then                       //se a busca no Localizar for diferente de vazio então
+
+    //acesse a tabela, localize o campo LOGIN no BD,e procure pelo texto que esta escrito no edtlocalizar,
+    //[loPartialkey= localiza pela primeira letra ] [loCaseInsensitive=case sensitive]
+    dm.cdsUsuarios.Locate('LOGIN',EdtLocalizarUsuarios.Text,[loPartialKey,loCaseInsensitive]);
+
+end;                                                             //fimbegin
+
+procedure TFUsuarios.FormKeyDown(Sender: TObject; var Key: Word; //procedimento botão ESC
+  Shift: TShiftState);
+begin                                                            //inicie
+    if key=VK_ESCAPE then                                        //se a tecla ESC for pressionada então
+    Close;                                                       //fechar
+end;                                                             //fim
+
+procedure TFUsuarios.G1GridDblClick(Sender: TObject); //procedimento duplo cloque na dbgrid
+begin                                                 //inicie
+    BtnAlterar.Click;                                 //procedimento btnalterar.click
+end;                                                  //fim
+
+end.                                                  //fimform

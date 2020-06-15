@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB,
   System.Rtti, System.Bindings.Outputs, Vcl.Bind.Editors, Data.Bind.EngExt,
-  Vcl.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope;
+  Vcl.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope, Vcl.Mask,
+  Vcl.DBCtrls;
 
 type
   TFCadUsuario = class(TForm)
@@ -14,17 +15,15 @@ type
     Panel2: TPanel;
     BtnCancelar: TButton;
     BtnSalvar: TButton;
-    EdtLogin: TEdit;
-    EdtSenha: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     CbMaster: TCheckBox;
     DsCadUsuario: TDataSource;
     BSDBCadUsuario: TBindSourceDB;
     BLCadUsuario: TBindingsList;
-    LinkControlToField1: TLinkControlToField;
-    LinkControlToField2: TLinkControlToField;
     LinkControlToField3: TLinkControlToField;
+    EdtLogin: TDBEdit;
+    EdtSenha: TDBEdit;
     procedure BtnCancelarClick(Sender: TObject);
     procedure BtnCancelarKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);

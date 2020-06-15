@@ -4,7 +4,7 @@ uses
   Vcl.Forms,
   UCadProduto in 'UCadProduto.pas' {FCadProduto},
   UCadUsuario in 'UCadUsuario.pas' {FCadUsuario},
-  UDM in 'UDM.pas' {DM: TDataModule},
+  UDM in 'UDM.pas' {tb_pessoa: TDataModule},
   ULogin in 'ULogin.pas' {FLogin},
   UPrincipal in 'UPrincipal.pas' {FPrincipal},
   UProdutos in 'UProdutos.pas' {FProdutos},

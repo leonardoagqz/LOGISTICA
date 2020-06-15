@@ -39,7 +39,7 @@ object FCadUsuario: TFCadUsuario
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
-    TabOrder = 5
+    TabOrder = 3
   end
   object Panel2: TPanel
     Left = 0
@@ -49,7 +49,7 @@ object FCadUsuario: TFCadUsuario
     Align = alBottom
     Color = clWhite
     ParentBackground = False
-    TabOrder = 6
+    TabOrder = 4
   end
   object BtnCancelar: TButton
     Left = 113
@@ -57,7 +57,7 @@ object FCadUsuario: TFCadUsuario
     Width = 75
     Height = 25
     Caption = 'Cancelar'
-    TabOrder = 4
+    TabOrder = 2
     OnClick = BtnCancelarClick
     OnKeyDown = BtnCancelarKeyDown
   end
@@ -67,35 +67,9 @@ object FCadUsuario: TFCadUsuario
     Width = 75
     Height = 25
     Caption = 'Salvar'
-    TabOrder = 3
+    TabOrder = 1
     OnClick = BtnSalvarClick
     OnKeyDown = BtnSalvarKeyDown
-  end
-  object EdtLogin: TEdit
-    Left = 24
-    Top = 48
-    Width = 164
-    Height = 21
-    Color = clWhite
-    DoubleBuffered = False
-    ParentDoubleBuffered = False
-    TabOrder = 0
-  end
-  object EdtSenha: TEdit
-    Left = 24
-    Top = 104
-    Width = 164
-    Height = 21
-    CharCase = ecUpperCase
-    Color = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    PasswordChar = '*'
-    TabOrder = 1
   end
   object CbMaster: TCheckBox
     Left = 24
@@ -103,7 +77,25 @@ object FCadUsuario: TFCadUsuario
     Width = 97
     Height = 17
     Caption = 'Master'
-    TabOrder = 2
+    TabOrder = 0
+  end
+  object EdtLogin: TDBEdit
+    Left = 24
+    Top = 48
+    Width = 164
+    Height = 21
+    DataField = 'LOGIN'
+    DataSource = FUsuarios.DsUsuarios
+    TabOrder = 5
+  end
+  object EdtSenha: TDBEdit
+    Left = 24
+    Top = 103
+    Width = 164
+    Height = 21
+    DataField = 'SENHA'
+    DataSource = FUsuarios.DsUsuarios
+    TabOrder = 6
   end
   object DsCadUsuario: TDataSource
     DataSet = DM.tb_usuario
@@ -120,20 +112,6 @@ object FCadUsuario: TFCadUsuario
     OutputConverters = <>
     Left = 108
     Top = 5
-    object LinkControlToField1: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BSDBCadUsuario
-      FieldName = 'LOGIN'
-      Control = EdtLogin
-      Track = True
-    end
-    object LinkControlToField2: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BSDBCadUsuario
-      FieldName = 'SENHA'
-      Control = EdtSenha
-      Track = True
-    end
     object LinkControlToField3: TLinkControlToField
       Category = 'Quick Bindings'
       DataSource = BSDBCadUsuario

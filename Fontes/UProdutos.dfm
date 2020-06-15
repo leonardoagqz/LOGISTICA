@@ -4,7 +4,7 @@ object FProdutos: TFProdutos
   BorderStyle = bsDialog
   Caption = 'Tabela de Produtos'
   ClientHeight = 496
-  ClientWidth = 773
+  ClientWidth = 669
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,16 +19,16 @@ object FProdutos: TFProdutos
   PixelsPerInch = 96
   TextHeight = 13
   object LblLocalizarUsuarios: TLabel
-    Left = 40
-    Top = 52
+    Left = 8
+    Top = 39
     Width = 45
     Height = 13
     Caption = 'Localizar:'
   end
   object EdtLocalizarProdutos: TEdit
-    Left = 40
-    Top = 71
-    Width = 705
+    Left = 8
+    Top = 58
+    Width = 521
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
@@ -36,16 +36,16 @@ object FProdutos: TFProdutos
     OnChange = EdtLocalizarProdutosChange
   end
   object G1Grid: TDBGrid
-    Left = 40
-    Top = 112
-    Width = 585
+    Left = 8
+    Top = 99
+    Width = 537
     Height = 313
     Cursor = crHandPoint
     Color = clWhite
-    DataSource = DsProduto
+    DataSource = DM.ds_produto
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
-    TabOrder = 1
+    TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -55,59 +55,68 @@ object FProdutos: TFProdutos
       item
         Expanded = False
         FieldName = 'ID_PRODUTO'
-        Title.Alignment = taCenter
-        Title.Caption = 'C'#243'digo'
-        Width = 53
+        Title.Caption = 'ID'
+        Width = 45
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'NOME'
-        Title.Alignment = taCenter
-        Title.Caption = 'Nome'
-        Width = 343
+        FieldName = 'NOME_PRODUTO'
+        Title.Caption = 'Produto'
+        Width = 120
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'QUANTIDADE'
-        Title.Alignment = taCenter
-        Title.Caption = 'Qtd.'
-        Width = 70
+        FieldName = 'QUANTIDADE_PRODUTO'
+        Title.Caption = 'Quantidade'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'VALOR'
-        Title.Alignment = taCenter
-        Title.Caption = 'Valor'
-        Width = 82
+        FieldName = 'ID_PESSOA_PROD'
+        Title.Caption = 'Id Fornec'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VALOR_PRODUTO'
+        Title.Caption = '$ Valor'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TIPO_PRODUTO'
+        Title.Caption = 'Tipo'
+        Width = 96
         Visible = True
       end>
   end
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 773
+    Width = 669
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
-    TabOrder = 2
+    TabOrder = 6
+    ExplicitWidth = 773
   end
   object PainelUsuarios2: TPanel
     Left = 0
     Top = 452
-    Width = 773
+    Width = 669
     Height = 44
     Align = alBottom
     Color = clWhite
     ParentBackground = False
-    TabOrder = 3
+    TabOrder = 7
+    ExplicitWidth = 773
   end
   object BtnIncluir: TBitBtn
-    Left = 656
-    Top = 184
+    Left = 560
+    Top = 171
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -118,42 +127,37 @@ object FProdutos: TFProdutos
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 1
     OnClick = BtnIncluirClick
   end
   object BtnAlterar: TBitBtn
-    Left = 656
-    Top = 223
+    Left = 560
+    Top = 210
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Alterar'
-    TabOrder = 5
+    TabOrder = 2
     OnClick = BtnAlterarClick
   end
   object BtnExcluir: TBitBtn
-    Left = 656
-    Top = 262
+    Left = 560
+    Top = 249
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Excluir'
-    TabOrder = 6
+    TabOrder = 3
     OnClick = BtnExcluirClick
   end
   object BtnSair: TButton
-    Left = 656
-    Top = 301
+    Left = 560
+    Top = 288
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Sair'
-    TabOrder = 7
+    TabOrder = 4
     OnClick = BtnSairClick
-  end
-  object DsProduto: TDataSource
-    DataSet = DM.cdsProdutos
-    Left = 464
-    Top = 448
   end
 end
