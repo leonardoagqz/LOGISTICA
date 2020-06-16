@@ -25,15 +25,16 @@ type
     Despesas1: TMenuItem;
     Configuraes1: TMenuItem;
     Usurios1: TMenuItem;
-    FormasdePagamento1: TMenuItem;
     MeiosdeTransportes1: TMenuItem;
     Pases1: TMenuItem;
     Sair1: TMenuItem;
+    FormasdePagamento1: TMenuItem;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormasdePagamento1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,7 +48,12 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarios, UDM, UProdutos, ULogin;
+uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto;
+
+procedure TFPrincipal.FormasdePagamento1Click(Sender: TObject);
+begin
+  Dm.CriarFormulario(TFFormasPgto,FFormasPgto);
+end;
 
 procedure TFPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

@@ -32,6 +32,10 @@ object FPrincipal: TFPrincipal
         Caption = 'Produtos'
         OnClick = Produtos1Click
       end
+      object FormasdePagamento1: TMenuItem
+        Caption = 'Formas de Pagamento'
+        OnClick = FormasdePagamento1Click
+      end
     end
     object Consulta1: TMenuItem
       Caption = 'Consulta'
@@ -68,9 +72,6 @@ object FPrincipal: TFPrincipal
       object Usurios1: TMenuItem
         Caption = 'Usu'#225'rios'
         OnClick = Usurios1Click
-      end
-      object FormasdePagamento1: TMenuItem
-        Caption = 'Formas de Pagamento'
       end
       object MeiosdeTransportes1: TMenuItem
         Caption = 'Meios de Transportes'

@@ -139,13 +139,18 @@ begin
 
   if dm.sql_produto.State=dsInsert then
   begin
-    dm.sql_Gen_usuario.Close;
-    DM.sql_Gen_usuario.Open;
-    DM.sql_produtoID_PRODUTO.AsInteger :=DM.sql_Gen_usuarioID.Value;
+    dm.sql_Gen_produto.Close;
+    DM.sql_Gen_produto.Open;
+    DM.sql_produtoID_PRODUTO.AsInteger :=DM.sql_Gen_produtoID.Value;
     dm.sql_produtoNOME_PRODUTO.AsString:= EdtNome.Text;
     dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
     DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
     DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
+    case CbTipo.ItemIndex of
+       0: DM.sql_produtoTIPO_PRODUTO.AsString := 'Compra';
+       1: DM.sql_produtoTIPO_PRODUTO.AsString := 'Venda';
+       2: DM.sql_produtoTIPO_PRODUTO.AsString := 'Todos';
+    end;
     dm.sql_produto.Post;
     ShowMessage('Informações Armazenadas com sucesso!');
     dm.sql_produto.Refresh;
@@ -158,6 +163,11 @@ begin
     dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
     DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
     DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
+    case CbTipo.ItemIndex of
+       0: DM.sql_produtoTIPO_PRODUTO.AsString := 'Compra';
+       1: DM.sql_produtoTIPO_PRODUTO.AsString := 'Venda';
+       2: DM.sql_produtoTIPO_PRODUTO.AsString := 'Todos';
+    end;
     dm.sql_produto.Post;
     ShowMessage('Informações Armazenadas com sucesso!');
     dm.sql_produto.Refresh;
@@ -186,6 +196,27 @@ procedure TFCadProduto.FormCreate(Sender: TObject);
 begin
   DM.sql_pessoa.Close;
   DM.sql_pessoa.open;
+
+  if DM.sql_produtoTIPO_PRODUTO.AsString = 'Compra' then
+  CbTipo.ItemIndex :=0;
+  if DM.sql_produtoTIPO_PRODUTO.AsString = 'Venda' then
+  CbTipo.ItemIndex :=1;
+  if (CbTipo.ItemIndex=0) or (CbTipo.ItemIndex=2) then
+    begin
+        LkFornecedor.Enabled:=True;
+        LblFornecedor.Enabled:=True;
+        LkFornecedor.Color := clInfoBk;
+    end
+    else
+    begin
+        LkFornecedor.Enabled:=False;
+        LblFornecedor.Enabled:=False;
+        LkFornecedor.KeyValue:=Null;
+        LkFornecedor.Color := clSilver;
+    end;
+
+  if DM.sql_produtoTIPO_PRODUTO.AsString = 'Todos' then
+  CbTipo.ItemIndex :=2;
 end;
 
 procedure TFCadProduto.FormKeyDown(Sender: TObject; var Key: Word;

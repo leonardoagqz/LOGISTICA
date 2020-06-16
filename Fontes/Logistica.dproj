@@ -93,7 +93,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UCadUsuario.pas">
-            <Form>FCadUsuario</Form>
+            <Form>FCadUsuarios</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UDM.pas">
@@ -115,6 +115,14 @@
         </DCCReference>
         <DCCReference Include="UUsuarios.pas">
             <Form>FUsuarios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UFormasPgto.pas">
+            <Form>FFormasPgto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UCadFormasPgto.pas">
+            <Form>FCadFormasPgto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -146,7 +154,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="1">
-                <DeployFile LocalName="..\Logistica.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\Sistema Logistica\Logistica.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Logistica.exe</RemoteName>
                         <Overwrite>true</Overwrite>

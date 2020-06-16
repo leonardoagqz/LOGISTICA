@@ -10,7 +10,7 @@ uses
   Vcl.DBCtrls;
 
 type
-  TFCadUsuario = class(TForm)
+  TFCadUsuarios = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
     BtnCancelar: TButton;
@@ -39,7 +39,7 @@ type
   end;
 
 var
-  FCadUsuario: TFCadUsuario;
+  FCadUsuarios: TFCadUsuarios;
 
 implementation
 
@@ -47,20 +47,20 @@ implementation
 
 uses UDM, UUsuarios;
 
-procedure TFCadUsuario.BtnCancelarClick(Sender: TObject); //procedimento ao clicar em cancelar
+procedure TFCadUsuarios.BtnCancelarClick(Sender: TObject); //procedimento ao clicar em cancelar
 begin                                                     //inicie
     dm.cdsUsuarios.Cancel;                                //cancelar o estado da tabela
     Close;                                                //fechar
 end;                                                      //fimbegin
 
-procedure TFCadUsuario.BtnCancelarKeyDown(Sender: TObject; var Key: Word; //procedimento botão ESC
+procedure TFCadUsuarios.BtnCancelarKeyDown(Sender: TObject; var Key: Word; //procedimento botão ESC
   Shift: TShiftState);
 begin                                                                     //inicie
     if key=VK_ESCAPE then                                                 //se a tecla ESC for pressionada então
     BtnCancelar.Click;                                                    //btncancelarclick será acionado
 end;                                                                      //fimbegin
 
-procedure TFCadUsuario.BtnSalvarClick(Sender: TObject);
+procedure TFCadUsuarios.BtnSalvarClick(Sender: TObject);
 begin
   {if EdtLogin.Text = '' then
   begin
@@ -160,20 +160,20 @@ begin
 
 end;
 
-procedure TFCadUsuario.BtnSalvarKeyDown(Sender: TObject; var Key: Word;
+procedure TFCadUsuarios.BtnSalvarKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if Key=VK_ESCAPE then
   BtnCancelar.Click;
 end;
 
-procedure TFCadUsuario.FormClose(Sender: TObject; var Action: TCloseAction);//procedimento ao fechar form
+procedure TFCadUsuarios.FormClose(Sender: TObject; var Action: TCloseAction);//procedimento ao fechar form
 begin                                                                       //inicie
     if dm.cdsUsuarios.State in [dsInsert,dsEdit] then                       //se minha tabela usuarios estiver com status insert ou edit então
     dm.cdsUsuarios.Cancel;                                                  //cancela qualquer operação na tabela
 end;                                                                        //fim
 
-procedure TFCadUsuario.FormCreate(Sender: TObject);
+procedure TFCadUsuarios.FormCreate(Sender: TObject);
 begin
     //CbMaster.Checked:=false;
 

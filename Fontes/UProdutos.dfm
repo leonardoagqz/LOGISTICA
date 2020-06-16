@@ -51,6 +51,7 @@ object FProdutos: TFProdutos
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = G1GridDblClick
     Columns = <
       item
         Expanded = False

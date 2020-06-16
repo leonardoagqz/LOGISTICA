@@ -1,0 +1,51 @@
+unit UFormasPgto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TFFormasPgto = class(TForm)
+    LblLocalizarUsuarios: TLabel;
+    EdtLocalizarFormasPgto: TEdit;
+    dbgFormasPgto: TDBGrid;
+    PainelUsuarios1: TPanel;
+    PainelUsuarios2: TPanel;
+    BtnIncluir: TBitBtn;
+    BtnAlterar: TBitBtn;
+    BtnExcluir: TBitBtn;
+    BtnSair: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure EdtLocalizarFormasPgtoChange(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FFormasPgto: TFFormasPgto;
+
+implementation
+
+uses
+  UDM;
+
+{$R *.dfm}
+
+procedure TFFormasPgto.EdtLocalizarFormasPgtoChange(Sender: TObject);
+begin
+  //Firebird
+  dm.sql_formaspgto.Locate('DESCRICAO_FORMAPGTO',EdtLocalizarFormasPgto.Text,[loPartialKey,loCaseInsensitive]);
+end;
+
+procedure TFFormasPgto.FormCreate(Sender: TObject);
+begin
+  DM.sql_formaspgto.Close;
+  DM.sql_formaspgto.Open;
+end;
+
+end.

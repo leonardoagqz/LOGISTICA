@@ -25,6 +25,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BtnAlterarClick(Sender: TObject);
     procedure BtnExcluirClick(Sender: TObject);
+    procedure G1GridDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,6 +56,11 @@ procedure TFProdutos.FormKeyDown(Sender: TObject; var Key: Word;
 begin
     if key=VK_ESCAPE then //se a tecla ESC for pressionada então
     Close;
+end;
+
+procedure TFProdutos.G1GridDblClick(Sender: TObject);
+begin
+  BtnAlterar.Click;
 end;
 
 //fim
@@ -139,13 +145,15 @@ end;                                               //fim
 
 procedure TFProdutos.EdtLocalizarProdutosChange(Sender: TObject);//pesquisa de produtos
 begin                                                            //inicie
-     if EdtLocalizarProdutos.Text<> '' then                      //se a busca no Localizar for diferente de vazio então
+  if EdtLocalizarProdutos.Text<> '' then                      //se a busca no Localizar for diferente de vazio então
 
-    //acesse a tabela, localize o campo NOME no BD,e procure pelo texto que esta escrito no edtlocalizar,
-    //[loPartialkey= localiza pela primeira letra ] [loCaseInsensitive=case sensitive]
-    {dm.cdsProdutos.Locate('NOME',EdtLocalizarProdutos.Text,[loPartialKey,loCaseInsensitive]); }
+  //acesse a tabela, localize o campo NOME no BD,e procure pelo texto que esta escrito no edtlocalizar,
+  //[loPartialkey= localiza pela primeira letra ] [loCaseInsensitive=case sensitive]
+  {dm.cdsProdutos.Locate('NOME',EdtLocalizarProdutos.Text,[loPartialKey,loCaseInsensitive]); }
 
-     dm.sql_produto.Locate('NOME',EdtLocalizarProdutos.Text,[loPartialKey,loCaseInsensitive]);
+
+  //Firebird
+  dm.sql_produto.Locate('NOME_PRODUTO',EdtLocalizarProdutos.Text,[loPartialKey,loCaseInsensitive]);
 
 end;
 

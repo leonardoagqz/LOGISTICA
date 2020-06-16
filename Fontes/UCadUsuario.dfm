@@ -1,4 +1,4 @@
-object FCadUsuario: TFCadUsuario
+object FCadUsuarios: TFCadUsuarios
   Left = 0
   Top = 0
   Caption = 'Cadastro de Usu'#225'rio'

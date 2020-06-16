@@ -41,7 +41,7 @@ implementation
 
 {$R *.dfm}
 
-uses UDM, UCadUsuario;
+uses UDM, UCadUsuario, UCadFormasPgto;
 
 procedure TFUsuarios.BtnAlterarClick(Sender: TObject);//procedimento ao clicar no botão alterar
 begin                                                 //inicie
@@ -57,7 +57,7 @@ begin                                                 //inicie
   begin
   Self.Visible :=False;
   DM.sql_usuario.Edit;
-  dm.CriarFormulario(TFCadUsuario,FCadUsuario);
+  dm.CriarFormulario(TFCadUsuarios,FCadUsuarios);
   Self.Visible:=True;
   end;
 
@@ -103,7 +103,7 @@ begin
   Self.Visible :=False;
   DM.sql_usuario.Active := True;
   DM.sql_usuario.Insert;
-  dm.CriarFormulario(TFCadUsuario,FCadUsuario);
+  dm.CriarFormulario(TFCadUsuarios,FCadUsuarios);
   Self.Visible:=True;
 
  end;
@@ -127,7 +127,7 @@ begin                                                            //inicie
 
     //acesse a tabela, localize o campo LOGIN no BD,e procure pelo texto que esta escrito no edtlocalizar,
     //[loPartialkey= localiza pela primeira letra ] [loCaseInsensitive=case sensitive]
-    dm.cdsUsuarios.Locate('LOGIN',EdtLocalizarUsuarios.Text,[loPartialKey,loCaseInsensitive]);
+    dm.sql_usuario.Locate('LOGIN',EdtLocalizarUsuarios.Text,[loPartialKey,loCaseInsensitive]);
 
 end;                                                             //fimbegin
 

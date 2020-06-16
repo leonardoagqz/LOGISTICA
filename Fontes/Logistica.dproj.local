@@ -19,12 +19,24 @@
     <Transaction>2020/06/09 21:29:33.000.994,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.pas=</Transaction>
     <Transaction>2020/06/09 21:29:43.000.976,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.pas</Transaction>
     <Transaction>2020/06/09 21:29:43.000.919,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadProduto.pas</Transaction>
-    <Transaction>2020/06/09 21:29:45.000.271,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UUsuarios.pas</Transaction>
+    <Transaction>2020/06/09 21:29:45.000.036,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UDM.pas</Transaction>
     <Transaction>2020/06/09 21:29:45.000.170,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UPrincipal.pas</Transaction>
+    <Transaction>2020/06/09 21:29:45.000.084,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\ULogin.pas</Transaction>
+    <Transaction>2020/06/09 21:29:45.000.271,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UUsuarios.pas</Transaction>
     <Transaction>2020/06/09 21:29:45.000.220,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UProdutos.pas</Transaction>
     <Transaction>2020/06/09 21:29:45.000.126,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.pas</Transaction>
-    <Transaction>2020/06/09 21:29:45.000.036,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UDM.pas</Transaction>
-    <Transaction>2020/06/09 21:29:45.000.084,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\ULogin.pas</Transaction>
     <Transaction>2020/06/09 21:31:34.000.174,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit1.pas=</Transaction>
+    <Transaction>2020/06/16 19:22:16.385,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
+    <Transaction>2020/06/16 19:23:02.547,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UFormasPgto.pas=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.pas</Transaction>
+    <Transaction>2020/06/16 19:23:02.547,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UFormasPgto.dfm=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\Unit2.dfm</Transaction>
+    <Transaction>2020/06/16 20:09:22.874,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto.dfm=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.dfm</Transaction>
+    <Transaction>2020/06/16 20:09:22.874,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto.pas=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.pas</Transaction>
+    <Transaction>2020/06/16 20:10:19.864,=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.pas</Transaction>
+    <Transaction>2020/06/16 20:14:31.538,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto2.dfm=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.dfm</Transaction>
+    <Transaction>2020/06/16 20:14:31.538,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto2.pas=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.pas</Transaction>
+    <Transaction>2020/06/16 20:14:49.499,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.pas=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto.pas</Transaction>
+    <Transaction>2020/06/16 20:14:49.499,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadUsuario.dfm=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto.dfm</Transaction>
+    <Transaction>2020/06/16 20:17:07.843,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto.pas=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto2.pas</Transaction>
+    <Transaction>2020/06/16 20:17:07.843,C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto.dfm=C:\Users\Public\Documents\Embarcadero\Studio\Projects\Logistica\Fontes\UCadFormasPgto2.dfm</Transaction>
   </Transactions>
 </BorlandProject>

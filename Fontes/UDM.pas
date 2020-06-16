@@ -114,13 +114,26 @@ type
     tb_produtoQUANTIDADE_PRODUTO: TIntegerField;
     tb_produtoID_PESSOA_PROD: TIntegerField;
     tb_produtoVALOR_PRODUTO: TBCDField;
-    tb_produtoTIPO_PRODUTO: TStringField;
     sql_produtoID_PRODUTO: TIntegerField;
     sql_produtoNOME_PRODUTO: TStringField;
     sql_produtoQUANTIDADE_PRODUTO: TIntegerField;
     sql_produtoID_PESSOA_PROD: TIntegerField;
     sql_produtoVALOR_PRODUTO: TBCDField;
     sql_produtoTIPO_PRODUTO: TStringField;
+    tb_produtoTIPO_PRODUTO: TStringField;
+    tb_formaspgto: TFDTable;
+    ds_formaspgto: TDataSource;
+    sql_formaspgto: TFDQuery;
+    sql_Gen_pessoa: TFDQuery;
+    sql_Gen_produto: TFDQuery;
+    sql_Gen_formaspgto: TFDQuery;
+    sql_Gen_produtoID: TLargeintField;
+    sql_Gen_pessoaID: TLargeintField;
+    sql_Gen_formaspgtoID: TLargeintField;
+    sql_formaspgtoID_FORMAPGTO: TIntegerField;
+    sql_formaspgtoDESCRICAO_FORMAPGTO: TStringField;
+    tb_formaspgtoID_FORMAPGTO: TIntegerField;
+    tb_formaspgtoDESCRICAO_FORMAPGTO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

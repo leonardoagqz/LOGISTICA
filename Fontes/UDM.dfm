@@ -396,8 +396,8 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_usuario,1)as id from rdb$database')
-    Left = 344
-    Top = 336
+    Left = 88
+    Top = 600
     object sql_Gen_usuarioID: TLargeintField
       AutoGenerateValue = arDefault
       FieldName = 'ID'
@@ -442,8 +442,7 @@ object DM: TDM
     object tb_produtoTIPO_PRODUTO: TStringField
       FieldName = 'TIPO_PRODUTO'
       Origin = 'TIPO_PRODUTO'
-      FixedChar = True
-      Size = 1
+      Size = 30
     end
   end
   object ds_produto: TDataSource
@@ -486,8 +485,7 @@ object DM: TDM
     object sql_produtoTIPO_PRODUTO: TStringField
       FieldName = 'TIPO_PRODUTO'
       Origin = 'TIPO_PRODUTO'
-      FixedChar = True
-      Size = 1
+      Size = 30
     end
   end
   object tb_pessoa: TFDTable
@@ -495,8 +493,8 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'PESSOAS'
     TableName = 'PESSOAS'
-    Left = 272
-    Top = 408
+    Left = 256
+    Top = 400
     object tb_pessoaID_PESSOA: TIntegerField
       FieldName = 'ID_PESSOA'
       Origin = 'ID_PESSOA'
@@ -531,15 +529,15 @@ object DM: TDM
   end
   object ds_pessoa: TDataSource
     DataSet = sql_pessoa
-    Left = 264
-    Top = 472
+    Left = 256
+    Top = 464
   end
   object sql_pessoa: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from pessoas')
-    Left = 264
-    Top = 544
+    Left = 256
+    Top = 536
     object sql_pessoaID_PESSOA: TIntegerField
       FieldName = 'ID_PESSOA'
       Origin = 'ID_PESSOA'
@@ -570,6 +568,90 @@ object DM: TDM
     object sql_pessoaID_PAIS_PESSOA: TIntegerField
       FieldName = 'ID_PAIS_PESSOA'
       Origin = 'ID_PAIS_PESSOA'
+    end
+  end
+  object tb_formaspgto: TFDTable
+    IndexFieldNames = 'ID_FORMAPGTO'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'FORMAPGTO'
+    TableName = 'FORMAPGTO'
+    Left = 344
+    Top = 400
+    object tb_formaspgtoID_FORMAPGTO: TIntegerField
+      FieldName = 'ID_FORMAPGTO'
+      Origin = 'ID_FORMAPGTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tb_formaspgtoDESCRICAO_FORMAPGTO: TStringField
+      FieldName = 'DESCRICAO_FORMAPGTO'
+      Origin = 'DESCRICAO_FORMAPGTO'
+      Size = 50
+    end
+  end
+  object ds_formaspgto: TDataSource
+    DataSet = sql_formaspgto
+    Left = 344
+    Top = 464
+  end
+  object sql_formaspgto: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from formapgto')
+    Left = 344
+    Top = 536
+    object sql_formaspgtoID_FORMAPGTO: TIntegerField
+      FieldName = 'ID_FORMAPGTO'
+      Origin = 'ID_FORMAPGTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_formaspgtoDESCRICAO_FORMAPGTO: TStringField
+      FieldName = 'DESCRICAO_FORMAPGTO'
+      Origin = 'DESCRICAO_FORMAPGTO'
+      Size = 50
+    end
+  end
+  object sql_Gen_pessoa: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select gen_id(id_pessoa,1)as id from rdb$database')
+    Left = 256
+    Top = 600
+    object sql_Gen_pessoaID: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object sql_Gen_produto: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select gen_id(id_produto,1)as id from rdb$database')
+    Left = 168
+    Top = 600
+    object sql_Gen_produtoID: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object sql_Gen_formaspgto: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select gen_id(id_formapgto,1)as id from rdb$database')
+    Left = 344
+    Top = 600
+    object sql_Gen_formaspgtoID: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = []
+      ReadOnly = True
     end
   end
 end
