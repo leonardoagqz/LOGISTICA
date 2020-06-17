@@ -9,8 +9,12 @@ uses
   UPrincipal in 'UPrincipal.pas' {FPrincipal},
   UProdutos in 'UProdutos.pas' {FProdutos},
   UUsuarios in 'UUsuarios.pas' {FUsuarios},
-  UFormasPgto in 'UFormasPgto.pas' {FFormasPgto},
-  UCadFormasPgto in 'UCadFormasPgto.pas' {FCadFormasPgto};
+  UMeiosTransportes in 'UMeiosTransportes.pas' {FMeiosTransportes},
+  UCadMeioTransporte in 'UCadMeioTransporte.pas' {FCadMeioTransporte},
+  UPaises in 'UPaises.pas' {FPaises},
+  UCadPaises in 'UCadPaises.pas' {FCadPaises},
+  UCadFormasPgto in 'UCadFormasPgto.pas' {FCadFormasPgto},
+  UFormasPgto in 'UFormasPgto.pas' {FFormasPgto};
 
 {$R *.res}
 

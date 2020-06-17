@@ -29,12 +29,16 @@ type
     Pases1: TMenuItem;
     Sair1: TMenuItem;
     FormasdePagamento1: TMenuItem;
+    Meiosdetransportes2: TMenuItem;
+    Pases2: TMenuItem;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormasdePagamento1Click(Sender: TObject);
+    procedure Meiosdetransportes2Click(Sender: TObject);
+    procedure Pases2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,7 +52,7 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto;
+uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises;
 
 procedure TFPrincipal.FormasdePagamento1Click(Sender: TObject);
 begin
@@ -66,6 +70,16 @@ procedure TFPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
 begin
   if key=VK_ESCAPE then
   Application.Terminate;
+end;
+
+procedure TFPrincipal.Meiosdetransportes2Click(Sender: TObject);
+begin
+  Dm.CriarFormulario(TFMeiosTransportes,FMeiosTransportes);
+end;
+
+procedure TFPrincipal.Pases2Click(Sender: TObject);
+begin
+  Dm.CriarFormulario(TFPaises,FPaises);
 end;
 
 procedure TFPrincipal.Produtos1Click(Sender: TObject);

@@ -134,6 +134,24 @@ type
     sql_formaspgtoDESCRICAO_FORMAPGTO: TStringField;
     tb_formaspgtoID_FORMAPGTO: TIntegerField;
     tb_formaspgtoDESCRICAO_FORMAPGTO: TStringField;
+    tb_meiotransporte: TFDTable;
+    ds_meiotransporte: TDataSource;
+    sql_meiotransporte: TFDQuery;
+    sql_Gen_meiotransporte: TFDQuery;
+    sql_meiotransporteID_TRANSPORTE: TIntegerField;
+    sql_meiotransporteDESCRICAO_TRANSPORTE: TStringField;
+    tb_meiotransporteID_TRANSPORTE: TIntegerField;
+    tb_meiotransporteDESCRICAO_TRANSPORTE: TStringField;
+    sql_Gen_meiotransporteID: TLargeintField;
+    tb_paises: TFDTable;
+    ds_paises: TDataSource;
+    sql_paises: TFDQuery;
+    sql_Gen_paises: TFDQuery;
+    tb_paisesID_PAIS: TIntegerField;
+    tb_paisesNOME_PAIS: TStringField;
+    sql_paisesID_PAIS: TIntegerField;
+    sql_paisesNOME_PAIS: TStringField;
+    sql_Gen_paisesID: TLargeintField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

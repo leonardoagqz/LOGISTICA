@@ -117,12 +117,28 @@
             <Form>FUsuarios</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UFormasPgto.pas">
-            <Form>FFormasPgto</Form>
+        <DCCReference Include="UMeiosTransportes.pas">
+            <Form>FMeiosTransportes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UCadMeioTransporte.pas">
+            <Form>FCadMeioTransporte</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UPaises.pas">
+            <Form>FPaises</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UCadPaises.pas">
+            <Form>FCadPaises</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UCadFormasPgto.pas">
             <Form>FCadFormasPgto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UFormasPgto.pas">
+            <Form>FFormasPgto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -536,12 +552,12 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>

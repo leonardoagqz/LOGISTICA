@@ -1,0 +1,109 @@
+unit UFormasPgto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TFFormasPgto = class(TForm)
+    LblLocalizarUsuarios: TLabel;
+    EdtLocalizarFormasPgto: TEdit;
+    dbgFormasPgto: TDBGrid;
+    PainelUsuarios1: TPanel;
+    PainelUsuarios2: TPanel;
+    BtnIncluir: TBitBtn;
+    BtnAlterar: TBitBtn;
+    BtnExcluir: TBitBtn;
+    BtnSair: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure EdtLocalizarFormasPgtoChange(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure BtnIncluirClick(Sender: TObject);
+    procedure BtnAlterarClick(Sender: TObject);
+    procedure BtnExcluirClick(Sender: TObject);
+    procedure BtnSairClick(Sender: TObject);
+    procedure dbgFormasPgtoDblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FFormasPgto: TFFormasPgto;
+
+implementation
+
+uses
+  UDM, UCadFormasPgto;
+
+{$R *.dfm}
+
+procedure TFFormasPgto.BtnAlterarClick(Sender: TObject);
+begin
+  if not DM.sql_formaspgto.IsEmpty then
+  begin
+  Self.Visible :=False;
+  DM.sql_formaspgto.Edit;
+  dm.CriarFormulario(TFCadFormasPgto,FCadFormasPgto);
+  Self.Visible:=True;
+  end;
+end;
+
+procedure TFFormasPgto.BtnExcluirClick(Sender: TObject);
+begin
+    if not dm.sql_formaspgto.IsEmpty then
+    begin
+        if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+      //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
+        begin
+            dm.sql_formaspgto.Delete;
+            ShowMessage('Informações Excluídas com Sucesso!');
+        end;
+
+    end;
+end;
+
+procedure TFFormasPgto.BtnIncluirClick(Sender: TObject);
+begin
+     //Firebird
+  Self.Visible :=False;
+  DM.sql_formaspgto.Active := True;
+  DM.sql_formaspgto.Insert;
+  dm.CriarFormulario(TFCadFormasPgto,FCadFormasPgto);
+  Self.Visible:=True;
+end;
+
+procedure TFFormasPgto.BtnSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFFormasPgto.dbgFormasPgtoDblClick(Sender: TObject);
+begin
+  BtnAlterar.Click;
+end;
+
+procedure TFFormasPgto.EdtLocalizarFormasPgtoChange(Sender: TObject);
+begin
+  //Firebird
+  dm.sql_formaspgto.Locate('DESCRICAO_FORMAPGTO',EdtLocalizarFormasPgto.Text,[loPartialKey,loCaseInsensitive]);
+end;
+
+procedure TFFormasPgto.FormCreate(Sender: TObject);
+begin
+  DM.sql_formaspgto.Close;
+  DM.sql_formaspgto.Open;
+end;
+
+procedure TFFormasPgto.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+   if key=VK_ESCAPE then //se a tecla ESC for pressionada então
+    Close;
+end;
+
+end.

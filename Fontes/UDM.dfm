@@ -654,4 +654,116 @@ object DM: TDM
       ReadOnly = True
     end
   end
+  object tb_meiotransporte: TFDTable
+    IndexFieldNames = 'ID_TRANSPORTE'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'MEIOSTRANSPORTES'
+    TableName = 'MEIOSTRANSPORTES'
+    Left = 432
+    Top = 400
+    object tb_meiotransporteID_TRANSPORTE: TIntegerField
+      FieldName = 'ID_TRANSPORTE'
+      Origin = 'ID_TRANSPORTE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tb_meiotransporteDESCRICAO_TRANSPORTE: TStringField
+      FieldName = 'DESCRICAO_TRANSPORTE'
+      Origin = 'DESCRICAO_TRANSPORTE'
+      Size = 50
+    end
+  end
+  object ds_meiotransporte: TDataSource
+    DataSet = sql_meiotransporte
+    Left = 432
+    Top = 464
+  end
+  object sql_meiotransporte: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from meiostransportes')
+    Left = 432
+    Top = 536
+    object sql_meiotransporteID_TRANSPORTE: TIntegerField
+      FieldName = 'ID_TRANSPORTE'
+      Origin = 'ID_TRANSPORTE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_meiotransporteDESCRICAO_TRANSPORTE: TStringField
+      FieldName = 'DESCRICAO_TRANSPORTE'
+      Origin = 'DESCRICAO_TRANSPORTE'
+      Size = 50
+    end
+  end
+  object sql_Gen_meiotransporte: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select gen_id(id_transporte,1)as id from rdb$database')
+    Left = 432
+    Top = 600
+    object sql_Gen_meiotransporteID: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object tb_paises: TFDTable
+    IndexFieldNames = 'ID_PAIS'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'PAISES'
+    TableName = 'PAISES'
+    Left = 528
+    Top = 400
+    object tb_paisesID_PAIS: TIntegerField
+      FieldName = 'ID_PAIS'
+      Origin = 'ID_PAIS'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tb_paisesNOME_PAIS: TStringField
+      FieldName = 'NOME_PAIS'
+      Origin = 'NOME_PAIS'
+      Size = 50
+    end
+  end
+  object ds_paises: TDataSource
+    DataSet = sql_paises
+    Left = 528
+    Top = 464
+  end
+  object sql_paises: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from paises')
+    Left = 528
+    Top = 536
+    object sql_paisesID_PAIS: TIntegerField
+      FieldName = 'ID_PAIS'
+      Origin = 'ID_PAIS'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_paisesNOME_PAIS: TStringField
+      FieldName = 'NOME_PAIS'
+      Origin = 'NOME_PAIS'
+      Size = 50
+    end
+  end
+  object sql_Gen_paises: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select gen_id(id_pais,1)as id from rdb$database')
+    Left = 528
+    Top = 600
+    object sql_Gen_paisesID: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
 end
