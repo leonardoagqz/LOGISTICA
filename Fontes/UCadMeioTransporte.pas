@@ -100,7 +100,9 @@ end;
 procedure TFCadMeioTransporte.FormClose(Sender: TObject; var Action: TCloseAction);//procedimento ao fechar form
 begin                                                                       //inicie
   {if dm.cdsUsuarios.State in [dsInsert,dsEdit] then                       //se minha tabela usuarios estiver com status insert ou edit então
-  dm.cdsUsuarios.Cancel;}                                                  //cancela qualquer operação na tabela
+  dm.cdsUsuarios.Cancel;}
+  if DM.sql_meiotransporte.State in [dsInsert,dsEdit] then
+  DM.sql_meiotransporte.Cancel;                                                  //cancela qualquer operação na tabela
 end;                                                                        //fim
 
 procedure TFCadMeioTransporte.FormCreate(Sender: TObject);

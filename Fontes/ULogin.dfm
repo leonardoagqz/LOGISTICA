@@ -50,8 +50,15 @@ object FLogin: TFLogin
     Width = 329
     Height = 17
     Align = alTop
+    Caption = 'Sistema de Logistica'
     Color = clHighlightText
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
     ParentBackground = False
+    ParentFont = False
     TabOrder = 0
   end
   object Panel2: TPanel
@@ -70,8 +77,15 @@ object FLogin: TFLogin
     Width = 329
     Height = 17
     Align = alBottom
-    Color = clScrollBar
+    Caption = 'Dsenvolvimento de Software Ltda'
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dubai'
+    Font.Style = []
     ParentBackground = False
+    ParentFont = False
     TabOrder = 4
   end
   object LkComboBoxUsuario: TDBLookupComboBox

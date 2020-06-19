@@ -26,6 +26,7 @@ type
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnSairClick(Sender: TObject);
     procedure dbgPaisesDblClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -91,6 +92,12 @@ procedure TFPaises.EdtLocalizarPaisesChange(Sender: TObject);
 begin
   //Firebird
   dm.sql_paises.Locate('NOME_PAIS',EdtLocalizarPaises.Text,[loPartialKey,loCaseInsensitive]);
+end;
+
+procedure TFPaises.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if DM.sql_paises.State in [dsInsert,dsEdit] then
+  DM.sql_paises.Cancel;
 end;
 
 procedure TFPaises.FormCreate(Sender: TObject);

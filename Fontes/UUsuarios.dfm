@@ -3,8 +3,8 @@ object FUsuarios: TFUsuarios
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Cadastro de Usu'#225'rios'
-  ClientHeight = 470
-  ClientWidth = 510
+  ClientHeight = 360
+  ClientWidth = 398
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,6 +14,7 @@ object FUsuarios: TFUsuarios
   KeyPreview = True
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnClose = FormClose
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
@@ -27,7 +28,7 @@ object FUsuarios: TFUsuarios
   object EdtLocalizarUsuarios: TEdit
     Left = 8
     Top = 59
-    Width = 377
+    Width = 281
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
@@ -37,8 +38,8 @@ object FUsuarios: TFUsuarios
   object G1Grid: TDBGrid
     Left = 8
     Top = 99
-    Width = 377
-    Height = 313
+    Width = 281
+    Height = 230
     Cursor = crHandPoint
     Color = clWhite
     DataSource = DM.ds_usuario
@@ -91,28 +92,26 @@ object FUsuarios: TFUsuarios
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 510
+    Width = 398
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 6
-    ExplicitWidth = 539
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 426
-    Width = 510
-    Height = 44
+    Top = 342
+    Width = 398
+    Height = 18
     Align = alBottom
-    Color = clWhite
+    Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 7
-    ExplicitWidth = 539
   end
   object BtnIncluir: TBitBtn
-    Left = 400
-    Top = 163
+    Left = 295
+    Top = 99
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -127,8 +126,8 @@ object FUsuarios: TFUsuarios
     OnClick = BtnIncluirClick
   end
   object BtnAlterar: TBitBtn
-    Left = 400
-    Top = 202
+    Left = 295
+    Top = 138
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -137,8 +136,8 @@ object FUsuarios: TFUsuarios
     OnClick = BtnAlterarClick
   end
   object BtnExcluir: TBitBtn
-    Left = 400
-    Top = 241
+    Left = 295
+    Top = 177
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -147,19 +146,13 @@ object FUsuarios: TFUsuarios
     OnClick = BtnExcluirClick
   end
   object BtnSair: TButton
-    Left = 400
-    Top = 280
+    Left = 295
+    Top = 216
     Width = 89
     Height = 33
     Cursor = crHandPoint
     Caption = 'Sair'
     TabOrder = 4
     OnClick = BtnSairClick
-  end
-  object DsUsuarios: TDataSource
-    DataSet = DM.sql_usuario
-    OnDataChange = DsUsuariosDataChange
-    Left = 464
-    Top = 360
   end
 end

@@ -12,7 +12,7 @@ object FCadUsuarios: TFCadUsuarios
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poMainFormCenter
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -85,7 +85,7 @@ object FCadUsuarios: TFCadUsuarios
     Width = 164
     Height = 21
     DataField = 'LOGIN'
-    DataSource = FUsuarios.DsUsuarios
+    DataSource = DM.ds_usuario
     TabOrder = 5
   end
   object EdtSenha: TDBEdit
@@ -94,30 +94,14 @@ object FCadUsuarios: TFCadUsuarios
     Width = 164
     Height = 21
     DataField = 'SENHA'
-    DataSource = FUsuarios.DsUsuarios
+    DataSource = DM.ds_usuario
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    PasswordChar = '*'
     TabOrder = 6
-  end
-  object DsCadUsuario: TDataSource
-    DataSet = DM.tb_usuario
-    Left = 144
-    Top = 128
-  end
-  object BSDBCadUsuario: TBindSourceDB
-    ScopeMappings = <>
-    Left = 160
-    Top = 40
-  end
-  object BLCadUsuario: TBindingsList
-    Methods = <>
-    OutputConverters = <>
-    Left = 108
-    Top = 5
-    object LinkControlToField3: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BSDBCadUsuario
-      FieldName = 'MASTER'
-      Control = CbMaster
-      Track = True
-    end
   end
 end

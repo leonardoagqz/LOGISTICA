@@ -3,7 +3,7 @@ object FMeiosTransportes: TFMeiosTransportes
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Meios de Transportes'
-  ClientHeight = 413
+  ClientHeight = 392
   ClientWidth = 485
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -41,7 +41,6 @@ object FMeiosTransportes: TFMeiosTransportes
     Height = 262
     Cursor = crHandPoint
     Color = clWhite
-    DataSource = DM.ds_meiotransporte
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     TabOrder = 1
@@ -76,13 +75,14 @@ object FMeiosTransportes: TFMeiosTransportes
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 369
+    Top = 374
     Width = 485
-    Height = 44
+    Height = 18
     Align = alBottom
     Color = clWhite
     ParentBackground = False
     TabOrder = 7
+    ExplicitTop = 369
   end
   object BtnIncluir: TBitBtn
     Left = 367

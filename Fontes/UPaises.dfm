@@ -3,8 +3,8 @@ object FPaises: TFPaises
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Cadastro de Pa'#237'ses'
-  ClientHeight = 413
-  ClientWidth = 485
+  ClientHeight = 340
+  ClientWidth = 469
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +13,7 @@ object FPaises: TFPaises
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
@@ -27,7 +28,7 @@ object FPaises: TFPaises
   object EdtLocalizarPaises: TEdit
     Left = 8
     Top = 59
-    Width = 377
+    Width = 353
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
@@ -38,7 +39,7 @@ object FPaises: TFPaises
     Left = 8
     Top = 99
     Width = 353
-    Height = 262
+    Height = 214
     Cursor = crHandPoint
     Color = clWhite
     DataSource = DM.ds_paises
@@ -67,26 +68,28 @@ object FPaises: TFPaises
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 485
+    Width = 469
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 6
+    ExplicitWidth = 485
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 369
-    Width = 485
-    Height = 44
+    Top = 322
+    Width = 469
+    Height = 18
     Align = alBottom
     Color = clWhite
     ParentBackground = False
     TabOrder = 7
+    ExplicitTop = 330
   end
   object BtnIncluir: TBitBtn
     Left = 367
-    Top = 163
+    Top = 99
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -102,7 +105,7 @@ object FPaises: TFPaises
   end
   object BtnAlterar: TBitBtn
     Left = 367
-    Top = 202
+    Top = 138
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -112,7 +115,7 @@ object FPaises: TFPaises
   end
   object BtnExcluir: TBitBtn
     Left = 367
-    Top = 241
+    Top = 177
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -122,7 +125,7 @@ object FPaises: TFPaises
   end
   object BtnSair: TButton
     Left = 367
-    Top = 280
+    Top = 216
     Width = 89
     Height = 33
     Cursor = crHandPoint

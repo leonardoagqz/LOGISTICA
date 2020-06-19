@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ComCtrls, Vcl.ExtCtrls,
+  Vcl.Imaging.jpeg;
 
 type
   TFPrincipal = class(TForm)
@@ -25,12 +26,13 @@ type
     Despesas1: TMenuItem;
     Configuraes1: TMenuItem;
     Usurios1: TMenuItem;
-    MeiosdeTransportes1: TMenuItem;
-    Pases1: TMenuItem;
     Sair1: TMenuItem;
     FormasdePagamento1: TMenuItem;
     Meiosdetransportes2: TMenuItem;
     Pases2: TMenuItem;
+    StatusBar1: TStatusBar;
+    Panel1: TPanel;
+    Image1: TImage;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
@@ -39,6 +41,7 @@ type
     procedure FormasdePagamento1Click(Sender: TObject);
     procedure Meiosdetransportes2Click(Sender: TObject);
     procedure Pases2Click(Sender: TObject);
+    procedure Clientes1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,7 +55,14 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises;
+uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas;
+
+procedure TFPrincipal.Clientes1Click(Sender: TObject);
+begin
+  DM.sql_pessoa.Close;
+  dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString:='C';
+  Dm.CriarFormulario(TFPessoas ,FPessoas);
+end;
 
 procedure TFPrincipal.FormasdePagamento1Click(Sender: TObject);
 begin

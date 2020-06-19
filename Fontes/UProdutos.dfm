@@ -3,8 +3,8 @@ object FProdutos: TFProdutos
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Tabela de Produtos'
-  ClientHeight = 496
-  ClientWidth = 669
+  ClientHeight = 382
+  ClientWidth = 595
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -28,7 +28,7 @@ object FProdutos: TFProdutos
   object EdtLocalizarProdutos: TEdit
     Left = 8
     Top = 58
-    Width = 521
+    Width = 489
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
@@ -38,8 +38,8 @@ object FProdutos: TFProdutos
   object G1Grid: TDBGrid
     Left = 8
     Top = 99
-    Width = 537
-    Height = 313
+    Width = 489
+    Height = 246
     Cursor = crHandPoint
     Color = clWhite
     DataSource = DM.ds_produto
@@ -96,28 +96,26 @@ object FProdutos: TFProdutos
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 669
+    Width = 595
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 6
-    ExplicitWidth = 773
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 452
-    Width = 669
-    Height = 44
+    Top = 364
+    Width = 595
+    Height = 18
     Align = alBottom
     Color = clWhite
     ParentBackground = False
     TabOrder = 7
-    ExplicitWidth = 773
   end
   object BtnIncluir: TBitBtn
-    Left = 560
-    Top = 171
+    Left = 503
+    Top = 107
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -132,8 +130,8 @@ object FProdutos: TFProdutos
     OnClick = BtnIncluirClick
   end
   object BtnAlterar: TBitBtn
-    Left = 560
-    Top = 210
+    Left = 503
+    Top = 146
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -142,8 +140,8 @@ object FProdutos: TFProdutos
     OnClick = BtnAlterarClick
   end
   object BtnExcluir: TBitBtn
-    Left = 560
-    Top = 249
+    Left = 503
+    Top = 185
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -152,8 +150,8 @@ object FProdutos: TFProdutos
     OnClick = BtnExcluirClick
   end
   object BtnSair: TButton
-    Left = 560
-    Top = 288
+    Left = 503
+    Top = 224
     Width = 89
     Height = 33
     Cursor = crHandPoint

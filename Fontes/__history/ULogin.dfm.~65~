@@ -1,0 +1,156 @@
+object FLogin: TFLogin
+  Left = 0
+  Top = 0
+  BorderStyle = bsSizeToolWin
+  Caption = 'Login'
+  ClientHeight = 235
+  ClientWidth = 329
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblUsuario: TLabel
+    Left = 27
+    Top = 39
+    Width = 36
+    Height = 13
+    Caption = 'Usu'#225'rio'
+  end
+  object LblSenha: TLabel
+    Left = 27
+    Top = 111
+    Width = 30
+    Height = 13
+    Caption = 'Senha'
+  end
+  object Bevel1: TBevel
+    Left = 141
+    Top = 172
+    Width = 164
+    Height = 41
+  end
+  object Shape1: TShape
+    Left = 22
+    Top = 52
+    Width = 276
+    Height = 33
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 329
+    Height = 17
+    Align = alTop
+    Caption = 'Sistema de Logistica'
+    Color = clHighlightText
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 17
+    Width = 329
+    Height = 16
+    Align = alTop
+    Color = clScrollBar
+    ParentBackground = False
+    TabOrder = 3
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 218
+    Width = 329
+    Height = 17
+    Align = alBottom
+    Caption = 'Aguiar Dsenvolvimento de Software Ltda'
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Dubai'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 4
+  end
+  object LkComboBoxUsuario: TDBLookupComboBox
+    Left = 27
+    Top = 56
+    Width = 265
+    Height = 21
+    KeyField = 'LOGIN'
+    ListField = 'LOGIN'
+    ListFieldIndex = -1
+    ListSource = DM.ds_usuario
+    TabOrder = 1
+    OnKeyPress = LkComboBoxUsuarioKeyPress
+  end
+  object EdtSenha: TEdit
+    Left = 27
+    Top = 127
+    Width = 265
+    Height = 21
+    CharCase = ecUpperCase
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    MaxLength = 10
+    ParentFont = False
+    PasswordChar = '*'
+    TabOrder = 2
+    OnChange = EdtSenhaChange
+  end
+  object BtnConfirmar: TButton
+    Left = 149
+    Top = 181
+    Width = 70
+    Height = 25
+    Caption = 'Confirmar'
+    TabOrder = 5
+    OnClick = BtnConfirmarClick
+  end
+  object BtnCancelar: TButton
+    Left = 225
+    Top = 181
+    Width = 70
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 6
+    OnClick = BtnCancelarClick
+  end
+  object pbStatus: TProgressBar
+    Left = 141
+    Top = 205
+    Width = 164
+    Height = 7
+    Max = 450
+    TabOrder = 7
+  end
+  object dsUsuarios: TDataSource
+    DataSet = DM.cdsUsuarios
+    Left = 8
+    Top = 176
+  end
+  object ApplicationEvents1: TApplicationEvents
+    OnMessage = ApplicationEvents1Message
+    Left = 48
+    Top = 176
+  end
+end

@@ -14,7 +14,6 @@ type
     G1Grid: TDBGrid;
     PainelUsuarios1: TPanel;
     PainelUsuarios2: TPanel;
-    DsUsuarios: TDataSource;
     BtnIncluir: TBitBtn;
     BtnAlterar: TBitBtn;
     BtnExcluir: TBitBtn;
@@ -27,6 +26,7 @@ type
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnSairClick(Sender: TObject);
     procedure DsUsuariosDataChange(Sender: TObject; Field: TField);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
   private
     { Private declarations }
@@ -130,6 +130,12 @@ begin                                                            //inicie
     dm.sql_usuario.Locate('LOGIN',EdtLocalizarUsuarios.Text,[loPartialKey,loCaseInsensitive]);
 
 end;                                                             //fimbegin
+
+procedure TFUsuarios.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if DM.sql_usuario.State in [dsInsert,dsEdit] then
+  DM.sql_usuario.Cancel;
+end;
 
 procedure TFUsuarios.FormKeyDown(Sender: TObject; var Key: Word; //procedimento botão ESC
   Shift: TShiftState);

@@ -29,6 +29,7 @@ type
     procedure BtnSalvarClick(Sender: TObject);
     procedure CbTipoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -190,6 +191,12 @@ begin
         LkFornecedor.KeyValue:=Null;
         LkFornecedor.Color := clSilver;
     end;
+end;
+
+procedure TFCadProduto.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if DM.sql_produto.State in [dsInsert,dsEdit] then
+  DM.sql_produto.Cancel;
 end;
 
 procedure TFCadProduto.FormCreate(Sender: TObject);

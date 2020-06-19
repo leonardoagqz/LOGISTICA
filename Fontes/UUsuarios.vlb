@@ -20,9 +20,6 @@ Coordinates=363,10,64,51
 [PainelUsuarios2]
 Coordinates=10,222,94,51
 
-[DsUsuarios]
-Coordinates=114,71,71,33
-
 [BtnIncluir]
 Coordinates=291,10,62,51
 
@@ -39,5 +36,5 @@ Coordinates=10,10,168,141
 Coordinates=486,1,152,33
 
 []
-Coordinates=319,80,53,51
+Coordinates=114,71,71,33
 
