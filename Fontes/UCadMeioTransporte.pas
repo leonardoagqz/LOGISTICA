@@ -25,6 +25,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BtnSalvarKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure EdtDescricaoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -95,6 +96,13 @@ procedure TFCadMeioTransporte.BtnSalvarKeyDown(Sender: TObject; var Key: Word;
 begin
   if Key=VK_ESCAPE then
   BtnCancelar.Click;
+end;
+
+procedure TFCadMeioTransporte.EdtDescricaoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if Key = #13 then
+  BtnSalvar.Click;
 end;
 
 procedure TFCadMeioTransporte.FormClose(Sender: TObject; var Action: TCloseAction);//procedimento ao fechar form

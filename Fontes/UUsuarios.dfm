@@ -3,8 +3,8 @@ object FUsuarios: TFUsuarios
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Cadastro de Usu'#225'rios'
-  ClientHeight = 360
-  ClientWidth = 398
+  ClientHeight = 344
+  ClientWidth = 391
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -37,7 +37,7 @@ object FUsuarios: TFUsuarios
   end
   object G1Grid: TDBGrid
     Left = 8
-    Top = 99
+    Top = 88
     Width = 281
     Height = 230
     Cursor = crHandPoint
@@ -92,26 +92,29 @@ object FUsuarios: TFUsuarios
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 398
+    Width = 391
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 6
+    ExplicitWidth = 398
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 342
-    Width = 398
+    Top = 326
+    Width = 391
     Height = 18
     Align = alBottom
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 7
+    ExplicitTop = 342
+    ExplicitWidth = 398
   end
   object BtnIncluir: TBitBtn
     Left = 295
-    Top = 99
+    Top = 88
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -127,7 +130,7 @@ object FUsuarios: TFUsuarios
   end
   object BtnAlterar: TBitBtn
     Left = 295
-    Top = 138
+    Top = 127
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -137,7 +140,7 @@ object FUsuarios: TFUsuarios
   end
   object BtnExcluir: TBitBtn
     Left = 295
-    Top = 177
+    Top = 166
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -147,7 +150,7 @@ object FUsuarios: TFUsuarios
   end
   object BtnSair: TButton
     Left = 295
-    Top = 216
+    Top = 205
     Width = 89
     Height = 33
     Cursor = crHandPoint

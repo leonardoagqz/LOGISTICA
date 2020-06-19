@@ -5,7 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
 
 type
   TFPessoas = class(TForm)
@@ -42,13 +45,20 @@ implementation
 uses UDM, UCadProduto, UCadPessoa;{units que podem ser acessadas e utilizadas}
 
 procedure TFPessoas.FormCreate(Sender: TObject);//ao abrir tela de produtos
-begin                                            //inicie
-  {dm.cdsProdutos.Close;                        //fechar tabela
-  dm.cdsProdutos.Open; }
+begin
+  if dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString = 'C' then
+  begin
+    Self.Caption:='Cadastro de Cliente';
+    DM.sql_pessoaDOCUMENTO_PESSOA.EditMask:='999.999.999-99;0;';
+    G1Grid.Columns.Items[2].Title.Caption := 'CPF';
+  end
+  else
+  begin
+    Self.Caption:='Cadastro de Fornecedor';
+   DM.sql_pessoaDOCUMENTO_PESSOA.EditMask:='99.999.999/9999-99;0;';
+    G1Grid.Columns.Items[2].Title.Caption := 'CNPJ';
+  end;
 
-  dm.sql_pessoa.Close;
-  dm.sql_pessoa.Open;
-   
 end;
 
 procedure TFPessoas.FormKeyDown(Sender: TObject; var Key: Word;
@@ -67,35 +77,27 @@ end;
 
 procedure TFPessoas.BtnAlterarClick(Sender: TObject);
 begin
-
-
   if not DM.sql_pessoa.IsEmpty then
   begin
-  Self.Visible :=False;
-  DM.sql_pessoa.Edit;
-  dm.CriarFormulario(TFCadPessoas,FCadPessoas);
-  Self.Visible:=True;
+    Self.Visible :=False;
+    DM.sql_pessoa.Edit;
+
+    dm.CriarFormulario(TFCadPessoas,FCadPessoas);
+    Self.Visible:=True;
   end;
-
-
 end;
 
 procedure TFPessoas.BtnExcluirClick(Sender: TObject);
 begin
-
-
-    if not dm.sql_pessoa.IsEmpty then
+  if not DM.sql_pessoa.IsEmpty then
+  begin
+    if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+    //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
     begin
-        if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
-      //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
-        begin
-            dm.sql_pessoa.Delete;
-            ShowMessage('Informações Excluídas com Sucesso!');
-        end;
-
+      DM.sql_pessoa.Delete;
+      ShowMessage('Informações Excluídas com Sucesso!');
     end;
-
-
+  end;
 end;
 
 procedure TFPessoas.BtnIncluirClick(Sender: TObject);

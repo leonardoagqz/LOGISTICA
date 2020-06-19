@@ -3,8 +3,8 @@ object FPaises: TFPaises
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Cadastro de Pa'#237'ses'
-  ClientHeight = 340
-  ClientWidth = 469
+  ClientHeight = 329
+  ClientWidth = 463
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -37,7 +37,7 @@ object FPaises: TFPaises
   end
   object dbgPaises: TDBGrid
     Left = 8
-    Top = 99
+    Top = 87
     Width = 353
     Height = 214
     Cursor = crHandPoint
@@ -68,28 +68,29 @@ object FPaises: TFPaises
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 469
+    Width = 463
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 6
-    ExplicitWidth = 485
+    ExplicitWidth = 469
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 322
-    Width = 469
+    Top = 311
+    Width = 463
     Height = 18
     Align = alBottom
     Color = clWhite
     ParentBackground = False
     TabOrder = 7
-    ExplicitTop = 330
+    ExplicitTop = 322
+    ExplicitWidth = 469
   end
   object BtnIncluir: TBitBtn
     Left = 367
-    Top = 99
+    Top = 87
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -105,7 +106,7 @@ object FPaises: TFPaises
   end
   object BtnAlterar: TBitBtn
     Left = 367
-    Top = 138
+    Top = 126
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -115,7 +116,7 @@ object FPaises: TFPaises
   end
   object BtnExcluir: TBitBtn
     Left = 367
-    Top = 177
+    Top = 165
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -125,7 +126,7 @@ object FPaises: TFPaises
   end
   object BtnSair: TButton
     Left = 367
-    Top = 216
+    Top = 204
     Width = 89
     Height = 33
     Cursor = crHandPoint

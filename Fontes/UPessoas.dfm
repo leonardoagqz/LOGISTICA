@@ -3,8 +3,8 @@ object FPessoas: TFPessoas
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Cadastro de Pessoas'
-  ClientHeight = 382
-  ClientWidth = 595
+  ClientHeight = 362
+  ClientWidth = 671
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -28,17 +28,16 @@ object FPessoas: TFPessoas
   object EdtLocalizarPessoas: TEdit
     Left = 8
     Top = 58
-    Width = 489
+    Width = 561
     Height = 21
-    CharCase = ecUpperCase
     Color = clCream
     TabOrder = 0
     OnKeyPress = EdtLocalizarPessoasKeyPress
   end
   object G1Grid: TDBGrid
     Left = 8
-    Top = 99
-    Width = 489
+    Top = 85
+    Width = 561
     Height = 246
     Cursor = crHandPoint
     Color = clWhite
@@ -57,7 +56,6 @@ object FPessoas: TFPessoas
         Expanded = False
         FieldName = 'ID_PESSOA'
         Title.Caption = 'ID'
-        Width = 40
         Visible = True
       end
       item
@@ -71,34 +69,32 @@ object FPessoas: TFPessoas
         Expanded = False
         FieldName = 'DOCUMENTO_PESSOA'
         Title.Caption = 'Documento'
-        Width = 100
+        Width = 140
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'FONE_PESSOA'
-        Title.Caption = 'Fone'
-        Width = 60
+        Title.Caption = 'Contato'
+        Width = 150
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'TIPO_PESSOA'
         Title.Caption = 'Tipo'
-        Width = 40
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'ID_PAIS_PESSOA'
-        Title.Caption = 'ID Pais'
-        Visible = True
+        Visible = False
       end>
   end
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 595
+    Width = 671
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
@@ -107,8 +103,8 @@ object FPessoas: TFPessoas
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 364
-    Width = 595
+    Top = 344
+    Width = 671
     Height = 18
     Align = alBottom
     Color = clWhite
@@ -116,8 +112,8 @@ object FPessoas: TFPessoas
     TabOrder = 7
   end
   object BtnIncluir: TBitBtn
-    Left = 503
-    Top = 107
+    Left = 575
+    Top = 83
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -132,8 +128,8 @@ object FPessoas: TFPessoas
     OnClick = BtnIncluirClick
   end
   object BtnAlterar: TBitBtn
-    Left = 503
-    Top = 146
+    Left = 575
+    Top = 122
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -142,8 +138,8 @@ object FPessoas: TFPessoas
     OnClick = BtnAlterarClick
   end
   object BtnExcluir: TBitBtn
-    Left = 503
-    Top = 185
+    Left = 575
+    Top = 161
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -152,8 +148,8 @@ object FPessoas: TFPessoas
     OnClick = BtnExcluirClick
   end
   object BtnSair: TButton
-    Left = 503
-    Top = 224
+    Left = 575
+    Top = 200
     Width = 89
     Height = 33
     Cursor = crHandPoint

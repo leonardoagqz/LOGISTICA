@@ -72,5 +72,6 @@ object FCadMeioTransporte: TFCadMeioTransporte
     DataField = 'DESCRICAO_TRANSPORTE'
     DataSource = DM.ds_meiotransporte
     TabOrder = 0
+    OnKeyPress = EdtDescricaoKeyPress
   end
 end

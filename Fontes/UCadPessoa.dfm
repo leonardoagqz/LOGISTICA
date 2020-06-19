@@ -94,29 +94,15 @@ object FCadPessoas: TFCadPessoas
     DataSource = DM.ds_pessoa
     TabOrder = 0
   end
-  object EdtCpfCnpj: TDBEdit
-    Left = 397
-    Top = 48
-    Width = 164
-    Height = 21
-    DataField = 'DOCUMENTO_PESSOA'
-    DataSource = DM.ds_pessoa
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 1
-  end
   object LkComboBoxPessoas: TDBLookupComboBox
     Left = 203
     Top = 94
     Width = 158
     Height = 21
+    DataField = 'ID_PAIS_PESSOA'
+    DataSource = DM.ds_pessoa
     KeyField = 'ID_PAIS'
     ListField = 'NOME_PAIS'
-    ListFieldIndex = -1
     ListSource = DM.ds_paises
     TabOrder = 3
   end
@@ -142,6 +128,9 @@ object FCadPessoas: TFCadPessoas
     Height = 35
     Caption = 'Tipo'
     Columns = 2
+    DataField = 'TIPO_PESSOA'
+    DataSource = DM.ds_pessoa
+    Enabled = False
     Items.Strings = (
       'Cliente'
       'Fornecedor')
@@ -149,5 +138,13 @@ object FCadPessoas: TFCadPessoas
     Values.Strings = (
       'C'
       'F')
+  end
+  object EdtCpfCnpj: TMaskEdit
+    Left = 397
+    Top = 48
+    Width = 164
+    Height = 21
+    TabOrder = 1
+    Text = ''
   end
 end

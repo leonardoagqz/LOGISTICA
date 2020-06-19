@@ -3,8 +3,8 @@ object FFormasPgto: TFFormasPgto
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Formas de pagamento'
-  ClientHeight = 413
-  ClientWidth = 485
+  ClientHeight = 377
+  ClientWidth = 466
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -27,7 +27,7 @@ object FFormasPgto: TFFormasPgto
   object EdtLocalizarFormasPgto: TEdit
     Left = 8
     Top = 59
-    Width = 377
+    Width = 353
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
@@ -36,7 +36,7 @@ object FFormasPgto: TFFormasPgto
   end
   object dbgFormasPgto: TDBGrid
     Left = 8
-    Top = 99
+    Top = 88
     Width = 353
     Height = 262
     Cursor = crHandPoint
@@ -67,26 +67,29 @@ object FFormasPgto: TFFormasPgto
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 485
+    Width = 466
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 6
+    ExplicitWidth = 485
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 369
-    Width = 485
-    Height = 44
+    Top = 359
+    Width = 466
+    Height = 18
     Align = alBottom
     Color = clWhite
     ParentBackground = False
     TabOrder = 7
+    ExplicitTop = 369
+    ExplicitWidth = 485
   end
   object BtnIncluir: TBitBtn
     Left = 367
-    Top = 163
+    Top = 88
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -102,7 +105,7 @@ object FFormasPgto: TFFormasPgto
   end
   object BtnAlterar: TBitBtn
     Left = 367
-    Top = 202
+    Top = 127
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -112,7 +115,7 @@ object FFormasPgto: TFFormasPgto
   end
   object BtnExcluir: TBitBtn
     Left = 367
-    Top = 241
+    Top = 166
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -122,7 +125,7 @@ object FFormasPgto: TFFormasPgto
   end
   object BtnSair: TButton
     Left = 367
-    Top = 280
+    Top = 205
     Width = 89
     Height = 33
     Cursor = crHandPoint

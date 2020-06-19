@@ -72,5 +72,6 @@ object FCadPaises: TFCadPaises
     DataField = 'NOME_PAIS'
     DataSource = DM.ds_paises
     TabOrder = 0
+    OnKeyPress = EdtDescricaoKeyPress
   end
 end

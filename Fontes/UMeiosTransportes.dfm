@@ -3,8 +3,8 @@ object FMeiosTransportes: TFMeiosTransportes
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Meios de Transportes'
-  ClientHeight = 392
-  ClientWidth = 485
+  ClientHeight = 378
+  ClientWidth = 464
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -27,7 +27,7 @@ object FMeiosTransportes: TFMeiosTransportes
   object EdtLocalizarmeiotransporte: TEdit
     Left = 8
     Top = 59
-    Width = 377
+    Width = 353
     Height = 21
     CharCase = ecUpperCase
     Color = clCream
@@ -36,11 +36,12 @@ object FMeiosTransportes: TFMeiosTransportes
   end
   object dbgmeiotransporte: TDBGrid
     Left = 8
-    Top = 99
+    Top = 88
     Width = 353
     Height = 262
     Cursor = crHandPoint
     Color = clWhite
+    DataSource = DM.ds_meiotransporte
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     TabOrder = 1
@@ -66,27 +67,29 @@ object FMeiosTransportes: TFMeiosTransportes
   object PainelUsuarios1: TPanel
     Left = 0
     Top = 0
-    Width = 485
+    Width = 464
     Height = 33
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 6
+    ExplicitWidth = 485
   end
   object PainelUsuarios2: TPanel
     Left = 0
-    Top = 374
-    Width = 485
+    Top = 360
+    Width = 464
     Height = 18
     Align = alBottom
     Color = clWhite
     ParentBackground = False
     TabOrder = 7
-    ExplicitTop = 369
+    ExplicitTop = 374
+    ExplicitWidth = 485
   end
   object BtnIncluir: TBitBtn
     Left = 367
-    Top = 163
+    Top = 90
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -102,7 +105,7 @@ object FMeiosTransportes: TFMeiosTransportes
   end
   object BtnAlterar: TBitBtn
     Left = 367
-    Top = 202
+    Top = 129
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -112,7 +115,7 @@ object FMeiosTransportes: TFMeiosTransportes
   end
   object BtnExcluir: TBitBtn
     Left = 367
-    Top = 241
+    Top = 168
     Width = 89
     Height = 33
     Cursor = crHandPoint
@@ -122,7 +125,7 @@ object FMeiosTransportes: TFMeiosTransportes
   end
   object BtnSair: TButton
     Left = 367
-    Top = 280
+    Top = 207
     Width = 89
     Height = 33
     Cursor = crHandPoint

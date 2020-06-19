@@ -540,10 +540,12 @@ object DM: TDM
       'WHERE'
       ''
       
-        '(TIPO_PESSOA=:TIPO_PESSOA OR '#39'T'#39'=:TIPO_PESSOA)AND (NOME_PESSOA L' +
-        'IKE :NOME_PESSOA)'
+        '(TIPO_PESSOA= :TIPO_PESSOA OR '#39'T'#39'= :TIPO_PESSOA)AND (NOME_PESSOA' +
+        ' LIKE :NOME_PESSOA)'
       ''
-      'ORDER BY NOME_PESSOA')
+      'ORDER BY NOME_PESSOA'
+      ''
+      '')
     Left = 256
     Top = 536
     ParamData = <
@@ -579,6 +581,7 @@ object DM: TDM
     object sql_pessoaFONE_PESSOA: TStringField
       FieldName = 'FONE_PESSOA'
       Origin = 'FONE_PESSOA'
+      EditMask = '!\(99\) 9 9999-9999;0;_'
       Size = 50
     end
     object sql_pessoaTIPO_PESSOA: TStringField
@@ -597,8 +600,8 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'FORMAPGTO'
     TableName = 'FORMAPGTO'
-    Left = 344
-    Top = 400
+    Left = 352
+    Top = 401
     object tb_formaspgtoID_FORMAPGTO: TIntegerField
       FieldName = 'ID_FORMAPGTO'
       Origin = 'ID_FORMAPGTO'
@@ -613,15 +616,15 @@ object DM: TDM
   end
   object ds_formaspgto: TDataSource
     DataSet = sql_formaspgto
-    Left = 344
-    Top = 464
+    Left = 352
+    Top = 465
   end
   object sql_formaspgto: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from formapgto')
-    Left = 344
-    Top = 536
+    Left = 352
+    Top = 537
     object sql_formaspgtoID_FORMAPGTO: TIntegerField
       FieldName = 'ID_FORMAPGTO'
       Origin = 'ID_FORMAPGTO'
@@ -666,8 +669,8 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_formapgto,1)as id from rdb$database')
-    Left = 344
-    Top = 600
+    Left = 352
+    Top = 601
     object sql_Gen_formaspgtoID: TLargeintField
       AutoGenerateValue = arDefault
       FieldName = 'ID'
@@ -681,8 +684,8 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'MEIOSTRANSPORTES'
     TableName = 'MEIOSTRANSPORTES'
-    Left = 432
-    Top = 400
+    Left = 440
+    Top = 401
     object tb_meiotransporteID_TRANSPORTE: TIntegerField
       FieldName = 'ID_TRANSPORTE'
       Origin = 'ID_TRANSPORTE'
@@ -697,15 +700,15 @@ object DM: TDM
   end
   object ds_meiotransporte: TDataSource
     DataSet = sql_meiotransporte
-    Left = 432
-    Top = 464
+    Left = 440
+    Top = 465
   end
   object sql_meiotransporte: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from meiostransportes')
-    Left = 432
-    Top = 536
+    Left = 440
+    Top = 537
     object sql_meiotransporteID_TRANSPORTE: TIntegerField
       FieldName = 'ID_TRANSPORTE'
       Origin = 'ID_TRANSPORTE'
@@ -722,8 +725,8 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_transporte,1)as id from rdb$database')
-    Left = 432
-    Top = 600
+    Left = 440
+    Top = 601
     object sql_Gen_meiotransporteID: TLargeintField
       AutoGenerateValue = arDefault
       FieldName = 'ID'
@@ -737,8 +740,8 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'PAISES'
     TableName = 'PAISES'
-    Left = 528
-    Top = 400
+    Left = 536
+    Top = 401
     object tb_paisesID_PAIS: TIntegerField
       FieldName = 'ID_PAIS'
       Origin = 'ID_PAIS'
@@ -753,15 +756,15 @@ object DM: TDM
   end
   object ds_paises: TDataSource
     DataSet = sql_paises
-    Left = 528
-    Top = 464
+    Left = 536
+    Top = 465
   end
   object sql_paises: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from paises')
-    Left = 528
-    Top = 536
+    Left = 536
+    Top = 537
     object sql_paisesID_PAIS: TIntegerField
       FieldName = 'ID_PAIS'
       Origin = 'ID_PAIS'
@@ -778,8 +781,8 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_pais,1)as id from rdb$database')
-    Left = 528
-    Top = 600
+    Left = 536
+    Top = 601
     object sql_Gen_paisesID: TLargeintField
       AutoGenerateValue = arDefault
       FieldName = 'ID'
