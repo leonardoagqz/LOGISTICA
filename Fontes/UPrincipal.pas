@@ -33,6 +33,7 @@ type
     StatusBar1: TStatusBar;
     Panel1: TPanel;
     Image1: TImage;
+    Venda1: TMenuItem;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
@@ -43,6 +44,8 @@ type
     procedure Pases2Click(Sender: TObject);
     procedure Clientes1Click(Sender: TObject);
     procedure Fornecedores1Click(Sender: TObject);
+    procedure Vendas1Click(Sender: TObject);
+    procedure Venda1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -56,7 +59,7 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas;
+uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas, UMovimentos;
 
 procedure TFPrincipal.Clientes1Click(Sender: TObject);
 begin
@@ -113,6 +116,21 @@ end;
 procedure TFPrincipal.Usurios1Click(Sender: TObject);
 begin
   DM.CriarFormulario(TFUsuarios,FUsuarios);
+end;
+
+procedure TFPrincipal.Venda1Click(Sender: TObject);
+begin
+   DM.sql_MovConsul.Close;
+  dm.sql_MovConsul.Params[2].AsString := 'V' ;
+  DM.CriarFormulario(TFMovimentos, FMovimentos);
+end;
+
+procedure TFPrincipal.Vendas1Click(Sender: TObject);
+begin
+  DM.sql_MovConsul.Close;
+  dm.sql_MovConsul.Params[2].AsString := 'C' ;
+  DM.CriarFormulario(TFMovimentos, FMovimentos);
+
 end;
 
 end.

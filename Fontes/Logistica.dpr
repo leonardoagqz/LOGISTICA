@@ -16,6 +16,7 @@ uses
   UFormasPgto in 'UFormasPgto.pas' {FFormasPgto},
   UUsuarios in 'UUsuarios.pas' {FUsuarios},
   UCadUsuario in 'UCadUsuario.pas' {FCadUsuarios},
+  UMovimentos in 'UMovimentos.pas' {FMovimentos},
   UProdutos in 'UProdutos.pas' {FProdutos};
 
 {$R *.res}
@@ -24,6 +25,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TFProdutos, FProdutos);
   Application.Run;
 end.

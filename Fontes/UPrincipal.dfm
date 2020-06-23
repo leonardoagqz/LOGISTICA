@@ -16456,7 +16456,12 @@ object FPrincipal: TFPrincipal
     object Consulta1: TMenuItem
       Caption = 'Consulta'
       object Vendas1: TMenuItem
-        Caption = 'Vendas'
+        Caption = 'Compra'
+        OnClick = Vendas1Click
+      end
+      object Venda1: TMenuItem
+        Caption = 'Venda'
+        OnClick = Venda1Click
       end
     end
     object Relatrios1: TMenuItem

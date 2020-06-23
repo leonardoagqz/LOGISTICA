@@ -1,0 +1,174 @@
+object FPessoas: TFPessoas
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'Cadastro de Pessoas'
+  ClientHeight = 362
+  ClientWidth = 671
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblLocalizarUsuarios: TLabel
+    Left = 8
+    Top = 39
+    Width = 45
+    Height = 13
+    Caption = 'Localizar:'
+  end
+  object EdtLocalizarPessoas: TEdit
+    Left = 8
+    Top = 58
+    Width = 561
+    Height = 21
+    Color = clCream
+    TabOrder = 0
+    OnKeyPress = EdtLocalizarPessoasKeyPress
+  end
+  object G1Grid: TDBGrid
+    Left = 8
+    Top = 85
+    Width = 561
+    Height = 246
+    Cursor = crHandPoint
+    Color = clWhite
+    DataSource = DM.ds_pessoa
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ReadOnly = True
+    TabOrder = 5
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    OnDblClick = G1GridDblClick
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'ID_PESSOA'
+        Title.Caption = 'ID'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME_PESSOA'
+        Title.Caption = 'Nome'
+        Width = 150
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DOCUMENTO_PESSOA'
+        Title.Caption = 'Documento'
+        Width = 140
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FONE_PESSOA'
+        Title.Caption = 'Contato'
+        Width = 150
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TIPO_PESSOA'
+        Title.Caption = 'Tipo'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_PAIS_PESSOA'
+        Visible = False
+      end>
+  end
+  object PainelUsuarios1: TPanel
+    Left = 0
+    Top = 0
+    Width = 671
+    Height = 33
+    Align = alTop
+    Color = clGradientActiveCaption
+    ParentBackground = False
+    TabOrder = 6
+  end
+  object PainelUsuarios2: TPanel
+    Left = 0
+    Top = 344
+    Width = 671
+    Height = 18
+    Align = alBottom
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 7
+  end
+  object BtnIncluir: TBitBtn
+    Left = 575
+    Top = 83
+    Width = 89
+    Height = 33
+    Cursor = crHandPoint
+    Caption = 'Incluir'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnClick = BtnIncluirClick
+  end
+  object BtnAlterar: TBitBtn
+    Left = 575
+    Top = 122
+    Width = 89
+    Height = 33
+    Cursor = crHandPoint
+    Caption = 'Alterar'
+    TabOrder = 2
+    OnClick = BtnAlterarClick
+  end
+  object BtnExcluir: TBitBtn
+    Left = 575
+    Top = 161
+    Width = 89
+    Height = 33
+    Cursor = crHandPoint
+    Caption = 'Excluir'
+    TabOrder = 3
+    OnClick = BtnExcluirClick
+  end
+  object BtnSair: TButton
+    Left = 575
+    Top = 200
+    Width = 89
+    Height = 33
+    Cursor = crHandPoint
+    Caption = 'Sair'
+    TabOrder = 4
+    OnClick = BtnSairClick
+  end
+  object btnMostrarTodos: TBitBtn
+    Left = 575
+    Top = 58
+    Width = 26
+    Height = 19
+    Caption = '*'
+    TabOrder = 8
+    OnClick = btnMostrarTodosClick
+  end
+  object sql_pessoas: TFDQuery
+    Connection = DM.BDConnectionFB
+    Left = 600
+    Top = 264
+  end
+end

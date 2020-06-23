@@ -1,8 +1,8 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 700
-  Width = 737
+  Height = 718
+  Width = 881
   object BDConnectionSQL: TADOConnection
     Connected = True
     ConnectionString = 
@@ -307,7 +307,6 @@ object DM: TDM
       'Password=masterkey'
       'User_Name=sysdba'
       'DriverID=FB')
-    Connected = True
     LoginPrompt = False
     Left = 88
     Top = 334
@@ -789,6 +788,225 @@ object DM: TDM
       Origin = 'ID'
       ProviderFlags = []
       ReadOnly = True
+    end
+  end
+  object tb_MovConsul: TFDTable
+    IndexFieldNames = 'ID_MOVIMENTO'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'MOVIMENTOS'
+    TableName = 'MOVIMENTOS'
+    Left = 616
+    Top = 400
+    object tb_MovConsulID_MOVIMENTO: TIntegerField
+      FieldName = 'ID_MOVIMENTO'
+      Origin = 'ID_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tb_MovConsulTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      FixedChar = True
+      Size = 1
+    end
+    object tb_MovConsulDATA_MOVIMENTO: TDateField
+      FieldName = 'DATA_MOVIMENTO'
+      Origin = 'DATA_MOVIMENTO'
+    end
+    object tb_MovConsulTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object tb_MovConsulID_PGTO_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PGTO_MOVIMENTO'
+      Origin = 'ID_PGTO_MOVIMENTO'
+    end
+    object tb_MovConsulID_TRANSPORTE_MOVIMENTO: TIntegerField
+      FieldName = 'ID_TRANSPORTE_MOVIMENTO'
+      Origin = 'ID_TRANSPORTE_MOVIMENTO'
+    end
+  end
+  object ds_MovConsul: TDataSource
+    DataSet = sql_MovConsul
+    Left = 624
+    Top = 464
+  end
+  object sql_MovConsul: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from movimentos'
+      ''
+      
+        'where data_movimento between :D1 and :D2 and tipo_movimento = :T' +
+        'P'
+      ''
+      'order by data_movimento,id_movimento')
+    Left = 624
+    Top = 528
+    ParamData = <
+      item
+        Name = 'D1'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'D2'
+        DataType = ftDate
+        ParamType = ptInput
+      end
+      item
+        Name = 'TP'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 1
+      end>
+    object sql_MovConsulID_MOVIMENTO: TIntegerField
+      FieldName = 'ID_MOVIMENTO'
+      Origin = 'ID_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_MovConsulTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      FixedChar = True
+      Size = 1
+    end
+    object sql_MovConsulDATA_MOVIMENTO: TDateField
+      FieldName = 'DATA_MOVIMENTO'
+      Origin = 'DATA_MOVIMENTO'
+    end
+    object sql_MovConsulTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_MovConsulID_PGTO_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PGTO_MOVIMENTO'
+      Origin = 'ID_PGTO_MOVIMENTO'
+    end
+    object sql_MovConsulID_TRANSPORTE_MOVIMENTO: TIntegerField
+      FieldName = 'ID_TRANSPORTE_MOVIMENTO'
+      Origin = 'ID_TRANSPORTE_MOVIMENTO'
+    end
+    object sql_MovConsulFormaPagamento: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'FormaPagamento'
+      Size = 15
+      Calculated = True
+    end
+    object sql_MovConsulMeiosTransportes: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'MeiosTransportes'
+      Size = 40
+      Calculated = True
+    end
+  end
+  object sql_Gen__MovConsul: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select gen_id(id_movimento,1)as id from rdb$database')
+    Left = 624
+    Top = 600
+    object sql_Gen__MovConsulID: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object tb_MovInclusao: TFDTable
+    IndexFieldNames = 'ID_MOVIMENTO'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'MOVIMENTOS'
+    TableName = 'MOVIMENTOS'
+    Left = 720
+    Top = 400
+    object tb_MovInclusaoID_MOVIMENTO: TIntegerField
+      FieldName = 'ID_MOVIMENTO'
+      Origin = 'ID_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tb_MovInclusaoTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      FixedChar = True
+      Size = 1
+    end
+    object tb_MovInclusaoDATA_MOVIMENTO: TDateField
+      FieldName = 'DATA_MOVIMENTO'
+      Origin = 'DATA_MOVIMENTO'
+    end
+    object tb_MovInclusaoTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object tb_MovInclusaoID_PGTO_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PGTO_MOVIMENTO'
+      Origin = 'ID_PGTO_MOVIMENTO'
+    end
+    object tb_MovInclusaoID_TRANSPORTE_MOVIMENTO: TIntegerField
+      FieldName = 'ID_TRANSPORTE_MOVIMENTO'
+      Origin = 'ID_TRANSPORTE_MOVIMENTO'
+    end
+  end
+  object ds_MovInclusao: TDataSource
+    DataSet = sql_MovInclusao
+    Left = 728
+    Top = 464
+  end
+  object sql_MovInclusao: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from movimentos'
+      ''
+      'where id_movimento = :id_movimento')
+    Left = 728
+    Top = 528
+    ParamData = <
+      item
+        Name = 'ID_MOVIMENTO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object sql_MovInclusaoID_MOVIMENTO: TIntegerField
+      FieldName = 'ID_MOVIMENTO'
+      Origin = 'ID_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_MovInclusaoTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      FixedChar = True
+      Size = 1
+    end
+    object sql_MovInclusaoDATA_MOVIMENTO: TDateField
+      FieldName = 'DATA_MOVIMENTO'
+      Origin = 'DATA_MOVIMENTO'
+    end
+    object sql_MovInclusaoTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_MovInclusaoID_PGTO_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PGTO_MOVIMENTO'
+      Origin = 'ID_PGTO_MOVIMENTO'
+    end
+    object sql_MovInclusaoID_TRANSPORTE_MOVIMENTO: TIntegerField
+      FieldName = 'ID_TRANSPORTE_MOVIMENTO'
+      Origin = 'ID_TRANSPORTE_MOVIMENTO'
     end
   end
 end

@@ -21,6 +21,7 @@ type
     BtnAlterar: TBitBtn;
     BtnExcluir: TBitBtn;
     BtnSair: TButton;
+    btnMostrarTodos: TBitBtn;
     procedure BtnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BtnIncluirClick(Sender: TObject);
@@ -29,6 +30,7 @@ type
     procedure BtnExcluirClick(Sender: TObject);
     procedure G1GridDblClick(Sender: TObject);
     procedure EdtLocalizarPessoasKeyPress(Sender: TObject; var Key: Char);
+    procedure btnMostrarTodosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,7 +83,6 @@ begin
   begin
     Self.Visible :=False;
     DM.sql_pessoa.Edit;
-
     dm.CriarFormulario(TFCadPessoas,FCadPessoas);
     Self.Visible:=True;
   end;
@@ -118,6 +119,17 @@ begin
 
 end;
 
+procedure TFPessoas.btnMostrarTodosClick(Sender: TObject);
+begin
+ {dm.sql_pessoa.Close;
+ DM.sql_pessoa.SQL.Clear;
+ dm.sql_pessoa.SQL.Add('select * from pessoas');
+ //dm.sql_pessoaTIPO_PESSOA.AsString := 'C';
+ Self.Caption:='Clientes e Fornecedores';
+ dm.sql_pessoa.Open;  }
+
+end;
+
 procedure TFPessoas.BtnSairClick(Sender: TObject);
 begin
     Close;
@@ -128,10 +140,18 @@ begin
   if Key =#13 then
   begin
     DM.sql_pessoa.Close;
+    DM.sql_pessoa.SQL.Clear;
+    DM.sql_pessoa.SQL.Add('select * from pessoas');
+    DM.sql_pessoa.SQL.Add('where TIPO_PESSOA= :TIPO_PESSOA AND NOME_PESSOA LIKE :NOME_PESSOA');
+    DM.sql_pessoa.SQL.Add('ORDER BY NOME_PESSOA');
+    dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString := 'C';
     DM.sql_pessoa.Params.ParamByName('NOME_PESSOA').AsString := EdtLocalizarPessoas.Text+'%';
+    Self.Caption:='Cadastro de Cliente';
     DM.sql_pessoa.Open;
 
   end;
 end;
 
 end.
+
+

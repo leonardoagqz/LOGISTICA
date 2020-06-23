@@ -202,6 +202,8 @@ end;
 procedure TFCadProduto.FormCreate(Sender: TObject);
 begin
   DM.sql_pessoa.Close;
+  DM.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString := 'F';
+  DM.sql_pessoa.Params.ParamByName('NOME_PESSOA').AsString := '%';
   DM.sql_pessoa.open;
 
   if DM.sql_produtoTIPO_PRODUTO.AsString = 'Compra' then
