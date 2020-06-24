@@ -17,7 +17,8 @@ uses
   UUsuarios in 'UUsuarios.pas' {FUsuarios},
   UCadUsuario in 'UCadUsuario.pas' {FCadUsuarios},
   UMovimentos in 'UMovimentos.pas' {FMovimentos},
-  UProdutos in 'UProdutos.pas' {FProdutos};
+  UProdutos in 'UProdutos.pas' {FProdutos},
+  UCadMovimento in 'UCadMovimento.pas' {FCadmovimento};
 
 {$R *.res}
 

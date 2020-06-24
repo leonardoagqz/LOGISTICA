@@ -307,13 +307,14 @@ object DM: TDM
       'Password=masterkey'
       'User_Name=sysdba'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
-    Left = 88
+    Left = 40
     Top = 334
   end
   object ds_usuario: TDataSource
     DataSet = sql_usuario
-    Left = 88
+    Left = 40
     Top = 470
   end
   object sql_usuario: TFDQuery
@@ -321,7 +322,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from usuarios')
-    Left = 88
+    Left = 40
     Top = 534
     object sql_usuarioID_USUARIO: TIntegerField
       FieldName = 'ID_USUARIO'
@@ -354,7 +355,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'USUARIOS'
     TableName = 'USUARIOS'
-    Left = 88
+    Left = 40
     Top = 406
     object tb_usuarioID_USUARIO: TIntegerField
       FieldName = 'ID_USUARIO'
@@ -384,18 +385,18 @@ object DM: TDM
   end
   object WaitCursor: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 248
+    Left = 200
     Top = 334
   end
   object FireBird: TFDPhysFBDriverLink
-    Left = 176
+    Left = 128
     Top = 334
   end
   object sql_Gen_usuario: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_usuario,1)as id from rdb$database')
-    Left = 88
+    Left = 40
     Top = 600
     object sql_Gen_usuarioID: TLargeintField
       AutoGenerateValue = arDefault
@@ -410,7 +411,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'PRODUTOS'
     TableName = 'PRODUTOS'
-    Left = 168
+    Left = 120
     Top = 400
     object tb_produtoID_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'
@@ -446,14 +447,14 @@ object DM: TDM
   end
   object ds_produto: TDataSource
     DataSet = sql_produto
-    Left = 168
+    Left = 120
     Top = 472
   end
   object sql_produto: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from produtos')
-    Left = 168
+    Left = 120
     Top = 536
     object sql_produtoID_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'
@@ -492,7 +493,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'PESSOAS'
     TableName = 'PESSOAS'
-    Left = 256
+    Left = 208
     Top = 400
     object tb_pessoaID_PESSOA: TIntegerField
       FieldName = 'ID_PESSOA'
@@ -528,7 +529,7 @@ object DM: TDM
   end
   object ds_pessoa: TDataSource
     DataSet = sql_pessoa
-    Left = 256
+    Left = 208
     Top = 464
   end
   object sql_pessoa: TFDQuery
@@ -545,7 +546,7 @@ object DM: TDM
       'ORDER BY NOME_PESSOA'
       ''
       '')
-    Left = 256
+    Left = 208
     Top = 536
     ParamData = <
       item
@@ -599,7 +600,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'FORMAPGTO'
     TableName = 'FORMAPGTO'
-    Left = 352
+    Left = 304
     Top = 401
     object tb_formaspgtoID_FORMAPGTO: TIntegerField
       FieldName = 'ID_FORMAPGTO'
@@ -615,14 +616,14 @@ object DM: TDM
   end
   object ds_formaspgto: TDataSource
     DataSet = sql_formaspgto
-    Left = 352
+    Left = 304
     Top = 465
   end
   object sql_formaspgto: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from formapgto')
-    Left = 352
+    Left = 304
     Top = 537
     object sql_formaspgtoID_FORMAPGTO: TIntegerField
       FieldName = 'ID_FORMAPGTO'
@@ -640,7 +641,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_pessoa,1)as id from rdb$database')
-    Left = 256
+    Left = 208
     Top = 600
     object sql_Gen_pessoaID: TLargeintField
       AutoGenerateValue = arDefault
@@ -654,7 +655,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_produto,1)as id from rdb$database')
-    Left = 168
+    Left = 120
     Top = 600
     object sql_Gen_produtoID: TLargeintField
       AutoGenerateValue = arDefault
@@ -668,7 +669,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_formapgto,1)as id from rdb$database')
-    Left = 352
+    Left = 304
     Top = 601
     object sql_Gen_formaspgtoID: TLargeintField
       AutoGenerateValue = arDefault
@@ -683,7 +684,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'MEIOSTRANSPORTES'
     TableName = 'MEIOSTRANSPORTES'
-    Left = 440
+    Left = 392
     Top = 401
     object tb_meiotransporteID_TRANSPORTE: TIntegerField
       FieldName = 'ID_TRANSPORTE'
@@ -699,14 +700,14 @@ object DM: TDM
   end
   object ds_meiotransporte: TDataSource
     DataSet = sql_meiotransporte
-    Left = 440
+    Left = 392
     Top = 465
   end
   object sql_meiotransporte: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from meiostransportes')
-    Left = 440
+    Left = 392
     Top = 537
     object sql_meiotransporteID_TRANSPORTE: TIntegerField
       FieldName = 'ID_TRANSPORTE'
@@ -724,7 +725,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_transporte,1)as id from rdb$database')
-    Left = 440
+    Left = 392
     Top = 601
     object sql_Gen_meiotransporteID: TLargeintField
       AutoGenerateValue = arDefault
@@ -739,7 +740,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'PAISES'
     TableName = 'PAISES'
-    Left = 536
+    Left = 488
     Top = 401
     object tb_paisesID_PAIS: TIntegerField
       FieldName = 'ID_PAIS'
@@ -755,14 +756,14 @@ object DM: TDM
   end
   object ds_paises: TDataSource
     DataSet = sql_paises
-    Left = 536
+    Left = 488
     Top = 465
   end
   object sql_paises: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       'select * from paises')
-    Left = 536
+    Left = 488
     Top = 537
     object sql_paisesID_PAIS: TIntegerField
       FieldName = 'ID_PAIS'
@@ -780,7 +781,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_pais,1)as id from rdb$database')
-    Left = 536
+    Left = 488
     Top = 601
     object sql_Gen_paisesID: TLargeintField
       AutoGenerateValue = arDefault
@@ -795,7 +796,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'MOVIMENTOS'
     TableName = 'MOVIMENTOS'
-    Left = 616
+    Left = 568
     Top = 400
     object tb_MovConsulID_MOVIMENTO: TIntegerField
       FieldName = 'ID_MOVIMENTO'
@@ -830,7 +831,7 @@ object DM: TDM
   end
   object ds_MovConsul: TDataSource
     DataSet = sql_MovConsul
-    Left = 624
+    Left = 576
     Top = 464
   end
   object sql_MovConsul: TFDQuery
@@ -843,7 +844,7 @@ object DM: TDM
         'P'
       ''
       'order by data_movimento,id_movimento')
-    Left = 624
+    Left = 576
     Top = 528
     ParamData = <
       item
@@ -910,7 +911,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_movimento,1)as id from rdb$database')
-    Left = 624
+    Left = 576
     Top = 600
     object sql_Gen__MovConsulID: TLargeintField
       AutoGenerateValue = arDefault
@@ -925,7 +926,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'MOVIMENTOS'
     TableName = 'MOVIMENTOS'
-    Left = 720
+    Left = 672
     Top = 400
     object tb_MovInclusaoID_MOVIMENTO: TIntegerField
       FieldName = 'ID_MOVIMENTO'
@@ -960,7 +961,7 @@ object DM: TDM
   end
   object ds_MovInclusao: TDataSource
     DataSet = sql_MovInclusao
-    Left = 728
+    Left = 680
     Top = 464
   end
   object sql_MovInclusao: TFDQuery
@@ -969,7 +970,7 @@ object DM: TDM
       'select * from movimentos'
       ''
       'where id_movimento = :id_movimento')
-    Left = 728
+    Left = 680
     Top = 528
     ParamData = <
       item
@@ -1008,5 +1009,152 @@ object DM: TDM
       FieldName = 'ID_TRANSPORTE_MOVIMENTO'
       Origin = 'ID_TRANSPORTE_MOVIMENTO'
     end
+  end
+  object tb_Itens: TFDTable
+    IndexFieldNames = 'ID_ITEM_MOVIMENTO'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'ITENSMOVIMENTO'
+    TableName = 'ITENSMOVIMENTO'
+    Left = 768
+    Top = 400
+    object tb_ItensID_ITEM_MOVIMENTO: TIntegerField
+      FieldName = 'ID_ITEM_MOVIMENTO'
+      Origin = 'ID_ITEM_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tb_ItensID_MOVIMENTO_ITENS: TIntegerField
+      FieldName = 'ID_MOVIMENTO_ITENS'
+      Origin = 'ID_MOVIMENTO_ITENS'
+    end
+    object tb_ItensID_PRODUTO_ITENS: TIntegerField
+      FieldName = 'ID_PRODUTO_ITENS'
+      Origin = 'ID_PRODUTO_ITENS'
+    end
+    object tb_ItensQUANTIDADE_MOVIMENTO: TIntegerField
+      FieldName = 'QUANTIDADE_MOVIMENTO'
+      Origin = 'QUANTIDADE_MOVIMENTO'
+    end
+    object tb_ItensVALOR_MOVIMENTO: TBCDField
+      FieldName = 'VALOR_MOVIMENTO'
+      Origin = 'VALOR_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object tb_ItensTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object ds_Itens: TDataSource
+    DataSet = sql_Itens
+    Left = 768
+    Top = 464
+  end
+  object sql_Itens: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from itensmovimento'
+      ''
+      'where id_item_movimento = :id_item_movimento')
+    Left = 768
+    Top = 528
+    ParamData = <
+      item
+        Name = 'ID_ITEM_MOVIMENTO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object sql_ItensID_ITEM_MOVIMENTO: TIntegerField
+      FieldName = 'ID_ITEM_MOVIMENTO'
+      Origin = 'ID_ITEM_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_ItensID_MOVIMENTO_ITENS: TIntegerField
+      FieldName = 'ID_MOVIMENTO_ITENS'
+      Origin = 'ID_MOVIMENTO_ITENS'
+    end
+    object sql_ItensID_PRODUTO_ITENS: TIntegerField
+      FieldName = 'ID_PRODUTO_ITENS'
+      Origin = 'ID_PRODUTO_ITENS'
+    end
+    object sql_ItensQUANTIDADE_MOVIMENTO: TIntegerField
+      FieldName = 'QUANTIDADE_MOVIMENTO'
+      Origin = 'QUANTIDADE_MOVIMENTO'
+    end
+    object sql_ItensVALOR_MOVIMENTO: TBCDField
+      FieldName = 'VALOR_MOVIMENTO'
+      Origin = 'VALOR_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_ItensTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object sql_IncluirItens: TFDQuery
+    Aggregates = <
+      item
+        Name = 'Soma'
+        Expression = 'Sum(TOTAL_MOVIMENTO)'
+        Active = True
+      end>
+    Connection = BDConnectionFB
+    Left = 768
+    Top = 600
+    object sql_IncluirItensID_ITEM_MOVIMENTO: TIntegerField
+      FieldName = 'ID_ITEM_MOVIMENTO'
+      Origin = 'ID_ITEM_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_IncluirItensID_MOVIMENTO_ITENS: TIntegerField
+      FieldName = 'ID_MOVIMENTO_ITENS'
+      Origin = 'ID_MOVIMENTO_ITENS'
+    end
+    object sql_IncluirItensID_PRODUTO_ITENS: TIntegerField
+      FieldName = 'ID_PRODUTO_ITENS'
+      Origin = 'ID_PRODUTO_ITENS'
+    end
+    object sql_IncluirItensQUANTIDADE_MOVIMENTO: TIntegerField
+      FieldName = 'QUANTIDADE_MOVIMENTO'
+      Origin = 'QUANTIDADE_MOVIMENTO'
+    end
+    object sql_IncluirItensVALOR_MOVIMENTO: TBCDField
+      FieldName = 'VALOR_MOVIMENTO'
+      Origin = 'VALOR_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_IncluirItensTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_IncluirItensDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 60
+    end
+    object sql_IncluirItensSoma: TAggregateField
+      FieldName = 'Soma'
+      Active = True
+      currency = True
+      DisplayName = ''
+      DisplayFormat = '0.00'
+      Expression = 'Sum(TOTAL_MOVIMENTO)'
+    end
+  end
+  object ds_Incluiritens: TDataSource
+    DataSet = sql_IncluirItens
+    Left = 768
+    Top = 656
   end
 end

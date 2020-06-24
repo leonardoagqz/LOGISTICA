@@ -42,15 +42,13 @@ implementation
 
 {$R *.dfm}
 
-uses UDM, UCadProduto;{units que podem ser acessadas e utilizadas}
+uses UDM, UCadMovimento;{units que podem ser acessadas e utilizadas}
 
 procedure TFMovimentos.FormCreate(Sender: TObject);//ao abrir tela de produtos
 begin                                            //inicie
-  {dm.cdsProdutos.Close;                        //fechar tabela
-  dm.cdsProdutos.Open; }
-
-  dm.sql_produto.Close;
-  dm.sql_produto.Open;
+  dtpInicial.Date:=Now;
+  dtpFinal.Date:=Now;
+  btnBuscarmov.Click;
    
 end;
 
@@ -70,24 +68,13 @@ end;
 
 procedure TFMovimentos.BtnAlterarClick(Sender: TObject);
 begin
-    {if not dm.cdsProdutos.IsEmpty then                //se não estiver vazio então
-    begin                                             //inicie
-    Self.Visible:=False;                              //esconde formulario UUsuario
-    dm.cdsProdutos.Edit;
-                                   //editar cadastro de usuários
-    dm.CriarFormulario(TFCadProduto,FCadProduto);     //criar form
-    Self.Visible:=True;                               //mostrar formulario UUsuario
-    end; }
-
   if not DM.sql_produto.IsEmpty then
   begin
-  Self.Visible :=False;
-  DM.sql_produto.Edit;
-  dm.CriarFormulario(TFCadProduto,FCadProduto);
-  Self.Visible:=True;
+    Self.Visible :=False;
+    DM.sql_produto.Edit;
+    dm.CriarFormulario(TFCadmovimento,FCadmovimento);
+    Self.Visible:=True;
   end;
-
-
 end;
 
 procedure TFMovimentos.btnBuscarmovClick(Sender: TObject);
@@ -100,58 +87,29 @@ end;
 
 procedure TFMovimentos.BtnExcluirClick(Sender: TObject);
 begin
-    {if not dm.cdsProdutos.IsEmpty then                  //se não estiver vazio então
-    begin                                             //inicie
-        if MessageDlg('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
-     //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
-        begin                                         //inicie
-            dm.cdsProdutos.Delete;                    //delete o registro na tabela usuario
-            dm.cdsProdutos.ApplyUpdates(0);           //aplicar modificações na tabela
-            ShowMessage('Informações Excluídas com Sucesso!'); //exibir mensagem
-        end;                                          //fimse
-
-    end; }
-
-    if not dm.sql_produto.IsEmpty then
+  {if not dm.sql_produto.IsEmpty then
+  begin
+    if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+    //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
     begin
-        if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
-      //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
-        begin
-            dm.sql_produto.Delete;
-            ShowMessage('Informações Excluídas com Sucesso!');
-        end;
-
+      dm.sql_produto.Delete;
+      ShowMessage('Informações Excluídas com Sucesso!');
     end;
-
-
+  end;}
 end;
 
-procedure TFMovimentos.BtnIncluirClick(Sender: TObject);//incluir produto
-begin                                                 //inicie
-    {Self.Visible :=False;                             //esconde formulario UProduto
-    dm.cdsProdutos.Append;                            //acrescentar em uma nova linha
-    dm.cdsProdutosQUANTIDADE.AsFloat:=0;              //campo QUANTIDADE iniciar com 0
-    dm.cdsProdutosVALOR.AsFloat:=0;                   //campo VALOR iniciar com 0
-    dm.cdsProdutosTIPO.AsString:='T';                 //campo TIPO iniciar com T
-    dm.CriarFormulario(TFCadProduto,FCadProduto);     //chamar procedimento para criar/abrir formulario UCadUProduto
-    Self.Visible:=True;  }                             //mostrar formulario UProduto
-
-    //Firebird
+procedure TFMovimentos.BtnIncluirClick(Sender: TObject);
+begin
+  //Firebird
   Self.Visible :=False;
-  DM.sql_produto.Active := True;
-  DM.sql_produto.Insert;
-  dm.CriarFormulario(TFCadProduto,FCadProduto);
+
+  dm.CriarFormulario(TFCadmovimento,FCadmovimento);
   Self.Visible:=True;
-
-
-
-
-
 end;
 
-procedure TFMovimentos.BtnSairClick(Sender: TObject);//clique botão sair
-begin                                              //inicie
-    Close;                                         //fechar tela
-end;                                               //fim
+procedure TFMovimentos.BtnSairClick(Sender: TObject);
+begin
+    Close;
+end;
 
 end.
