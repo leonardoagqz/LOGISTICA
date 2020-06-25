@@ -24,9 +24,6 @@ object FCadmovimento: TFCadmovimento
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 192
-    ExplicitTop = 56
-    ExplicitWidth = 185
     object Label2: TLabel
       Left = 10
       Top = 1
@@ -86,9 +83,6 @@ object FCadmovimento: TFCadmovimento
       Width = 574
       Height = 19
       Panels = <>
-      ExplicitLeft = 312
-      ExplicitTop = 8
-      ExplicitWidth = 0
     end
     object btnSalvar: TBitBtn
       Left = 407
@@ -129,6 +123,7 @@ object FCadmovimento: TFCadmovimento
       Height = 25
       Caption = 'Incluir'
       TabOrder = 5
+      OnClick = btnIncluirClick
     end
   end
   object P2: TPanel
@@ -139,7 +134,6 @@ object FCadmovimento: TFCadmovimento
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitHeight = 240
     object lblFormaPagamento: TLabel
       Left = 10
       Top = 212
@@ -175,6 +169,8 @@ object FCadmovimento: TFCadmovimento
       Height = 203
       BorderStyle = bsNone
       DataSource = DM.ds_Incluiritens
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ReadOnly = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -185,48 +181,44 @@ object FCadmovimento: TFCadmovimento
         item
           Expanded = False
           FieldName = 'ID_ITEM_MOVIMENTO'
-          Width = -1
           Visible = False
         end
         item
           Expanded = False
           FieldName = 'ID_MOVIMENTO_ITENS'
-          Width = -1
           Visible = False
         end
         item
           Expanded = False
           FieldName = 'ID_PRODUTO_ITENS'
           Title.Caption = 'C'#243'digo'
-          Width = 50
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'DESCRICAO'
-          Title.Caption = 'Descri'#231#227'o'
-          Width = 140
+          FieldName = 'NOME_PRODUTO_ITENS'
+          Title.Caption = 'Produto'
+          Width = 250
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'QUANTIDADE_MOVIMENTO'
           Title.Caption = 'Qtd.'
-          Width = 80
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'VALOR_MOVIMENTO'
           Title.Caption = 'Valor'
-          Width = 100
+          Width = 80
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'TOTAL_MOVIMENTO'
           Title.Caption = 'Total'
-          Width = 100
+          Width = 80
           Visible = True
         end>
     end

@@ -2,7 +2,7 @@ object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 718
-  Width = 881
+  Width = 932
   object BDConnectionSQL: TADOConnection
     Connected = True
     ConnectionString = 
@@ -1047,6 +1047,11 @@ object DM: TDM
       Precision = 18
       Size = 2
     end
+    object tb_ItensNOME_PRODUTO_ITENS: TStringField
+      FieldName = 'NOME_PRODUTO_ITENS'
+      Origin = 'NOME_PRODUTO_ITENS'
+      Size = 60
+    end
   end
   object ds_Itens: TDataSource
     DataSet = sql_Itens
@@ -1098,6 +1103,11 @@ object DM: TDM
       Precision = 18
       Size = 2
     end
+    object sql_ItensNOME_PRODUTO_ITENS: TStringField
+      FieldName = 'NOME_PRODUTO_ITENS'
+      Origin = 'NOME_PRODUTO_ITENS'
+      Size = 60
+    end
   end
   object sql_IncluirItens: TFDQuery
     Aggregates = <
@@ -1107,8 +1117,11 @@ object DM: TDM
         Active = True
       end>
     Connection = BDConnectionFB
-    Left = 768
-    Top = 600
+    SQL.Strings = (
+      ''
+      'SELECT * FROM ITENSMOVIMENTO')
+    Left = 840
+    Top = 528
     object sql_IncluirItensID_ITEM_MOVIMENTO: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
       Origin = 'ID_ITEM_MOVIMENTO'
@@ -1139,8 +1152,9 @@ object DM: TDM
       Precision = 18
       Size = 2
     end
-    object sql_IncluirItensDESCRICAO: TStringField
-      FieldName = 'DESCRICAO'
+    object sql_IncluirItensNOME_PRODUTO_ITENS: TStringField
+      FieldName = 'NOME_PRODUTO_ITENS'
+      Origin = 'NOME_PRODUTO_ITENS'
       Size = 60
     end
     object sql_IncluirItensSoma: TAggregateField
@@ -1154,7 +1168,21 @@ object DM: TDM
   end
   object ds_Incluiritens: TDataSource
     DataSet = sql_IncluirItens
+    Left = 840
+    Top = 464
+  end
+  object sql_Gen_Item: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select gen_id(id_item_movimento,1)as id from rdb$database')
     Left = 768
-    Top = 656
+    Top = 600
+    object sql_Gen_ItemID: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
   end
 end

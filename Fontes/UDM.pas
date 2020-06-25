@@ -202,15 +202,19 @@ type
     tb_ItensQUANTIDADE_MOVIMENTO: TIntegerField;
     tb_ItensVALOR_MOVIMENTO: TBCDField;
     tb_ItensTOTAL_MOVIMENTO: TBCDField;
+    ds_Incluiritens: TDataSource;
+    sql_Gen_Item: TFDQuery;
+    sql_Gen_ItemID: TLargeintField;
     sql_IncluirItensID_ITEM_MOVIMENTO: TIntegerField;
     sql_IncluirItensID_MOVIMENTO_ITENS: TIntegerField;
     sql_IncluirItensID_PRODUTO_ITENS: TIntegerField;
     sql_IncluirItensQUANTIDADE_MOVIMENTO: TIntegerField;
     sql_IncluirItensVALOR_MOVIMENTO: TBCDField;
     sql_IncluirItensTOTAL_MOVIMENTO: TBCDField;
-    ds_Incluiritens: TDataSource;
-    sql_IncluirItensDESCRICAO: TStringField;
     sql_IncluirItensSoma: TAggregateField;
+    sql_ItensNOME_PRODUTO_ITENS: TStringField;
+    tb_ItensNOME_PRODUTO_ITENS: TStringField;
+    sql_IncluirItensNOME_PRODUTO_ITENS: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

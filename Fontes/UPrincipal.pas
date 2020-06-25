@@ -120,7 +120,7 @@ end;
 
 procedure TFPrincipal.Venda1Click(Sender: TObject);
 begin
-   DM.sql_MovConsul.Close;
+  DM.sql_MovConsul.Close;
   dm.sql_MovConsul.Params[2].AsString := 'V' ;
   DM.CriarFormulario(TFMovimentos, FMovimentos);
 end;

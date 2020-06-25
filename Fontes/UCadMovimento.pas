@@ -31,6 +31,7 @@ type
     txtTotalitens: TDBText;
     procedure FormCreate(Sender: TObject);
     procedure btnTabelaClick(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,9 +44,16 @@ var
 implementation
 
 uses
-  UDM, UPessoas;
+  UDM, UPessoas, UCadItens;
 
 {$R *.dfm}
+
+procedure TFCadmovimento.btnIncluirClick(Sender: TObject);
+begin
+ DM.sql_IncluirItens.Active:=True;
+  DM.sql_IncluirItens.Insert;
+  DM.CriarFormulario(TFCadItens,FCadItens);
+end;
 
 procedure TFCadmovimento.btnTabelaClick(Sender: TObject);
 begin
