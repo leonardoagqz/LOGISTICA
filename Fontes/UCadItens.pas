@@ -21,7 +21,7 @@ type
     edtValor: TLabeledEdit;
     edtQuantidade: TLabeledEdit;
     edtTotal: TLabeledEdit;
-    BitBtn1: TBitBtn;
+    btnTabela: TBitBtn;
     sql_CadItens: TFDQuery;
     sql_CadItensID_PRODUTO: TIntegerField;
     sql_CadItensNOME_PRODUTO: TStringField;
@@ -33,6 +33,9 @@ type
     procedure edtQuantidadeKeyPress(Sender: TObject; var Key: Char);
     procedure edtQuantidadeChange(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnTabelaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,43 +48,50 @@ var
 implementation
 
 uses
-  UDM;
+  UDM, UProdutos;
 
 {$R *.dfm}
+
+procedure TFCadItens.btnCancelarClick(Sender: TObject);
+begin
+  DM.sql_IncluirItens.Cancel;
+  FCadItens:=nil;
+  Close;
+end;
 
 procedure TFCadItens.btnSalvarClick(Sender: TObject);
 begin
   if edtCodigo.Text = '' then
   begin
-    ShowMessage('Código não informado!');
+    ShowMessage('Código do Produto não informado!');
     edtCodigo.SetFocus;
     Exit;
   end;
 
   if edtDescrição.Text = '' then
   begin
-    ShowMessage('Descrição não informada!');
+    ShowMessage('Descrição do Produto não informada!');
     edtDescrição.SetFocus;
     Exit;
   end;
 
   if (edtValor.Text = '') or (StrToFloat(edtValor.Text) = 0) then
   begin
-    ShowMessage('Valor não informado!');
+    ShowMessage('Valor do Produto não informado!');
     edtValor.SetFocus;
     Exit;
   end;
 
   if (edtQuantidade.Text = '') or (StrToFloat(edtQuantidade.Text) = 0) then
   begin
-    ShowMessage('Quantidade não informada!');
+    ShowMessage('Quantidade do Produto não informada!');
     edtQuantidade.SetFocus;
     Exit;
   end;
 
   if (edtTotal.Text = '') or (StrToFloat(edtTotal.Text) = 0) then
   begin
-    ShowMessage('Total não informado!');
+    ShowMessage('Total do Produto não informado!');
     edtTotal.SetFocus;
     Exit;
   end;
@@ -91,17 +101,48 @@ begin
   begin
     DM.sql_Gen_Item.Close;
     DM.sql_Gen_Item.Open;
-    DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger := DM.sql_Gen_ItemID.AsInteger;
+    DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
+    DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
+    DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
+    DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
+    DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat        := StrToFloat(edtTotal.Text);
+    DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
+    DM.sql_IncluirItens.Post;
+   Close;
   end;
 
-  DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
-  DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
-  DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
-  DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat        := StrToFloat(edtTotal.Text);
-  DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString          := edtDescrição.Text;
-  DM.sql_IncluirItens.Post;
-  Close;
+  DM.sql_IncluirItensDBG.close;
+  DM.sql_IncluirItensDBG.Open;
 
+  {DM.sql_IncluirItensDBG.Active:=True;
+  DM.sql_IncluirItensDBG.close;
+   DM.sql_IncluirItensDBG.SQL.Clear;
+  DM.sql_IncluirItensDBG.SQL.Add('select * from itensmovimento');
+  DM.sql_IncluirItensDBG.SQL.Add('where id_item_movimento = :id_item_movimento ');
+  DM.sql_IncluirItensDBG.ParamByName('id_item_movimento') .AsInteger :=  DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+  DM.sql_IncluirItensDBG.Open;}
+end;
+
+procedure TFCadItens.btnTabelaClick(Sender: TObject);
+begin
+  DM.sql_pessoa2.Params.ParamByName('NOME_PESSOA').AsString:='%';
+  dm.sql_pessoa2.Params.ParamByName('TIPO_PESSOA').AsString:='F';
+
+  FProdutos := TFProdutos.Create(nil);
+  try
+    FProdutos.btnAdicionar.Visible:=True;
+    FProdutos.ShowModal;
+    if FProdutos.btnAdicionar.ModalResult = mrOk then
+    begin
+      edtCodigo.Text := IntToStr(FProdutos.idprod);
+      edtCodigo.SetFocus;
+    end;
+
+  finally
+    FreeAndNil(FProdutos);
+  end;
+  //FProdutos := TFProdutos.Create(nil);
+  //FProdutos.btnAdicionar.Visible:=False;
 end;
 
 procedure TFCadItens.edtCodigoKeyPress(Sender: TObject; var Key: Char);
@@ -113,6 +154,16 @@ begin
   begin
     sql_CadItens.Close;
     sql_CadItens.Params[0].AsInteger := StrToInt(edtCodigo.Text);
+
+    if dm.sql_MovConsul.Params[2].AsString = 'C'  then
+    begin
+      sql_CadItens.Params[1].AsInteger := dm.sql_pessoaID_PESSOA.AsInteger;
+    end
+    else
+    begin
+      sql_CadItens.Params[1].AsInteger := -1;
+    end;
+
     sql_CadItens.Open;
     if not sql_CadItens.IsEmpty then
     begin
@@ -136,6 +187,12 @@ procedure TFCadItens.edtQuantidadeKeyPress(Sender: TObject; var Key: Char);
 begin
   if not (Key in ['0'..'9',#8,#13]) then
   key:=#0;
+end;
+
+procedure TFCadItens.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if DM.sql_IncluirItens.State in[dsInsert,dsEdit] then
+  DM.sql_IncluirItens.Cancel;
 end;
 
 end.

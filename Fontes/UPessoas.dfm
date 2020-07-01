@@ -157,13 +157,4 @@ object FPessoas: TFPessoas
     TabOrder = 4
     OnClick = BtnSairClick
   end
-  object btnMostrarTodos: TBitBtn
-    Left = 575
-    Top = 58
-    Width = 26
-    Height = 19
-    Caption = '*'
-    TabOrder = 8
-    OnClick = btnMostrarTodosClick
-  end
 end

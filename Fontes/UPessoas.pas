@@ -21,7 +21,6 @@ type
     BtnAlterar: TBitBtn;
     BtnExcluir: TBitBtn;
     BtnSair: TButton;
-    btnMostrarTodos: TBitBtn;
     procedure BtnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BtnIncluirClick(Sender: TObject);
@@ -137,19 +136,38 @@ end;
 
 procedure TFPessoas.EdtLocalizarPessoasKeyPress(Sender: TObject; var Key: Char);
 begin
+
   if Key =#13 then
   begin
-    DM.sql_pessoa.Close;
-    DM.sql_pessoa.SQL.Clear;
-    DM.sql_pessoa.SQL.Add('select * from pessoas');
-    DM.sql_pessoa.SQL.Add('where TIPO_PESSOA= :TIPO_PESSOA AND NOME_PESSOA LIKE :NOME_PESSOA');
-    DM.sql_pessoa.SQL.Add('ORDER BY NOME_PESSOA');
-    dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString := 'C';
-    DM.sql_pessoa.Params.ParamByName('NOME_PESSOA').AsString := EdtLocalizarPessoas.Text+'%';
-    Self.Caption:='Cadastro de Cliente';
-    DM.sql_pessoa.Open;
-
+    if dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString = 'C' then
+    begin
+      DM.sql_pessoa.Close;
+      DM.sql_pessoa.SQL.Clear;
+      DM.sql_pessoa.SQL.Add('select * from pessoas');
+      DM.sql_pessoa.SQL.Add('where TIPO_PESSOA= :TIPO_PESSOA AND NOME_PESSOA LIKE :NOME_PESSOA');
+      DM.sql_pessoa.SQL.Add('ORDER BY NOME_PESSOA');
+      dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString := 'C';
+      DM.sql_pessoa.Params.ParamByName('NOME_PESSOA').AsString := EdtLocalizarPessoas.Text+'%';
+      Self.Caption:='Cadastro de Cliente';
+      DM.sql_pessoa.Open;
+    end
+    else
+    begin
+       DM.sql_pessoa.Close;
+      DM.sql_pessoa.SQL.Clear;
+      DM.sql_pessoa.SQL.Add('select * from pessoas');
+      DM.sql_pessoa.SQL.Add('where TIPO_PESSOA= :TIPO_PESSOA AND NOME_PESSOA LIKE :NOME_PESSOA');
+      DM.sql_pessoa.SQL.Add('ORDER BY NOME_PESSOA');
+      dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString := 'F';
+      DM.sql_pessoa.Params.ParamByName('NOME_PESSOA').AsString := EdtLocalizarPessoas.Text+'%';
+      Self.Caption:='Cadastro de Fornecedor';
+      DM.sql_pessoa.Open;
+    end;
   end;
+
+
+
+
 end;
 
 end.

@@ -14,6 +14,7 @@
   KeyPreview = True
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object pnCadItensSup: TPanel
@@ -82,13 +83,14 @@
       TabOrder = 5
       Text = '0,00'
     end
-    object BitBtn1: TBitBtn
+    object btnTabela: TBitBtn
       Left = 328
       Top = 24
       Width = 26
       Height = 21
       Caption = '...'
       TabOrder = 2
+      OnClick = btnTabelaClick
     end
   end
   object pnCadItensInf: TPanel
@@ -116,13 +118,17 @@
       Height = 25
       Caption = 'Cancelar'
       TabOrder = 1
+      OnClick = btnCancelarClick
     end
   end
   object sql_CadItens: TFDQuery
     Connection = DM.BDConnectionFB
     SQL.Strings = (
-      'select * from produtos where id_produto = :id_produto')
-    Left = 72
+      'select * from produtos '
+      
+        'where id_produto = :id_produto and (id_pessoa_prod= :id_pessoa_p' +
+        'rod or 0 = :id_pessoa_prod)')
+    Left = 24
     Top = 128
     ParamData = <
       item
@@ -130,6 +136,11 @@
         DataType = ftInteger
         ParamType = ptInput
         Value = Null
+      end
+      item
+        Name = 'ID_PESSOA_PROD'
+        DataType = ftInteger
+        ParamType = ptInput
       end>
     object sql_CadItensID_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'

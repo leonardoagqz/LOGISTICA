@@ -1,8 +1,8 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 718
-  Width = 932
+  Height = 898
+  Width = 1025
   object BDConnectionSQL: TADOConnection
     Connected = True
     ConnectionString = 
@@ -1110,12 +1110,14 @@ object DM: TDM
     end
   end
   object sql_IncluirItens: TFDQuery
+    Active = True
     Aggregates = <
       item
         Name = 'Soma'
         Expression = 'Sum(TOTAL_MOVIMENTO)'
         Active = True
       end>
+    AggregatesActive = True
     Connection = BDConnectionFB
     SQL.Strings = (
       ''
@@ -1143,12 +1145,14 @@ object DM: TDM
     object sql_IncluirItensVALOR_MOVIMENTO: TBCDField
       FieldName = 'VALOR_MOVIMENTO'
       Origin = 'VALOR_MOVIMENTO'
+      DisplayFormat = '0.00'
       Precision = 18
       Size = 2
     end
     object sql_IncluirItensTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '0.00'
       Precision = 18
       Size = 2
     end
@@ -1184,5 +1188,150 @@ object DM: TDM
       ProviderFlags = []
       ReadOnly = True
     end
+  end
+  object sql_IncluirItensDBG: TFDQuery
+    Active = True
+    Aggregates = <
+      item
+        Name = 'Soma'
+        Expression = 'Sum(TOTAL_MOVIMENTO)'
+        Active = True
+      end
+      item
+        Name = 'SomaQtd'
+        Expression = 'Sum(QUANTIDADE_MOVIMENTO)'
+        Active = True
+      end>
+    AggregatesActive = True
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      ''
+      ''
+      'select * from itensmovimento')
+    Left = 928
+    Top = 528
+    object IntegerField1: TIntegerField
+      FieldName = 'ID_ITEM_MOVIMENTO'
+      Origin = 'ID_ITEM_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object IntegerField2: TIntegerField
+      FieldName = 'ID_MOVIMENTO_ITENS'
+      Origin = 'ID_MOVIMENTO_ITENS'
+    end
+    object IntegerField3: TIntegerField
+      FieldName = 'ID_PRODUTO_ITENS'
+      Origin = 'ID_PRODUTO_ITENS'
+    end
+    object IntegerField4: TIntegerField
+      FieldName = 'QUANTIDADE_MOVIMENTO'
+      Origin = 'QUANTIDADE_MOVIMENTO'
+    end
+    object BCDField1: TBCDField
+      FieldName = 'VALOR_MOVIMENTO'
+      Origin = 'VALOR_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
+      Precision = 18
+      Size = 2
+    end
+    object BCDField2: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
+      Precision = 18
+      Size = 2
+    end
+    object StringField1: TStringField
+      FieldName = 'NOME_PRODUTO_ITENS'
+      Origin = 'NOME_PRODUTO_ITENS'
+      Size = 60
+    end
+    object AggregateField1: TAggregateField
+      FieldName = 'Soma'
+      Active = True
+      currency = True
+      DisplayName = ''
+      DisplayFormat = 'R$ 0.00'
+      Expression = 'Sum(TOTAL_MOVIMENTO)'
+    end
+    object sql_IncluirItensDBGSomaQtd: TAggregateField
+      FieldName = 'SomaQtd'
+      Active = True
+      DisplayName = ''
+      Expression = 'Sum(QUANTIDADE_MOVIMENTO)'
+    end
+  end
+  object ds_IncluiritensDBG: TDataSource
+    DataSet = sql_IncluirItensDBG
+    Left = 928
+    Top = 464
+  end
+  object sql_pessoa2: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from pessoas '
+      ''
+      'WHERE'
+      ''
+      
+        '(TIPO_PESSOA= :TIPO_PESSOA OR '#39'T'#39'= :TIPO_PESSOA)AND (NOME_PESSOA' +
+        ' LIKE :NOME_PESSOA)'
+      ''
+      'ORDER BY NOME_PESSOA'
+      ''
+      '')
+    Left = 208
+    Top = 728
+    ParamData = <
+      item
+        Name = 'TIPO_PESSOA'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 1
+        Value = Null
+      end
+      item
+        Name = 'NOME_PESSOA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end>
+    object sql_pessoa2ID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      Origin = 'ID_PESSOA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_pessoa2NOME_PESSOA: TStringField
+      FieldName = 'NOME_PESSOA'
+      Origin = 'NOME_PESSOA'
+      Size = 50
+    end
+    object sql_pessoa2DOCUMENTO_PESSOA: TStringField
+      FieldName = 'DOCUMENTO_PESSOA'
+      Origin = 'DOCUMENTO_PESSOA'
+      Size = 50
+    end
+    object sql_pessoa2FONE_PESSOA: TStringField
+      FieldName = 'FONE_PESSOA'
+      Origin = 'FONE_PESSOA'
+      Size = 50
+    end
+    object sql_pessoa2TIPO_PESSOA: TStringField
+      FieldName = 'TIPO_PESSOA'
+      Origin = 'TIPO_PESSOA'
+      FixedChar = True
+      Size = 1
+    end
+    object sql_pessoa2ID_PAIS_PESSOA: TIntegerField
+      FieldName = 'ID_PAIS_PESSOA'
+      Origin = 'ID_PAIS_PESSOA'
+    end
+  end
+  object ds_pessoa2: TDataSource
+    DataSet = sql_pessoa2
+    Left = 208
+    Top = 656
   end
 end

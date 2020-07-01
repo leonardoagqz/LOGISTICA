@@ -29,9 +29,14 @@ type
     lkCbxMeioTransporte: TDBLookupComboBox;
     lblMeiotransporte: TLabel;
     txtTotalitens: TDBText;
+    pnTotal: TFlowPanel;
+    pnQtd: TFlowPanel;
+    txtQtd: TDBText;
     procedure FormCreate(Sender: TObject);
     procedure btnTabelaClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,9 +53,24 @@ uses
 
 {$R *.dfm}
 
+procedure TFCadmovimento.btnCancelarClick(Sender: TObject);
+begin
+  FCadmovimento:=nil;
+  Close;
+end;
+
 procedure TFCadmovimento.btnIncluirClick(Sender: TObject);
 begin
- DM.sql_IncluirItens.Active:=True;
+  if lkCbxClienteFornecedor.Text = '' then
+  if Self.Caption='Compra' then
+  begin
+    ShowMessage('informe o Fornecedor');
+    lkCbxClienteFornecedor.SetFocus;
+    Exit;
+  end;
+
+  DM.sql_IncluirItens.Active:=True;
+  DM.sql_IncluirItens.EmptyDataSet;
   DM.sql_IncluirItens.Insert;
   DM.CriarFormulario(TFCadItens,FCadItens);
 end;
@@ -60,8 +80,17 @@ begin
   DM.CriarFormulario(TFPessoas,FPessoas);
 end;
 
+procedure TFCadmovimento.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FCadmovimento:= nil;
+  
+end;
+
 procedure TFCadmovimento.FormCreate(Sender: TObject);
 begin
+  dtpData.Date:=Now;
+  DM.sql_IncluirItens.close;
+
   dm.sql_pessoa.Close;
 
   if dm.sql_MovConsul.Params[2].AsString = 'C'  then

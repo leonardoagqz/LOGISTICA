@@ -102,14 +102,17 @@ procedure TFMovimentos.BtnIncluirClick(Sender: TObject);
 begin
   //Firebird
   Self.Visible :=False;
-
+  DM.sql_IncluirItensDBG.Close;
+  DM.sql_IncluirItensDBG.Open;
+  DM.sql_IncluirItensDBG.EmptyDataSet;
   dm.CriarFormulario(TFCadmovimento,FCadmovimento);
   Self.Visible:=True;
 end;
 
 procedure TFMovimentos.BtnSairClick(Sender: TObject);
 begin
-    Close;
+  FMovimentos:=nil;
+  Close;
 end;
 
 end.

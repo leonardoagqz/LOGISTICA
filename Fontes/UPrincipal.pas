@@ -105,6 +105,8 @@ end;
 
 procedure TFPrincipal.Produtos1Click(Sender: TObject);
 begin
+  DM.sql_pessoa2.Params.ParamByName('NOME_PESSOA').AsString:='%';
+  dm.sql_pessoa2.Params.ParamByName('TIPO_PESSOA').AsString:='F';
   Dm.CriarFormulario(TFProdutos,FProdutos);
 end;
 

@@ -3,7 +3,7 @@ object FCadmovimento: TFCadmovimento
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Compra / Venda'
-  ClientHeight = 348
+  ClientHeight = 364
   ClientWidth = 574
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,6 +13,7 @@ object FCadmovimento: TFCadmovimento
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -69,7 +70,7 @@ object FCadmovimento: TFCadmovimento
   end
   object P3: TPanel
     Left = 0
-    Top = 296
+    Top = 312
     Width = 574
     Height = 52
     Align = alBottom
@@ -77,6 +78,7 @@ object FCadmovimento: TFCadmovimento
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 1
+    ExplicitTop = 296
     object StatusBar1: TStatusBar
       Left = 0
       Top = 33
@@ -99,14 +101,7 @@ object FCadmovimento: TFCadmovimento
       Height = 25
       Caption = 'Cancelar'
       TabOrder = 2
-    end
-    object btnExcluir: TBitBtn
-      Left = 170
-      Top = 6
-      Width = 75
-      Height = 25
-      Caption = 'Excluir'
-      TabOrder = 3
+      OnClick = btnCancelarClick
     end
     object btnAlterar: TBitBtn
       Left = 89
@@ -114,7 +109,7 @@ object FCadmovimento: TFCadmovimento
       Width = 75
       Height = 25
       Caption = 'Alterar'
-      TabOrder = 4
+      TabOrder = 3
     end
     object btnIncluir: TBitBtn
       Left = 8
@@ -122,53 +117,48 @@ object FCadmovimento: TFCadmovimento
       Width = 75
       Height = 25
       Caption = 'Incluir'
-      TabOrder = 5
+      TabOrder = 4
       OnClick = btnIncluirClick
+    end
+    object btnExcluir: TBitBtn
+      Left = 170
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Excluir'
+      TabOrder = 5
     end
   end
   object P2: TPanel
     Left = 0
     Top = 41
     Width = 574
-    Height = 255
+    Height = 271
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitHeight = 255
     object lblFormaPagamento: TLabel
       Left = 10
-      Top = 212
+      Top = 224
       Width = 102
       Height = 13
       Caption = 'Forma de Pagamento'
     end
     object lblMeiotransporte: TLabel
       Left = 186
-      Top = 212
+      Top = 224
       Width = 93
       Height = 13
       Caption = 'Meio de Transporte'
-    end
-    object txtTotalitens: TDBText
-      Left = 409
-      Top = 215
-      Width = 73
-      Height = 18
-      DataField = 'Soma'
-      DataSource = DM.ds_Incluiritens
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
     end
     object dbgCompraVenda: TDBGrid
       Left = 0
       Top = 6
       Width = 574
-      Height = 203
+      Height = 187
       BorderStyle = bsNone
-      DataSource = DM.ds_Incluiritens
+      DataSource = DM.ds_IncluiritensDBG
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ReadOnly = True
       TabOrder = 0
@@ -198,33 +188,34 @@ object FCadmovimento: TFCadmovimento
           Expanded = False
           FieldName = 'NOME_PRODUTO_ITENS'
           Title.Caption = 'Produto'
-          Width = 250
+          Width = 140
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'QUANTIDADE_MOVIMENTO'
           Title.Caption = 'Qtd.'
+          Width = 50
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'VALOR_MOVIMENTO'
           Title.Caption = 'Valor'
-          Width = 80
+          Width = 100
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'TOTAL_MOVIMENTO'
           Title.Caption = 'Total'
-          Width = 80
+          Width = 100
           Visible = True
         end>
     end
     object lkCbxFormapagamento: TDBLookupComboBox
       Left = 10
-      Top = 228
+      Top = 240
       Width = 154
       Height = 21
       KeyField = 'ID_FORMAPGTO'
@@ -234,13 +225,75 @@ object FCadmovimento: TFCadmovimento
     end
     object lkCbxMeioTransporte: TDBLookupComboBox
       Left = 186
-      Top = 228
+      Top = 240
       Width = 154
       Height = 21
       KeyField = 'ID_TRANSPORTE'
       ListField = 'DESCRICAO_TRANSPORTE'
       ListSource = DM.ds_meiotransporte
       TabOrder = 2
+    end
+    object pnTotal: TFlowPanel
+      Left = 376
+      Top = 194
+      Width = 106
+      Height = 24
+      Hint = 'Valor Total dos Produtos'
+      BevelInner = bvLowered
+      BevelKind = bkSoft
+      BevelOuter = bvLowered
+      Color = 1571679
+      ParentBackground = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 3
+      object txtTotalitens: TDBText
+        Left = 2
+        Top = 2
+        Width = 94
+        Height = 18
+        Align = alCustom
+        Alignment = taRightJustify
+        DataField = 'Soma'
+        DataSource = DM.ds_IncluiritensDBG
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object pnQtd: TFlowPanel
+      Left = 217
+      Top = 194
+      Width = 53
+      Height = 24
+      Hint = 'Qtd. Total dos Produtos'
+      BevelInner = bvLowered
+      BevelKind = bkSoft
+      BevelOuter = bvLowered
+      Color = clGradientActiveCaption
+      ParentBackground = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 4
+      object txtQtd: TDBText
+        Left = 2
+        Top = 2
+        Width = 44
+        Height = 18
+        Align = alCustom
+        Alignment = taRightJustify
+        DataField = 'SomaQtd'
+        DataSource = DM.ds_IncluiritensDBG
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
     end
   end
 end
