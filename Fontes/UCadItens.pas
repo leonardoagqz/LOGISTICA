@@ -36,6 +36,8 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnTabelaClick(Sender: TObject);
+    procedure edtCodigoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -143,6 +145,33 @@ begin
   end;
   //FProdutos := TFProdutos.Create(nil);
   //FProdutos.btnAdicionar.Visible:=False;
+end;
+
+procedure TFCadItens.edtCodigoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  IF Key=VK_Tab Then
+  begin
+    sql_CadItens.Close;
+    sql_CadItens.Params[0].AsInteger := StrToInt(edtCodigo.Text);
+
+    if dm.sql_MovConsul.Params[2].AsString = 'C'  then
+    begin
+      sql_CadItens.Params[1].AsInteger := dm.sql_pessoaID_PESSOA.AsInteger;
+    end
+    else
+    begin
+      sql_CadItens.Params[1].AsInteger := -1;
+    end;
+
+    sql_CadItens.Open;
+    if not sql_CadItens.IsEmpty then
+    begin
+      edtDescrição.Text := sql_CadItensNOME_PRODUTO.AsString;
+      edtValor.Text     := FloatToStr(sql_CadItensVALOR_PRODUTO.AsFloat);
+
+    end;
+  end;
 end;
 
 procedure TFCadItens.edtCodigoKeyPress(Sender: TObject; var Key: Char);

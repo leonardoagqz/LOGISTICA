@@ -102,6 +102,15 @@ procedure TFMovimentos.BtnIncluirClick(Sender: TObject);
 begin
   //Firebird
   Self.Visible :=False;
+
+  DM.sql_MovInclusao.Close;
+ {passando o valor de -1 para o parametro id_movimento do sql_movinclusao,
+  forçando o sql abrir vazio.}
+  DM.sql_MovInclusao.Params[0].AsInteger := -1;
+  DM.sql_MovInclusao.Open;
+  DM.sql_MovInclusao.Active:=True;
+  DM.sql_MovInclusao.Insert;
+
   DM.sql_IncluirItensDBG.Close;
   DM.sql_IncluirItensDBG.Open;
   DM.sql_IncluirItensDBG.EmptyDataSet;

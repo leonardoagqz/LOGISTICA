@@ -33,6 +33,7 @@
       EditLabel.Height = 13
       EditLabel.Caption = 'C'#243'digo'
       TabOrder = 0
+      OnKeyDown = edtCodigoKeyDown
       OnKeyPress = edtCodigoKeyPress
     end
     object edtDescrição: TLabeledEdit

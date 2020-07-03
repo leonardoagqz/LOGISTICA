@@ -93,6 +93,7 @@ object FCadmovimento: TFCadmovimento
       Height = 25
       Caption = 'Salvar'
       TabOrder = 1
+      OnClick = btnSalvarClick
     end
     object btnCancelar: TBitBtn
       Left = 488
@@ -171,45 +172,36 @@ object FCadmovimento: TFCadmovimento
         item
           Expanded = False
           FieldName = 'ID_ITEM_MOVIMENTO'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'ID_MOVIMENTO_ITENS'
-          Visible = False
-        end
-        item
-          Expanded = False
-          FieldName = 'ID_PRODUTO_ITENS'
-          Title.Caption = 'C'#243'digo'
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'NOME_PRODUTO_ITENS'
-          Title.Caption = 'Produto'
-          Width = 140
+          FieldName = 'ID_MOVIMENTO_ITENS'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ID_PRODUTO_ITENS'
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'QUANTIDADE_MOVIMENTO'
-          Title.Caption = 'Qtd.'
-          Width = 50
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'VALOR_MOVIMENTO'
-          Title.Caption = 'Valor'
-          Width = 100
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'TOTAL_MOVIMENTO'
-          Title.Caption = 'Total'
-          Width = 100
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOME_PRODUTO_ITENS'
           Visible = True
         end>
     end
@@ -295,5 +287,10 @@ object FCadmovimento: TFCadmovimento
         ParentFont = False
       end
     end
+  end
+  object sql_ItensDelete: TFDQuery
+    Connection = DM.BDConnectionFB
+    Left = 504
+    Top = 241
   end
 end

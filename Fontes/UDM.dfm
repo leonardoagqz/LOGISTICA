@@ -911,7 +911,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_movimento,1)as id from rdb$database')
-    Left = 576
+    Left = 584
     Top = 600
     object sql_Gen__MovConsulID: TLargeintField
       AutoGenerateValue = arDefault
