@@ -36,6 +36,8 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnTabelaClick(Sender: TObject);
+    procedure edtCodigoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -57,7 +59,6 @@ begin
   DM.sql_IncluirItens.Cancel;
   FCadItens:=nil;
   Close;
-
 end;
 
 procedure TFCadItens.btnSalvarClick(Sender: TObject);
@@ -122,33 +123,55 @@ begin
   DM.sql_IncluirItensDBG.SQL.Add('where id_item_movimento = :id_item_movimento ');
   DM.sql_IncluirItensDBG.ParamByName('id_item_movimento') .AsInteger :=  DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
   DM.sql_IncluirItensDBG.Open;}
-
-  
-
 end;
 
 procedure TFCadItens.btnTabelaClick(Sender: TObject);
 begin
   DM.sql_pessoa2.Params.ParamByName('NOME_PESSOA').AsString:='%';
   dm.sql_pessoa2.Params.ParamByName('TIPO_PESSOA').AsString:='F';
- // DM.CriarFormulario(TFProdutos,FProdutos);
- { if FProdutos = nil then
-  begin
-   DM.CriarFormulario(TFProdutos,FProdutos);
-  FProdutos.btnAdicionar.Visible:=True;
-  end; }
 
   FProdutos := TFProdutos.Create(nil);
-  FProdutos.btnAdicionar.Visible:=True;
   try
+    FProdutos.btnAdicionar.Visible:=True;
     FProdutos.ShowModal;
+    if FProdutos.btnAdicionar.ModalResult = mrOk then
+    begin
+      edtCodigo.Text := IntToStr(FProdutos.idprod);
+      edtCodigo.SetFocus;
+    end;
 
-    finally
+  finally
     FreeAndNil(FProdutos);
-
   end;
-  FProdutos := TFProdutos.Create(nil);
-  FProdutos.btnAdicionar.Visible:=False;
+  //FProdutos := TFProdutos.Create(nil);
+  //FProdutos.btnAdicionar.Visible:=False;
+end;
+
+procedure TFCadItens.edtCodigoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  IF Key=VK_Tab Then
+  begin
+    sql_CadItens.Close;
+    sql_CadItens.Params[0].AsInteger := StrToInt(edtCodigo.Text);
+
+    if dm.sql_MovConsul.Params[2].AsString = 'C'  then
+    begin
+      sql_CadItens.Params[1].AsInteger := dm.sql_pessoaID_PESSOA.AsInteger;
+    end
+    else
+    begin
+      sql_CadItens.Params[1].AsInteger := -1;
+    end;
+
+    sql_CadItens.Open;
+    if not sql_CadItens.IsEmpty then
+    begin
+      edtDescrição.Text := sql_CadItensNOME_PRODUTO.AsString;
+      edtValor.Text     := FloatToStr(sql_CadItensVALOR_PRODUTO.AsFloat);
+
+    end;
+  end;
 end;
 
 procedure TFCadItens.edtCodigoKeyPress(Sender: TObject; var Key: Char);

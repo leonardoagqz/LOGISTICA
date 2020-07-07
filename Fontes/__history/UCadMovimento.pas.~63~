@@ -5,7 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TFCadmovimento = class(TForm)
@@ -32,6 +35,7 @@ type
     pnTotal: TFlowPanel;
     pnQtd: TFlowPanel;
     txtQtd: TDBText;
+    sql_ItensDelete: TFDQuery;
     procedure FormCreate(Sender: TObject);
     procedure btnTabelaClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
@@ -119,13 +123,13 @@ begin
       DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'V';
 
     DM.sql_MovInclusaoDATA_MOVIMENTO.AsDateTime := dtpData.Date;
-    dm.sql_MovInclusaoTOTAL_MOVIMENTO.AsFloat   := DM.sql_IncluirItensSoma.Value;
+    dm.sql_MovInclusaoTOTAL_MOVIMENTO.AsFloat   := txtTotalitens.Field.Value;
     DM.sql_MovInclusaoID_PGTO_MOVIMENTO.AsInteger := dm.sql_formaspgtoID_FORMAPGTO.AsInteger;
     DM.sql_MovInclusaoID_TRANSPORTE_MOVIMENTO.AsInteger := dm.sql_meiotransporteID_TRANSPORTE.AsInteger;
     DM.sql_MovInclusao.Post;
 
-    DM.sql_IncluirItens.First;
-    while not DM.sql_IncluirItens.Eof do
+    DM.sql_IncluirItensDBG.First;
+    while not DM.sql_IncluirItensDBG.Eof do
     begin
       //verificando se o produto já esta no banco de dados
       DM.sql_Itens.Close;
@@ -135,8 +139,8 @@ begin
       if DM.sql_Itens.IsEmpty then
       begin
         DM.sql_Itens.Append;
-        DM.sql_Itens.Close;
-        DM.sql_Itens.Open;
+        {DM.sql_Itens.Close;
+        DM.sql_Itens.Open;}
         DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger :=DM.sql_Gen_ItemID.AsInteger;
       end
       else
@@ -146,12 +150,44 @@ begin
       DM.sql_ItensQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
       DM.sql_ItensVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
       DM.sql_ItensTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
-      DM.sql_Itens.Post;
-      DM.sql_IncluirItens.Next;
+      //DM.sql_Itens.Post;
+
+      //Salvando na tabela bkp
+       //verificando se o produto já esta no banco de dados
+      DM.sql_itensarm.Close;
+      //DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_itensarm.Open;
+      //se não tiver vou acrescentar
+      //if DM.sql_Itens.IsEmpty then
+      begin
+        //DM.sql_Itens.Append;
+        {DM.sql_Itens.Close;
+        DM.sql_Itens.Open;}
+        DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger :=DM.sql_Gen_ItemID.AsInteger;
+      end
+      //else
+      DM.sql_itensarm.Edit;
+      DM.sql_itensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+      DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+      DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
+      DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+
+      DM.sql_IncluirItensDBG.Next;
 
     end;
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
+    DM.sql_MovConsul.Close;
+    DM.sql_MovConsul.Open;
+
+    //limpando a tabela de itens
+    sql_ItensDelete.Close;
+    sql_ItensDelete.SQL.Clear;
+    sql_ItensDelete.SQL.Add('delete from itensmovimento');
+    sql_ItensDelete.ExecSQL;
+    sql_ItensDelete.SQL.Clear;
+
   end;
 
 end;
@@ -164,14 +200,12 @@ end;
 procedure TFCadmovimento.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FCadmovimento:= nil;
-  
 end;
 
 procedure TFCadmovimento.FormCreate(Sender: TObject);
 begin
-  dtpData.Date:=Now;
-  DM.sql_IncluirItens.close;
 
+  DM.sql_IncluirItens.close;
   dm.sql_pessoa.Close;
 
   if dm.sql_MovConsul.Params[2].AsString = 'C'  then
@@ -206,6 +240,14 @@ begin
     DM.sql_pessoa.Close;
     DM.sql_pessoa.Open;
   end;
+
+  if DM.sql_MovInclusao.State = dsInsert then
+  begin
+    dtpData.Date:=Now;
+  end
+  else
+
+
 
 end;
 

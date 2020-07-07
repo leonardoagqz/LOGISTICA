@@ -110,6 +110,16 @@ begin
     DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat        := StrToFloat(edtTotal.Text);
     DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
     DM.sql_IncluirItens.Post;
+
+
+    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
+    DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
+    DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
+    DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
+    DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := StrToFloat(edtTotal.Text);
+    DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
+    DM.sql_itensarm.Post;
+
    Close;
   end;
 

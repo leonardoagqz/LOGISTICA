@@ -234,6 +234,15 @@ type
     sql_pessoa2TIPO_PESSOA: TStringField;
     sql_pessoa2ID_PAIS_PESSOA: TIntegerField;
     sql_IncluirItensDBGSomaQtd: TAggregateField;
+    ds_itensarm: TDataSource;
+    sql_itensarm: TFDQuery;
+    sql_itensarmID_ITEM_MOVIMENTO: TIntegerField;
+    sql_itensarmID_MOVIMENTO_ITENS: TIntegerField;
+    sql_itensarmID_PRODUTO_ITENS: TIntegerField;
+    sql_itensarmQUANTIDADE_MOVIMENTO: TIntegerField;
+    sql_itensarmVALOR_MOVIMENTO: TBCDField;
+    sql_itensarmTOTAL_MOVIMENTO: TBCDField;
+    sql_itensarmNOME_PRODUTO_ITENS: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

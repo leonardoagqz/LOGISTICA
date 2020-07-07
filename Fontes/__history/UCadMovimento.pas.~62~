@@ -133,7 +133,7 @@ begin
     begin
       //verificando se o produto já esta no banco de dados
       DM.sql_Itens.Close;
-      DM.sql_Itens.Params[0].AsInteger := -1;//DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
       DM.sql_Itens.Open;
       //se não tiver vou acrescentar
       if DM.sql_Itens.IsEmpty then
@@ -151,11 +151,37 @@ begin
       DM.sql_ItensVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
       DM.sql_ItensTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
       //DM.sql_Itens.Post;
+
+      //Salvando na tabela bkp
+       //verificando se o produto já esta no banco de dados
+      DM.sql_itensarm.Close;
+      //DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_itensarm.Open;
+      //se não tiver vou acrescentar
+      if DM.sql_Itens.IsEmpty then
+      begin
+        DM.sql_Itens.Append;
+        {DM.sql_Itens.Close;
+        DM.sql_Itens.Open;}
+        DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger :=DM.sql_Gen_ItemID.AsInteger;
+      end
+      else
+      DM.sql_itensarm.Edit;
+      DM.sql_itensarm ID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_ItensID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+      DM.sql_ItensQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+      DM.sql_ItensVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
+      DM.sql_ItensTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+
       DM.sql_IncluirItensDBG.Next;
 
     end;
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
+    DM.sql_MovConsul.Close;
+    DM.sql_MovConsul.Open;
+
+    //limpando a tabela de itens
     sql_ItensDelete.Close;
     sql_ItensDelete.SQL.Clear;
     sql_ItensDelete.SQL.Add('delete from itensmovimento');
@@ -178,9 +204,8 @@ end;
 
 procedure TFCadmovimento.FormCreate(Sender: TObject);
 begin
-  dtpData.Date:=Now;
-  DM.sql_IncluirItens.close;
 
+  DM.sql_IncluirItens.close;
   dm.sql_pessoa.Close;
 
   if dm.sql_MovConsul.Params[2].AsString = 'C'  then
@@ -215,6 +240,14 @@ begin
     DM.sql_pessoa.Close;
     DM.sql_pessoa.Open;
   end;
+
+  if DM.sql_MovInclusao.State = dsInsert then
+  begin
+    dtpData.Date:=Now;
+  end
+  else
+
+
 
 end;
 

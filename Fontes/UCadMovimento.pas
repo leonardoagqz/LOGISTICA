@@ -77,6 +77,11 @@ begin
   DM.sql_IncluirItens.Active:=True;
   DM.sql_IncluirItens.EmptyDataSet;
   DM.sql_IncluirItens.Insert;
+
+  DM.sql_itensarm.Active:=True;
+  DM.sql_itensarm.EmptyDataSet;
+  DM.sql_itensarm.Insert;
+
   DM.CriarFormulario(TFCadItens,FCadItens);
 end;
 
@@ -151,11 +156,23 @@ begin
       DM.sql_ItensVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
       DM.sql_ItensTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
       //DM.sql_Itens.Post;
+
+      //Salvando na tabela itens bkp (sql_itensarm)
+      DM.sql_itensarm.Close;
+      DM.sql_Itensarm.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_itensarm.Open;
+      //DM.sql_itensarm.Append;
+      DM.sql_itensarm.Edit;
+      DM.sql_ItensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_itensarm.Post;
+
       DM.sql_IncluirItensDBG.Next;
 
     end;
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
+    DM.sql_MovConsul.Close;
+    DM.sql_MovConsul.Open;
 
     //limpando a tabela de itens
     sql_ItensDelete.Close;
@@ -180,9 +197,8 @@ end;
 
 procedure TFCadmovimento.FormCreate(Sender: TObject);
 begin
-  dtpData.Date:=Now;
-  DM.sql_IncluirItens.close;
 
+  DM.sql_IncluirItens.close;
   dm.sql_pessoa.Close;
 
   if dm.sql_MovConsul.Params[2].AsString = 'C'  then
@@ -217,6 +233,14 @@ begin
     DM.sql_pessoa.Close;
     DM.sql_pessoa.Open;
   end;
+
+  if DM.sql_MovInclusao.State = dsInsert then
+  begin
+    dtpData.Date:=Now;
+  end
+  else
+
+
 
 end;
 

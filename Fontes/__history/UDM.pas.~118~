@@ -225,6 +225,24 @@ type
     StringField1: TStringField;
     AggregateField1: TAggregateField;
     ds_IncluiritensDBG: TDataSource;
+    sql_pessoa2: TFDQuery;
+    ds_pessoa2: TDataSource;
+    sql_pessoa2ID_PESSOA: TIntegerField;
+    sql_pessoa2NOME_PESSOA: TStringField;
+    sql_pessoa2DOCUMENTO_PESSOA: TStringField;
+    sql_pessoa2FONE_PESSOA: TStringField;
+    sql_pessoa2TIPO_PESSOA: TStringField;
+    sql_pessoa2ID_PAIS_PESSOA: TIntegerField;
+    sql_IncluirItensDBGSomaQtd: TAggregateField;
+    ds_itensarm: TDataSource;
+    sql_itensarm: TFDQuery;
+    IntegerField5: TIntegerField;
+    IntegerField6: TIntegerField;
+    IntegerField7: TIntegerField;
+    IntegerField8: TIntegerField;
+    BCDField3: TBCDField;
+    BCDField4: TBCDField;
+    StringField2: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;
@@ -248,12 +266,12 @@ uses ULogin, UPrincipal;
 
 {$R *.dfm}
 
-procedure TDM.CriarFormulario(T: TformClass; F: Tform);  //criando procedimentos da procedure CriarFormulario
+procedure TDM.CriarFormulario(T: TformClass; F: Tform);
 begin
-  try                            //try vai tentar
-    Application.CreateForm(T,F); //criar form
-    F.ShowModal;                 //exibir tela
-    finally                      //finaliza
+  try
+    Application.CreateForm(T,F);
+    F.ShowModal;
+    finally
     F.Free;                      //libera formda memória
   end;
 end;

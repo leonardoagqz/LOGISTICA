@@ -5,7 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TFCadmovimento = class(TForm)
@@ -32,6 +35,7 @@ type
     pnTotal: TFlowPanel;
     pnQtd: TFlowPanel;
     txtQtd: TDBText;
+    sql_ItensDelete: TFDQuery;
     procedure FormCreate(Sender: TObject);
     procedure btnTabelaClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
@@ -73,6 +77,11 @@ begin
   DM.sql_IncluirItens.Active:=True;
   DM.sql_IncluirItens.EmptyDataSet;
   DM.sql_IncluirItens.Insert;
+
+  DM.sql_itensarm.Active:=True;
+  DM.sql_itensarm.EmptyDataSet;
+  DM.sql_itensarm.Insert;
+
   DM.CriarFormulario(TFCadItens,FCadItens);
 end;
 
@@ -119,7 +128,7 @@ begin
       DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'V';
 
     DM.sql_MovInclusaoDATA_MOVIMENTO.AsDateTime := dtpData.Date;
-    dm.sql_MovInclusaoTOTAL_MOVIMENTO.AsFloat   := StrToFloat(txtTotalitens);
+    dm.sql_MovInclusaoTOTAL_MOVIMENTO.AsFloat   := txtTotalitens.Field.Value;
     DM.sql_MovInclusaoID_PGTO_MOVIMENTO.AsInteger := dm.sql_formaspgtoID_FORMAPGTO.AsInteger;
     DM.sql_MovInclusaoID_TRANSPORTE_MOVIMENTO.AsInteger := dm.sql_meiotransporteID_TRANSPORTE.AsInteger;
     DM.sql_MovInclusao.Post;
@@ -146,12 +155,32 @@ begin
       DM.sql_ItensQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
       DM.sql_ItensVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
       DM.sql_ItensTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
-      DM.sql_Itens.Post;
+      //DM.sql_Itens.Post;
+
+      //Salvando na tabela bkp
+      DM.sql_itensarm.Close;
+      DM.sql_Itensarm.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_itensarm.Open;
+      //DM.sql_itensarm.Append;
+      DM.sql_itensarm.Edit;
+      DM.sql_ItensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_itensarm.Post;
+
       DM.sql_IncluirItensDBG.Next;
 
     end;
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
+    DM.sql_MovConsul.Close;
+    DM.sql_MovConsul.Open;
+
+    //limpando a tabela de itens
+    sql_ItensDelete.Close;
+    sql_ItensDelete.SQL.Clear;
+    sql_ItensDelete.SQL.Add('delete from itensmovimento');
+    sql_ItensDelete.ExecSQL;
+    sql_ItensDelete.SQL.Clear;
+
   end;
 
 end;
@@ -164,14 +193,12 @@ end;
 procedure TFCadmovimento.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FCadmovimento:= nil;
-  
 end;
 
 procedure TFCadmovimento.FormCreate(Sender: TObject);
 begin
-  dtpData.Date:=Now;
-  DM.sql_IncluirItens.close;
 
+  DM.sql_IncluirItens.close;
   dm.sql_pessoa.Close;
 
   if dm.sql_MovConsul.Params[2].AsString = 'C'  then
@@ -206,6 +233,14 @@ begin
     DM.sql_pessoa.Close;
     DM.sql_pessoa.Open;
   end;
+
+  if DM.sql_MovInclusao.State = dsInsert then
+  begin
+    dtpData.Date:=Now;
+  end
+  else
+
+
 
 end;
 

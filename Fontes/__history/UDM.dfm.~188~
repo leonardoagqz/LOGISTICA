@@ -911,7 +911,7 @@ object DM: TDM
     Connection = BDConnectionFB
     SQL.Strings = (
       'select gen_id(id_movimento,1)as id from rdb$database')
-    Left = 576
+    Left = 584
     Top = 600
     object sql_Gen__MovConsulID: TLargeintField
       AutoGenerateValue = arDefault
@@ -1190,12 +1190,19 @@ object DM: TDM
     end
   end
   object sql_IncluirItensDBG: TFDQuery
+    Active = True
     Aggregates = <
       item
         Name = 'Soma'
         Expression = 'Sum(TOTAL_MOVIMENTO)'
         Active = True
+      end
+      item
+        Name = 'SomaQtd'
+        Expression = 'Sum(QUANTIDADE_MOVIMENTO)'
+        Active = True
       end>
+    AggregatesActive = True
     Connection = BDConnectionFB
     SQL.Strings = (
       ''
@@ -1245,8 +1252,14 @@ object DM: TDM
       Active = True
       currency = True
       DisplayName = ''
-      DisplayFormat = '0.00'
+      DisplayFormat = 'R$ 0.00'
       Expression = 'Sum(TOTAL_MOVIMENTO)'
+    end
+    object sql_IncluirItensDBGSomaQtd: TAggregateField
+      FieldName = 'SomaQtd'
+      Active = True
+      DisplayName = ''
+      Expression = 'Sum(QUANTIDADE_MOVIMENTO)'
     end
   end
   object ds_IncluiritensDBG: TDataSource

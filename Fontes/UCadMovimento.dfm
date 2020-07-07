@@ -172,36 +172,43 @@ object FCadmovimento: TFCadmovimento
         item
           Expanded = False
           FieldName = 'ID_ITEM_MOVIMENTO'
-          Visible = True
+          Visible = False
         end
         item
           Expanded = False
           FieldName = 'ID_MOVIMENTO_ITENS'
-          Visible = True
+          Visible = False
         end
         item
           Expanded = False
           FieldName = 'ID_PRODUTO_ITENS'
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'QUANTIDADE_MOVIMENTO'
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'VALOR_MOVIMENTO'
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'TOTAL_MOVIMENTO'
+          Title.Caption = 'C'#243'digo'
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'NOME_PRODUTO_ITENS'
+          Title.Caption = 'Produto'
+          Width = 200
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'VALOR_MOVIMENTO'
+          Title.Caption = 'Valor'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'QUANTIDADE_MOVIMENTO'
+          Title.Caption = 'Qtd.'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'TOTAL_MOVIMENTO'
+          Title.Caption = 'Total'
+          Width = 90
           Visible = True
         end>
     end
