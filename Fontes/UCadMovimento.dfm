@@ -78,7 +78,6 @@ object FCadmovimento: TFCadmovimento
     Color = clGradientActiveCaption
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 296
     object StatusBar1: TStatusBar
       Left = 0
       Top = 33
@@ -128,6 +127,7 @@ object FCadmovimento: TFCadmovimento
       Height = 25
       Caption = 'Excluir'
       TabOrder = 5
+      OnClick = btnExcluirClick
     end
   end
   object P2: TPanel
@@ -138,7 +138,6 @@ object FCadmovimento: TFCadmovimento
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitHeight = 255
     object lblFormaPagamento: TLabel
       Left = 10
       Top = 224

@@ -120,6 +120,7 @@ begin
     DM.sql_Gen__MovConsul.Close;
     DM.sql_Gen__MovConsul.Open;
     DM.sql_MovInclusaoID_MOVIMENTO.AsInteger := DM.sql_Gen__MovConsulID.AsInteger;
+    DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
     if Self.Caption = 'Compra' then
     begin
       DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'C';
@@ -138,7 +139,7 @@ begin
     begin
       //verificando se o produto já esta no banco de dados
       DM.sql_Itens.Close;
-      DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensDBGID_ITEM_MOVIMENTO.AsInteger;
       DM.sql_Itens.Open;
       //se não tiver vou acrescentar
       if DM.sql_Itens.IsEmpty then
@@ -146,10 +147,10 @@ begin
         DM.sql_Itens.Append;
         {DM.sql_Itens.Close;
         DM.sql_Itens.Open;}
-        DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger :=DM.sql_Gen_ItemID.AsInteger;
       end
       else
       DM.sql_Itens.Edit;
+      DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    :=DM.sql_Gen_ItemID.AsInteger;
       DM.sql_ItensID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
       DM.sql_ItensID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
       DM.sql_ItensQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
@@ -157,9 +158,9 @@ begin
       DM.sql_ItensTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
       //DM.sql_Itens.Post;
 
-      //Salvando na tabela bkp
+      //Salvando na tabela itens bkp (sql_itensarm)
       DM.sql_itensarm.Close;
-      DM.sql_Itensarm.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_Itensarm.Params[0].AsInteger := DM.sql_IncluirItensDBGID_ITEM_MOVIMENTO.AsInteger;
       DM.sql_itensarm.Open;
       //DM.sql_itensarm.Append;
       DM.sql_itensarm.Edit;
@@ -236,10 +237,17 @@ begin
 
   if DM.sql_MovInclusao.State = dsInsert then
   begin
+    DM.sql_Itens.Close;
+    DM.sql_Itens.open;
     dtpData.Date:=Now;
   end
   else
-
+  begin
+     dtpData.Date:=DM.sql_MovInclusaoDATA_MOVIMENTO.AsDateTime;
+     lkCbxClienteFornecedor.KeyValue := DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger;
+     lkCbxFormapagamento.KeyValue    := DM.sql_MovInclusaoID_PGTO_MOVIMENTO.AsInteger;
+     lkCbxMeioTransporte.KeyValue    := DM.sql_MovInclusaoID_TRANSPORTE_MOVIMENTO.AsInteger;
+  end;
 
 
 end;

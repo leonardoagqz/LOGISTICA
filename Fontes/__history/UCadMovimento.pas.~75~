@@ -77,6 +77,11 @@ begin
   DM.sql_IncluirItens.Active:=True;
   DM.sql_IncluirItens.EmptyDataSet;
   DM.sql_IncluirItens.Insert;
+
+  DM.sql_itensarm.Active:=True;
+  DM.sql_itensarm.EmptyDataSet;
+  DM.sql_itensarm.Insert;
+
   DM.CriarFormulario(TFCadItens,FCadItens);
 end;
 
@@ -133,7 +138,7 @@ begin
     begin
       //verificando se o produto já esta no banco de dados
       DM.sql_Itens.Close;
-      DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensDBG  ID_ITEM_MOVIMENTO.AsInteger;
       DM.sql_Itens.Open;
       //se não tiver vou acrescentar
       if DM.sql_Itens.IsEmpty then
@@ -141,10 +146,11 @@ begin
         DM.sql_Itens.Append;
         {DM.sql_Itens.Close;
         DM.sql_Itens.Open;}
-        DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger :=DM.sql_Gen_ItemID.AsInteger;
+
       end
       else
       DM.sql_Itens.Edit;
+      DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    :=DM.sql_Gen_ItemID.AsInteger;
       DM.sql_ItensID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
       DM.sql_ItensID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
       DM.sql_ItensQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
@@ -152,26 +158,14 @@ begin
       DM.sql_ItensTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
       //DM.sql_Itens.Post;
 
-      //Salvando na tabela bkp
-       //verificando se o produto já esta no banco de dados
+      //Salvando na tabela itens bkp (sql_itensarm)
       DM.sql_itensarm.Close;
-      //DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_Itensarm.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
       DM.sql_itensarm.Open;
-      //se não tiver vou acrescentar
-      //if DM.sql_Itens.IsEmpty then
-      begin
-        DM.sql_itensarm.Append;
-        {DM.sql_Itens.Close;
-        DM.sql_Itens.Open;}
-        DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger :=DM.sql_Gen_ItemID.AsInteger;
-      end;
-      //else
+      //DM.sql_itensarm.Append;
       DM.sql_itensarm.Edit;
-      DM.sql_itensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
-      DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
-      DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
-      DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
-      DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+      DM.sql_ItensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_itensarm.Post;
 
       DM.sql_IncluirItensDBG.Next;
 

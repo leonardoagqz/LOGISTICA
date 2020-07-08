@@ -2,7 +2,7 @@ object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 898
-  Width = 1025
+  Width = 1106
   object BDConnectionSQL: TADOConnection
     Connected = True
     ConnectionString = 
@@ -1122,7 +1122,7 @@ object DM: TDM
     SQL.Strings = (
       ''
       'SELECT * FROM ITENSMOVIMENTO')
-    Left = 840
+    Left = 912
     Top = 528
     object sql_IncluirItensID_ITEM_MOVIMENTO: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
@@ -1172,7 +1172,7 @@ object DM: TDM
   end
   object ds_Incluiritens: TDataSource
     DataSet = sql_IncluirItens
-    Left = 840
+    Left = 912
     Top = 464
   end
   object sql_Gen_Item: TFDQuery
@@ -1208,7 +1208,7 @@ object DM: TDM
       ''
       ''
       'select * from itensmovimento')
-    Left = 928
+    Left = 1000
     Top = 528
     object IntegerField1: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
@@ -1264,7 +1264,7 @@ object DM: TDM
   end
   object ds_IncluiritensDBG: TDataSource
     DataSet = sql_IncluirItensDBG
-    Left = 928
+    Left = 1000
     Top = 464
   end
   object sql_pessoa2: TFDQuery
@@ -1333,5 +1333,61 @@ object DM: TDM
     DataSet = sql_pessoa2
     Left = 208
     Top = 656
+  end
+  object ds_itensarm: TDataSource
+    DataSet = sql_itensarm
+    Left = 840
+    Top = 464
+  end
+  object sql_itensarm: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from itensmovimentoarm'
+      ''
+      'where id_item_movimento = :id_item_movimento')
+    Left = 840
+    Top = 528
+    ParamData = <
+      item
+        Name = 'ID_ITEM_MOVIMENTO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object sql_itensarmID_ITEM_MOVIMENTO: TIntegerField
+      FieldName = 'ID_ITEM_MOVIMENTO'
+      Origin = 'ID_ITEM_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_itensarmID_MOVIMENTO_ITENS: TIntegerField
+      FieldName = 'ID_MOVIMENTO_ITENS'
+      Origin = 'ID_MOVIMENTO_ITENS'
+    end
+    object sql_itensarmID_PRODUTO_ITENS: TIntegerField
+      FieldName = 'ID_PRODUTO_ITENS'
+      Origin = 'ID_PRODUTO_ITENS'
+    end
+    object sql_itensarmQUANTIDADE_MOVIMENTO: TIntegerField
+      FieldName = 'QUANTIDADE_MOVIMENTO'
+      Origin = 'QUANTIDADE_MOVIMENTO'
+    end
+    object sql_itensarmVALOR_MOVIMENTO: TBCDField
+      FieldName = 'VALOR_MOVIMENTO'
+      Origin = 'VALOR_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_itensarmTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_itensarmNOME_PRODUTO_ITENS: TStringField
+      FieldName = 'NOME_PRODUTO_ITENS'
+      Origin = 'NOME_PRODUTO_ITENS'
+      Size = 60
+    end
   end
 end

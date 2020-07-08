@@ -216,13 +216,6 @@ type
     tb_ItensNOME_PRODUTO_ITENS: TStringField;
     sql_IncluirItensNOME_PRODUTO_ITENS: TStringField;
     sql_IncluirItensDBG: TFDQuery;
-    IntegerField1: TIntegerField;
-    IntegerField2: TIntegerField;
-    IntegerField3: TIntegerField;
-    IntegerField4: TIntegerField;
-    BCDField1: TBCDField;
-    BCDField2: TBCDField;
-    StringField1: TStringField;
     AggregateField1: TAggregateField;
     ds_IncluiritensDBG: TDataSource;
     sql_pessoa2: TFDQuery;
@@ -233,6 +226,23 @@ type
     sql_pessoa2FONE_PESSOA: TStringField;
     sql_pessoa2TIPO_PESSOA: TStringField;
     sql_pessoa2ID_PAIS_PESSOA: TIntegerField;
+    sql_IncluirItensDBGSomaQtd: TAggregateField;
+    ds_itensarm: TDataSource;
+    sql_itensarm: TFDQuery;
+    sql_itensarmID_ITEM_MOVIMENTO: TIntegerField;
+    sql_itensarmID_MOVIMENTO_ITENS: TIntegerField;
+    sql_itensarmID_PRODUTO_ITENS: TIntegerField;
+    sql_itensarmQUANTIDADE_MOVIMENTO: TIntegerField;
+    sql_itensarmVALOR_MOVIMENTO: TBCDField;
+    sql_itensarmTOTAL_MOVIMENTO: TBCDField;
+    sql_itensarmNOME_PRODUTO_ITENS: TStringField;
+    sql_IncluirItensDBGID_ITEM_MOVIMENTO: TIntegerField;
+    sql_IncluirItensDBGID_MOVIMENTO_ITENS: TIntegerField;
+    sql_IncluirItensDBGID_PRODUTO_ITENS: TIntegerField;
+    sql_IncluirItensDBGQUANTIDADE_MOVIMENTO: TIntegerField;
+    sql_IncluirItensDBGVALOR_MOVIMENTO: TBCDField;
+    sql_IncluirItensDBGTOTAL_MOVIMENTO: TBCDField;
+    sql_IncluirItensDBGNOME_PRODUTO_ITENS: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;
@@ -256,12 +266,12 @@ uses ULogin, UPrincipal;
 
 {$R *.dfm}
 
-procedure TDM.CriarFormulario(T: TformClass; F: Tform);  //criando procedimentos da procedure CriarFormulario
+procedure TDM.CriarFormulario(T: TformClass; F: Tform);
 begin
-  try                            //try vai tentar
-    Application.CreateForm(T,F); //criar form
-    F.ShowModal;                 //exibir tela
-    finally                      //finaliza
+  try
+    Application.CreateForm(T,F);
+    F.ShowModal;
+    finally
     F.Free;                      //libera formda memória
   end;
 end;

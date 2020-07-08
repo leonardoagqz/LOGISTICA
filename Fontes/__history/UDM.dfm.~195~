@@ -906,6 +906,11 @@ object DM: TDM
       Size = 40
       Calculated = True
     end
+    object sql_MovConsulID_PESSOA_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PESSOA_MOVIMENTO'
+      Origin = 'ID_PESSOA_MOVIMENTO'
+      Required = True
+    end
   end
   object sql_Gen__MovConsul: TFDQuery
     Connection = BDConnectionFB
@@ -1009,6 +1014,11 @@ object DM: TDM
       FieldName = 'ID_TRANSPORTE_MOVIMENTO'
       Origin = 'ID_TRANSPORTE_MOVIMENTO'
     end
+    object sql_MovInclusaoID_PESSOA_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PESSOA_MOVIMENTO'
+      Origin = 'ID_PESSOA_MOVIMENTO'
+      Required = True
+    end
   end
   object tb_Itens: TFDTable
     IndexFieldNames = 'ID_ITEM_MOVIMENTO'
@@ -1110,7 +1120,6 @@ object DM: TDM
     end
   end
   object sql_IncluirItens: TFDQuery
-    Active = True
     Aggregates = <
       item
         Name = 'Soma'
@@ -1190,7 +1199,6 @@ object DM: TDM
     end
   end
   object sql_IncluirItensDBG: TFDQuery
-    Active = True
     Aggregates = <
       item
         Name = 'Soma'
@@ -1210,39 +1218,37 @@ object DM: TDM
       'select * from itensmovimento')
     Left = 1000
     Top = 528
-    object IntegerField1: TIntegerField
+    object sql_IncluirItensDBGID_ITEM_MOVIMENTO: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
       Origin = 'ID_ITEM_MOVIMENTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object IntegerField2: TIntegerField
+    object sql_IncluirItensDBGID_MOVIMENTO_ITENS: TIntegerField
       FieldName = 'ID_MOVIMENTO_ITENS'
       Origin = 'ID_MOVIMENTO_ITENS'
     end
-    object IntegerField3: TIntegerField
+    object sql_IncluirItensDBGID_PRODUTO_ITENS: TIntegerField
       FieldName = 'ID_PRODUTO_ITENS'
       Origin = 'ID_PRODUTO_ITENS'
     end
-    object IntegerField4: TIntegerField
+    object sql_IncluirItensDBGQUANTIDADE_MOVIMENTO: TIntegerField
       FieldName = 'QUANTIDADE_MOVIMENTO'
       Origin = 'QUANTIDADE_MOVIMENTO'
     end
-    object BCDField1: TBCDField
+    object sql_IncluirItensDBGVALOR_MOVIMENTO: TBCDField
       FieldName = 'VALOR_MOVIMENTO'
       Origin = 'VALOR_MOVIMENTO'
-      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
-    object BCDField2: TBCDField
+    object sql_IncluirItensDBGTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
-      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
-    object StringField1: TStringField
+    object sql_IncluirItensDBGNOME_PRODUTO_ITENS: TStringField
       FieldName = 'NOME_PRODUTO_ITENS'
       Origin = 'NOME_PRODUTO_ITENS'
       Size = 60
@@ -1354,37 +1360,37 @@ object DM: TDM
         ParamType = ptInput
         Value = Null
       end>
-    object IntegerField5: TIntegerField
+    object sql_itensarmID_ITEM_MOVIMENTO: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
       Origin = 'ID_ITEM_MOVIMENTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object IntegerField6: TIntegerField
+    object sql_itensarmID_MOVIMENTO_ITENS: TIntegerField
       FieldName = 'ID_MOVIMENTO_ITENS'
       Origin = 'ID_MOVIMENTO_ITENS'
     end
-    object IntegerField7: TIntegerField
+    object sql_itensarmID_PRODUTO_ITENS: TIntegerField
       FieldName = 'ID_PRODUTO_ITENS'
       Origin = 'ID_PRODUTO_ITENS'
     end
-    object IntegerField8: TIntegerField
+    object sql_itensarmQUANTIDADE_MOVIMENTO: TIntegerField
       FieldName = 'QUANTIDADE_MOVIMENTO'
       Origin = 'QUANTIDADE_MOVIMENTO'
     end
-    object BCDField3: TBCDField
+    object sql_itensarmVALOR_MOVIMENTO: TBCDField
       FieldName = 'VALOR_MOVIMENTO'
       Origin = 'VALOR_MOVIMENTO'
       Precision = 18
       Size = 2
     end
-    object BCDField4: TBCDField
+    object sql_itensarmTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
       Precision = 18
       Size = 2
     end
-    object StringField2: TStringField
+    object sql_itensarmNOME_PRODUTO_ITENS: TStringField
       FieldName = 'NOME_PRODUTO_ITENS'
       Origin = 'NOME_PRODUTO_ITENS'
       Size = 60

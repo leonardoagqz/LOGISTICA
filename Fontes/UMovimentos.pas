@@ -87,15 +87,17 @@ end;
 
 procedure TFMovimentos.BtnExcluirClick(Sender: TObject);
 begin
-  {if not dm.sql_produto.IsEmpty then
+  if not dm.sql_MovConsul.IsEmpty then
   begin
     if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
     //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
     begin
-      dm.sql_produto.Delete;
+      dm.sql_MovConsul.Delete;
       ShowMessage('Informações Excluídas com Sucesso!');
+      dm.sql_MovConsul.close;
+      dm.sql_MovConsul.open;
     end;
-  end;}
+  end;
 end;
 
 procedure TFMovimentos.BtnIncluirClick(Sender: TObject);
