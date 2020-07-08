@@ -245,15 +245,15 @@ type
     sql_MovInclusaoID_PGTO_MOVIMENTO: TIntegerField;
     sql_MovInclusaoID_TRANSPORTE_MOVIMENTO: TIntegerField;
     sql_MovInclusaoID_PESSOA_MOVIMENTO: TIntegerField;
-    sql_sItens: TFDQuery;
-    sql_sItensID_ITEM_MOVIMENTO: TIntegerField;
-    sql_sItensID_MOVIMENTO_ITENS: TIntegerField;
-    sql_sItensID_PRODUTO_ITENS: TIntegerField;
-    sql_sItensQUANTIDADE_MOVIMENTO: TIntegerField;
-    sql_sItensVALOR_MOVIMENTO: TBCDField;
-    sql_sItensTOTAL_MOVIMENTO: TBCDField;
-    sql_sItensNOME_PRODUTO_ITENS: TStringField;
-    sql_sItensNOME_PRODUTO: TStringField;
+    sql_sItensArm: TFDQuery;
+    sql_sItensArmID_ITEM_MOVIMENTO: TIntegerField;
+    sql_sItensArmID_MOVIMENTO_ITENS: TIntegerField;
+    sql_sItensArmID_PRODUTO_ITENS: TIntegerField;
+    sql_sItensArmQUANTIDADE_MOVIMENTO: TIntegerField;
+    sql_sItensArmVALOR_MOVIMENTO: TBCDField;
+    sql_sItensArmTOTAL_MOVIMENTO: TBCDField;
+    sql_sItensArmNOME_PRODUTO_ITENS: TStringField;
+    sql_sItensArmNOME_PRODUTO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

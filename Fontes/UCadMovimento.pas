@@ -265,6 +265,25 @@ begin
      lkCbxClienteFornecedor.KeyValue := DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger;
      lkCbxFormapagamento.KeyValue    := DM.sql_MovInclusaoID_PGTO_MOVIMENTO.AsInteger;
      lkCbxMeioTransporte.KeyValue    := DM.sql_MovInclusaoID_TRANSPORTE_MOVIMENTO.AsInteger;
+
+     DM.sql_sItensArm.Close;
+     dm.sql_sItensArm.Params[0].AsInteger := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+     DM.sql_sItensArm.Open;
+     while not dm.sql_sItensArm.Eof do
+     begin
+       DM.sql_IncluirItensDBG.Append;
+       DM.sql_IncluirItensDBGID_ITEM_MOVIMENTO.AsInteger  :=  DM.sql_sItensArmID_ITEM_MOVIMENTO.AsInteger;
+       DM.sql_IncluirItensDBGID_MOVIMENTO_ITENS.AsInteger :=  DM.sql_sItensArmID_MOVIMENTO_ITENS.AsInteger;
+       DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsInteger   :=  DM.sql_sItensArmID_PRODUTO_ITENS.AsInteger;
+       DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsInteger:= DM.sql_sItensArmQUANTIDADE_MOVIMENTO.AsInteger;
+       DM.sql_IncluirItensDBGVALOR_MOVIMENTO.AsFloat      :=  DM.sql_sItensArmVALOR_MOVIMENTO.AsFloat;
+       DM.sql_IncluirItensDBGTOTAL_MOVIMENTO.AsFloat      :=  DM.sql_sItensArmTOTAL_MOVIMENTO.AsFloat;
+       DM.sql_IncluirItensDBGNOME_PRODUTO_ITENS.AsString  :=  DM.sql_sItensArmNOME_PRODUTO_ITENS.AsString;
+       DM.sql_IncluirItensDBG.Post;
+       DM.sql_sItensArm.Next;
+     end;
+      DM.sql_IncluirItensDBG.Close;
+
   end;
 
 

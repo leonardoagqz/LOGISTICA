@@ -68,13 +68,22 @@ end;
 
 procedure TFMovimentos.BtnAlterarClick(Sender: TObject);
 begin
-  if not DM.sql_produto.IsEmpty then
-  begin
-    Self.Visible :=False;
-    DM.sql_produto.Edit;
-    dm.CriarFormulario(TFCadmovimento,FCadmovimento);
-    Self.Visible:=True;
-  end;
+   //Firebird
+  Self.Visible :=False;
+
+  DM.sql_MovInclusao.Close;
+ {passando o valor de -1 para o parametro id_movimento do sql_movinclusao,
+  forçando o sql abrir vazio.}
+  DM.sql_MovInclusao.Params[0].AsInteger := DM.sql_MovConsulID_MOVIMENTO.AsInteger;
+  DM.sql_MovInclusao.Open;
+  DM.sql_MovInclusao.Active:=True;
+  DM.sql_MovInclusao.Edit;
+
+  DM.sql_IncluirItensDBG.Close; //dm.cItens
+  DM.sql_IncluirItensDBG.Open; //dm.cItens
+  DM.sql_IncluirItensDBG.EmptyDataSet; //dm.cItens.EmptyDataSet;
+  dm.CriarFormulario(TFCadmovimento,FCadmovimento);
+  Self.Visible:=True;
 end;
 
 procedure TFMovimentos.btnBuscarmovClick(Sender: TObject);

@@ -1396,7 +1396,7 @@ object DM: TDM
       Size = 60
     end
   end
-  object sql_sItens: TFDQuery
+  object sql_sItensArm: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
       
@@ -1406,8 +1406,8 @@ object DM: TDM
       'on I.id_produto_itens = p.id_produto'
       ''
       'where id_movimento_itens = :id_movimento_itenss')
-    Left = 944
-    Top = 688
+    Left = 912
+    Top = 696
     ParamData = <
       item
         Name = 'ID_MOVIMENTO_ITENSS'
@@ -1415,42 +1415,42 @@ object DM: TDM
         ParamType = ptInput
         Value = Null
       end>
-    object sql_sItensID_ITEM_MOVIMENTO: TIntegerField
+    object sql_sItensArmID_ITEM_MOVIMENTO: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
       Origin = 'ID_ITEM_MOVIMENTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object sql_sItensID_MOVIMENTO_ITENS: TIntegerField
+    object sql_sItensArmID_MOVIMENTO_ITENS: TIntegerField
       FieldName = 'ID_MOVIMENTO_ITENS'
       Origin = 'ID_MOVIMENTO_ITENS'
     end
-    object sql_sItensID_PRODUTO_ITENS: TIntegerField
+    object sql_sItensArmID_PRODUTO_ITENS: TIntegerField
       FieldName = 'ID_PRODUTO_ITENS'
       Origin = 'ID_PRODUTO_ITENS'
     end
-    object sql_sItensQUANTIDADE_MOVIMENTO: TIntegerField
+    object sql_sItensArmQUANTIDADE_MOVIMENTO: TIntegerField
       FieldName = 'QUANTIDADE_MOVIMENTO'
       Origin = 'QUANTIDADE_MOVIMENTO'
     end
-    object sql_sItensVALOR_MOVIMENTO: TBCDField
+    object sql_sItensArmVALOR_MOVIMENTO: TBCDField
       FieldName = 'VALOR_MOVIMENTO'
       Origin = 'VALOR_MOVIMENTO'
       Precision = 18
       Size = 2
     end
-    object sql_sItensTOTAL_MOVIMENTO: TBCDField
+    object sql_sItensArmTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
       Precision = 18
       Size = 2
     end
-    object sql_sItensNOME_PRODUTO_ITENS: TStringField
+    object sql_sItensArmNOME_PRODUTO_ITENS: TStringField
       FieldName = 'NOME_PRODUTO_ITENS'
       Origin = 'NOME_PRODUTO_ITENS'
       Size = 60
     end
-    object sql_sItensNOME_PRODUTO: TStringField
+    object sql_sItensArmNOME_PRODUTO: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'NOME_PRODUTO'
       Origin = 'NOME_PRODUTO'

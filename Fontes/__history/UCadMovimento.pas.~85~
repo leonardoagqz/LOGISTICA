@@ -42,6 +42,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -61,7 +62,23 @@ uses
 procedure TFCadmovimento.btnCancelarClick(Sender: TObject);
 begin
   FCadmovimento:=nil;
+  DM.sql_MovInclusao.Cancel;
   Close;
+end;
+
+procedure TFCadmovimento.btnExcluirClick(Sender: TObject);
+begin
+  if not dm.sql_itensarm.IsEmpty then
+  begin
+    if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+    //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
+    begin
+      dm.sql_itensarm.Delete;
+      ShowMessage('Informações Excluídas com Sucesso!');
+      dm.sql_itensarm.close;
+      dm.sql_itensarm.open;
+    end;
+  end;
 end;
 
 procedure TFCadmovimento.btnIncluirClick(Sender: TObject);
@@ -120,6 +137,7 @@ begin
     DM.sql_Gen__MovConsul.Close;
     DM.sql_Gen__MovConsul.Open;
     DM.sql_MovInclusaoID_MOVIMENTO.AsInteger := DM.sql_Gen__MovConsulID.AsInteger;
+    DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
     if Self.Caption = 'Compra' then
     begin
       DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'C';
@@ -138,7 +156,7 @@ begin
     begin
       //verificando se o produto já esta no banco de dados
       DM.sql_Itens.Close;
-      DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensDBG  ID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_Itens.Params[0].AsInteger := DM.sql_IncluirItensDBGID_ITEM_MOVIMENTO.AsInteger;
       DM.sql_Itens.Open;
       //se não tiver vou acrescentar
       if DM.sql_Itens.IsEmpty then
@@ -146,7 +164,6 @@ begin
         DM.sql_Itens.Append;
         {DM.sql_Itens.Close;
         DM.sql_Itens.Open;}
-
       end
       else
       DM.sql_Itens.Edit;
@@ -160,7 +177,7 @@ begin
 
       //Salvando na tabela itens bkp (sql_itensarm)
       DM.sql_itensarm.Close;
-      DM.sql_Itensarm.Params[0].AsInteger := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_Itensarm.Params[0].AsInteger := DM.sql_IncluirItensDBGID_ITEM_MOVIMENTO.AsInteger;
       DM.sql_itensarm.Open;
       //DM.sql_itensarm.Append;
       DM.sql_itensarm.Edit;
@@ -235,12 +252,31 @@ begin
     DM.sql_pessoa.Open;
   end;
 
+
+  DM.sql_Itens.Close;
+  DM.sql_Itens.open;
   if DM.sql_MovInclusao.State = dsInsert then
   begin
     dtpData.Date:=Now;
   end
   else
+  begin
+     dtpData.Date:=DM.sql_MovInclusaoDATA_MOVIMENTO.AsDateTime;
+     lkCbxClienteFornecedor.KeyValue := DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger;
+     lkCbxFormapagamento.KeyValue    := DM.sql_MovInclusaoID_PGTO_MOVIMENTO.AsInteger;
+     lkCbxMeioTransporte.KeyValue    := DM.sql_MovInclusaoID_TRANSPORTE_MOVIMENTO.AsInteger;
 
+     DM.sql_sItensArm.Close;
+     dm.sql_sItensArm.Params[0].AsInteger := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+     DM.sql_sItensArm.Open;
+     while not dm.sql_sItensArm.Eof do
+     begin
+       DM.sql_itensarm.Edit;
+       DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger  :=
+     end;
+
+
+  end;
 
 
 end;
