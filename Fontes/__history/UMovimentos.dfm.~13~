@@ -1,8 +1,8 @@
-object FProdutos: TFProdutos
+object FMovimentos: TFMovimentos
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'Tabela de Produtos'
+  Caption = 'Consulta de Movimentos'
   ClientHeight = 360
   ClientWidth = 595
   Color = clBtnFace
@@ -18,79 +18,82 @@ object FProdutos: TFProdutos
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object LblLocalizarUsuarios: TLabel
-    Left = 8
+  object Label1: TLabel
+    Left = 140
     Top = 39
-    Width = 45
+    Width = 48
     Height = 13
-    Caption = 'Localizar:'
+    Caption = 'Data Final'
   end
-  object EdtLocalizarProdutos: TEdit
-    Left = 8
-    Top = 58
-    Width = 489
-    Height = 21
-    CharCase = ecUpperCase
-    Color = clCream
-    TabOrder = 0
-    OnChange = EdtLocalizarProdutosChange
+  object Label2: TLabel
+    Left = 20
+    Top = 39
+    Width = 51
+    Height = 13
+    Caption = 'Data inicial'
   end
-  object G1Grid: TDBGrid
+  object dbgMovimentos: TDBGrid
     Left = 8
-    Top = 88
+    Top = 90
     Width = 489
     Height = 246
     Cursor = crHandPoint
     Color = clWhite
-    DataSource = DM.ds_produto
+    DataSource = DM.ds_MovConsul
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
-    TabOrder = 5
+    TabOrder = 4
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
-    OnDblClick = G1GridDblClick
+    OnDblClick = dbgMovimentosDblClick
     Columns = <
       item
         Expanded = False
-        FieldName = 'ID_PRODUTO'
-        Title.Caption = 'ID'
-        Width = 45
+        FieldName = 'ID_MOVIMENTO'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'NOME_PRODUTO'
-        Title.Caption = 'Produto'
-        Width = 120
+        FieldName = 'TIPO_MOVIMENTO'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'QUANTIDADE_PRODUTO'
-        Title.Caption = 'Quantidade'
+        FieldName = 'DATA_MOVIMENTO'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'ID_PESSOA_PROD'
-        Title.Caption = 'Id Fornec'
+        FieldName = 'TOTAL_MOVIMENTO'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'VALOR_PRODUTO'
-        Title.Caption = '$ Valor'
+        FieldName = 'DESCRICAO_FORMAPGTO'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'TIPO_PRODUTO'
-        Title.Caption = 'Tipo'
-        Width = 96
+        FieldName = 'DESCRICAO_TRANSPORTE'
         Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_PGTO_MOVIMENTO'
+        Visible = False
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_TRANSPORTE_MOVIMENTO'
+        Visible = False
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_PESSOA_MOVIMENTO'
+        Visible = False
       end>
   end
   object PainelUsuarios1: TPanel
@@ -101,7 +104,7 @@ object FProdutos: TFProdutos
     Align = alTop
     Color = clGradientActiveCaption
     ParentBackground = False
-    TabOrder = 6
+    TabOrder = 5
   end
   object PainelUsuarios2: TPanel
     Left = 0
@@ -111,7 +114,7 @@ object FProdutos: TFProdutos
     Align = alBottom
     Color = clWhite
     ParentBackground = False
-    TabOrder = 7
+    TabOrder = 6
   end
   object BtnIncluir: TBitBtn
     Left = 503
@@ -126,7 +129,7 @@ object FProdutos: TFProdutos
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 0
     OnClick = BtnIncluirClick
   end
   object BtnAlterar: TBitBtn
@@ -136,7 +139,7 @@ object FProdutos: TFProdutos
     Height = 33
     Cursor = crHandPoint
     Caption = 'Alterar'
-    TabOrder = 2
+    TabOrder = 1
     OnClick = BtnAlterarClick
   end
   object BtnExcluir: TBitBtn
@@ -146,7 +149,7 @@ object FProdutos: TFProdutos
     Height = 33
     Cursor = crHandPoint
     Caption = 'Excluir'
-    TabOrder = 3
+    TabOrder = 2
     OnClick = BtnExcluirClick
   end
   object BtnSair: TButton
@@ -156,7 +159,34 @@ object FProdutos: TFProdutos
     Height = 33
     Cursor = crHandPoint
     Caption = 'Sair'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = BtnSairClick
+  end
+  object dtpInicial: TDateTimePicker
+    Left = 20
+    Top = 55
+    Width = 97
+    Height = 21
+    Date = 44004.864993368060000000
+    Time = 44004.864993368060000000
+    TabOrder = 7
+  end
+  object dtpFinal: TDateTimePicker
+    Left = 140
+    Top = 55
+    Width = 89
+    Height = 21
+    Date = 44004.864993368060000000
+    Time = 44004.864993368060000000
+    TabOrder = 8
+  end
+  object btnBuscarmov: TBitBtn
+    Left = 252
+    Top = 55
+    Width = 75
+    Height = 21
+    Caption = 'Buscar'
+    TabOrder = 9
+    OnClick = btnBuscarmovClick
   end
 end

@@ -63,20 +63,51 @@ procedure TFCadmovimento.btnCancelarClick(Sender: TObject);
 begin
   FCadmovimento:=nil;
   DM.sql_MovInclusao.Cancel;
+
+   //limpando a tabela de itens
+    sql_ItensDelete.Close;
+    sql_ItensDelete.SQL.Clear;
+    sql_ItensDelete.SQL.Add('delete from itensmovimento');
+    sql_ItensDelete.ExecSQL;
+    sql_ItensDelete.SQL.Clear;
+
+
   Close;
 end;
 
 procedure TFCadmovimento.btnExcluirClick(Sender: TObject);
 begin
-  if not dm.sql_itensarm.IsEmpty then
+  if not dm.sql_IncluirItensDBG.IsEmpty then
   begin
     if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
     //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
     begin
-      dm.sql_itensarm.Delete;
+      dm.sql_IncluirItensDBG.Delete;
       ShowMessage('Informações Excluídas com Sucesso!');
-      dm.sql_itensarm.close;
-      dm.sql_itensarm.open;
+
+
+
+      sql_ItensDelete.Close;
+      sql_ItensDelete.SQL.Clear;
+      sql_ItensDelete.SQL.Add('delete from itensmovimentoarm');
+      sql_ItensDelete.SQL.Add('where id_item_movimento = :iditemmovimento ');
+      sql_ItensDelete.ParamByName('iditemmovimento').AsInteger := DM.sql_Gen_ItemID.AsInteger;
+      sql_ItensDelete.ExecSQL;
+      sql_ItensDelete.SQL.Clear;
+      dm.sql_IncluirItensDBG.close;
+      dm.sql_IncluirItensDBG.open;
+
+
+
+      {DM.sql_ItensID_MOVIMENTO_ITENS.AsInteger
+      DM.sql_ItensID_PRODUTO_ITENS.AsInteger
+      enDM.sql_ItensQUANTIDADE_MOVIMENTO.AsIntegerd;
+      DM.sql_ItensVALOR_MOVIMENTO.AsFloat
+      DM.sql_ItensTOTAL_MOVIMENTO.AsFloat }
+
+
+
+
     end;
   end;
 end;
@@ -94,6 +125,7 @@ begin
   DM.sql_IncluirItens.Active:=True;
   DM.sql_IncluirItens.EmptyDataSet;
   DM.sql_IncluirItens.Insert;
+
 
   DM.sql_itensarm.Active:=True;
   DM.sql_itensarm.EmptyDataSet;
@@ -192,12 +224,15 @@ begin
     DM.sql_MovConsul.Close;
     DM.sql_MovConsul.Open;
 
-    //limpando a tabela de itens
     sql_ItensDelete.Close;
-    sql_ItensDelete.SQL.Clear;
-    sql_ItensDelete.SQL.Add('delete from itensmovimento');
-    sql_ItensDelete.ExecSQL;
-    sql_ItensDelete.SQL.Clear;
+      sql_ItensDelete.SQL.Clear;
+      sql_ItensDelete.SQL.Add('delete from itensmovimentoarm');
+      sql_ItensDelete.SQL.Add('where id_item_movimento = :iditemmovimento ');
+      sql_ItensDelete.ParamByName('iditemmovimento').AsInteger := DM.sql_Gen_ItemID.AsInteger;
+      sql_ItensDelete.ExecSQL;
+      sql_ItensDelete.SQL.Clear;
+      dm.sql_IncluirItensDBG.close;
+      dm.sql_IncluirItensDBG.open;
 
   end;
 
@@ -205,7 +240,7 @@ begin
   begin
 
     //DM.sql_MovInclusaoID_MOVIMENTO.AsInteger := DM.sql_Gen__MovConsulID.AsInteger;
-    {DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
+    DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
     if Self.Caption = 'Compra' then
     begin
       DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'C';
@@ -232,8 +267,8 @@ begin
         DM.sql_Itens.Append;
         {DM.sql_Itens.Close;
         DM.sql_Itens.Open;}
-      //end
-     // else}
+      end
+     else
       DM.sql_Itens.Edit;
       DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    :=DM.sql_Gen_ItemID.AsInteger;
       DM.sql_ItensID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
@@ -254,7 +289,7 @@ begin
 
       DM.sql_IncluirItensDBG.Next;
 
-    //end;
+    end;
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
     DM.sql_MovConsul.Close;
@@ -279,6 +314,12 @@ end;
 
 procedure TFCadmovimento.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  //limpando a tabela de itens
+  sql_ItensDelete.Close;
+  sql_ItensDelete.SQL.Clear;
+  sql_ItensDelete.SQL.Add('delete from itensmovimento');
+  sql_ItensDelete.ExecSQL;
+  sql_ItensDelete.SQL.Clear;
   FCadmovimento:= nil;
 end;
 

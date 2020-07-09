@@ -479,6 +479,7 @@ object DM: TDM
     object sql_produtoVALOR_PRODUTO: TBCDField
       FieldName = 'VALOR_PRODUTO'
       Origin = 'VALOR_PRODUTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
@@ -837,7 +838,14 @@ object DM: TDM
   object sql_MovConsul: TFDQuery
     Connection = BDConnectionFB
     SQL.Strings = (
-      'select * from movimentos'
+      
+        'select M.*,F.descricao_formapgto,T.descricao_transporte from mov' +
+        'imentos M'
+      ''
+      'inner join formapgto F on M.id_pgto_movimento = F.id_formapgto'
+      
+        'inner join meiostransportes T on M.id_transporte_movimento = T.i' +
+        'd_transporte'
       ''
       
         'where data_movimento between :D1 and :D2 and tipo_movimento = :T' +
@@ -883,6 +891,7 @@ object DM: TDM
     object sql_MovConsulTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
@@ -894,22 +903,26 @@ object DM: TDM
       FieldName = 'ID_TRANSPORTE_MOVIMENTO'
       Origin = 'ID_TRANSPORTE_MOVIMENTO'
     end
-    object sql_MovConsulFormaPagamento: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'FormaPagamento'
-      Size = 15
-      Calculated = True
-    end
-    object sql_MovConsulMeiosTransportes: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'MeiosTransportes'
-      Size = 40
-      Calculated = True
-    end
     object sql_MovConsulID_PESSOA_MOVIMENTO: TIntegerField
       FieldName = 'ID_PESSOA_MOVIMENTO'
       Origin = 'ID_PESSOA_MOVIMENTO'
       Required = True
+    end
+    object sql_MovConsulDESCRICAO_FORMAPGTO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAO_FORMAPGTO'
+      Origin = 'DESCRICAO_FORMAPGTO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
+    end
+    object sql_MovConsulDESCRICAO_TRANSPORTE: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAO_TRANSPORTE'
+      Origin = 'DESCRICAO_TRANSPORTE'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
     end
   end
   object sql_Gen__MovConsul: TFDQuery
@@ -1003,6 +1016,7 @@ object DM: TDM
     object sql_MovInclusaoTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
@@ -1239,12 +1253,14 @@ object DM: TDM
     object sql_IncluirItensDBGVALOR_MOVIMENTO: TBCDField
       FieldName = 'VALOR_MOVIMENTO'
       Origin = 'VALOR_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
     object sql_IncluirItensDBGTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end

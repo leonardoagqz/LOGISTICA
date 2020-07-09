@@ -60,7 +60,7 @@ object FMovimentos: TFMovimentos
         Expanded = False
         FieldName = 'TIPO_MOVIMENTO'
         Title.Caption = 'Tipo'
-        Width = 42
+        Width = 30
         Visible = True
       end
       item
@@ -78,16 +78,32 @@ object FMovimentos: TFMovimentos
       end
       item
         Expanded = False
-        FieldName = 'FormaPagamento'
-        Title.Caption = 'F. pgto'
+        FieldName = 'DESCRICAO_FORMAPGTO'
+        Title.Caption = 'Forma de Pgto.'
+        Width = 100
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'MeiosTransportes'
-        Title.Caption = 'Meio Transporte'
-        Width = 120
+        FieldName = 'DESCRICAO_TRANSPORTE'
+        Title.Caption = 'Meio de Transporte'
+        Width = 100
         Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_PGTO_MOVIMENTO'
+        Visible = False
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_TRANSPORTE_MOVIMENTO'
+        Visible = False
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_PESSOA_MOVIMENTO'
+        Visible = False
       end>
   end
   object PainelUsuarios1: TPanel

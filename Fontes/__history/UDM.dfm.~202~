@@ -883,6 +883,7 @@ object DM: TDM
     object sql_MovConsulTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
@@ -905,6 +906,11 @@ object DM: TDM
       FieldName = 'MeiosTransportes'
       Size = 40
       Calculated = True
+    end
+    object sql_MovConsulID_PESSOA_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PESSOA_MOVIMENTO'
+      Origin = 'ID_PESSOA_MOVIMENTO'
+      Required = True
     end
   end
   object sql_Gen__MovConsul: TFDQuery
@@ -998,6 +1004,7 @@ object DM: TDM
     object sql_MovInclusaoTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
@@ -1008,6 +1015,11 @@ object DM: TDM
     object sql_MovInclusaoID_TRANSPORTE_MOVIMENTO: TIntegerField
       FieldName = 'ID_TRANSPORTE_MOVIMENTO'
       Origin = 'ID_TRANSPORTE_MOVIMENTO'
+    end
+    object sql_MovInclusaoID_PESSOA_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PESSOA_MOVIMENTO'
+      Origin = 'ID_PESSOA_MOVIMENTO'
+      Required = True
     end
   end
   object tb_Itens: TFDTable
@@ -1110,7 +1122,6 @@ object DM: TDM
     end
   end
   object sql_IncluirItens: TFDQuery
-    Active = True
     Aggregates = <
       item
         Name = 'Soma'
@@ -1190,7 +1201,6 @@ object DM: TDM
     end
   end
   object sql_IncluirItensDBG: TFDQuery
-    Active = True
     Aggregates = <
       item
         Name = 'Soma'
@@ -1237,6 +1247,7 @@ object DM: TDM
     object sql_IncluirItensDBGTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
@@ -1385,6 +1396,69 @@ object DM: TDM
     object sql_itensarmNOME_PRODUTO_ITENS: TStringField
       FieldName = 'NOME_PRODUTO_ITENS'
       Origin = 'NOME_PRODUTO_ITENS'
+      Size = 60
+    end
+  end
+  object sql_sItensArm: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      
+        'select I.*,P.nome_produto from Itensmovimentoarm I inner join pr' +
+        'odutos p'
+      ''
+      'on I.id_produto_itens = p.id_produto'
+      ''
+      'where id_movimento_itens = :id_movimento_itenss')
+    Left = 912
+    Top = 696
+    ParamData = <
+      item
+        Name = 'ID_MOVIMENTO_ITENSS'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object sql_sItensArmID_ITEM_MOVIMENTO: TIntegerField
+      FieldName = 'ID_ITEM_MOVIMENTO'
+      Origin = 'ID_ITEM_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_sItensArmID_MOVIMENTO_ITENS: TIntegerField
+      FieldName = 'ID_MOVIMENTO_ITENS'
+      Origin = 'ID_MOVIMENTO_ITENS'
+    end
+    object sql_sItensArmID_PRODUTO_ITENS: TIntegerField
+      FieldName = 'ID_PRODUTO_ITENS'
+      Origin = 'ID_PRODUTO_ITENS'
+    end
+    object sql_sItensArmQUANTIDADE_MOVIMENTO: TIntegerField
+      FieldName = 'QUANTIDADE_MOVIMENTO'
+      Origin = 'QUANTIDADE_MOVIMENTO'
+    end
+    object sql_sItensArmVALOR_MOVIMENTO: TBCDField
+      FieldName = 'VALOR_MOVIMENTO'
+      Origin = 'VALOR_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_sItensArmTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_sItensArmNOME_PRODUTO_ITENS: TStringField
+      FieldName = 'NOME_PRODUTO_ITENS'
+      Origin = 'NOME_PRODUTO_ITENS'
+      Size = 60
+    end
+    object sql_sItensArmNOME_PRODUTO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOME_PRODUTO'
+      Origin = 'NOME_PRODUTO'
+      ProviderFlags = []
+      ReadOnly = True
       Size = 60
     end
   end

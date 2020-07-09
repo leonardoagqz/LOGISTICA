@@ -178,8 +178,6 @@ type
     tb_MovInclusaoTOTAL_MOVIMENTO: TBCDField;
     tb_MovInclusaoID_PGTO_MOVIMENTO: TIntegerField;
     tb_MovInclusaoID_TRANSPORTE_MOVIMENTO: TIntegerField;
-    sql_MovConsulFormaPagamento: TStringField;
-    sql_MovConsulMeiosTransportes: TStringField;
     tb_Itens: TFDTable;
     ds_Itens: TDataSource;
     sql_Itens: TFDQuery;
@@ -254,6 +252,8 @@ type
     sql_sItensArmTOTAL_MOVIMENTO: TBCDField;
     sql_sItensArmNOME_PRODUTO_ITENS: TStringField;
     sql_sItensArmNOME_PRODUTO: TStringField;
+    sql_MovConsulDESCRICAO_FORMAPGTO: TStringField;
+    sql_MovConsulDESCRICAO_TRANSPORTE: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;
