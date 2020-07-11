@@ -422,7 +422,7 @@ object DM: TDM
     object tb_produtoNOME_PRODUTO: TStringField
       FieldName = 'NOME_PRODUTO'
       Origin = 'NOME_PRODUTO'
-      Size = 50
+      Size = 60
     end
     object tb_produtoQUANTIDADE_PRODUTO: TIntegerField
       FieldName = 'QUANTIDADE_PRODUTO'
@@ -431,7 +431,6 @@ object DM: TDM
     object tb_produtoID_PESSOA_PROD: TIntegerField
       FieldName = 'ID_PESSOA_PROD'
       Origin = 'ID_PESSOA_PROD'
-      Required = True
     end
     object tb_produtoVALOR_PRODUTO: TBCDField
       FieldName = 'VALOR_PRODUTO'
@@ -465,7 +464,7 @@ object DM: TDM
     object sql_produtoNOME_PRODUTO: TStringField
       FieldName = 'NOME_PRODUTO'
       Origin = 'NOME_PRODUTO'
-      Size = 50
+      Size = 60
     end
     object sql_produtoQUANTIDADE_PRODUTO: TIntegerField
       FieldName = 'QUANTIDADE_PRODUTO'
@@ -474,12 +473,10 @@ object DM: TDM
     object sql_produtoID_PESSOA_PROD: TIntegerField
       FieldName = 'ID_PESSOA_PROD'
       Origin = 'ID_PESSOA_PROD'
-      Required = True
     end
     object sql_produtoVALOR_PRODUTO: TBCDField
       FieldName = 'VALOR_PRODUTO'
       Origin = 'VALOR_PRODUTO'
-      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end

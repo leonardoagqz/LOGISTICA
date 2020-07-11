@@ -139,23 +139,45 @@ begin
   end;
 
   if dm.sql_produto.State=dsInsert then
-  begin
-    dm.sql_Gen_produto.Close;
-    DM.sql_Gen_produto.Open;
-    DM.sql_produtoID_PRODUTO.AsInteger :=DM.sql_Gen_produtoID.Value;
-    dm.sql_produtoNOME_PRODUTO.AsString:= EdtNome.Text;
-    dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
-    DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
-    DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
-    case CbTipo.ItemIndex of
-       0: DM.sql_produtoTIPO_PRODUTO.AsString := 'Compra';
-       1: DM.sql_produtoTIPO_PRODUTO.AsString := 'Venda';
-       2: DM.sql_produtoTIPO_PRODUTO.AsString := 'Todos';
-    end;
-    dm.sql_produto.Post;
-    ShowMessage('Informações Armazenadas com sucesso!');
-    dm.sql_produto.Refresh;
-    Close;
+   begin
+      if CbTipo.ItemIndex <>1 then
+      begin
+        dm.sql_Gen_produto.Close;
+        DM.sql_Gen_produto.Open;
+        DM.sql_produtoID_PRODUTO.AsInteger :=DM.sql_Gen_produtoID.Value;
+        dm.sql_produtoNOME_PRODUTO.AsString:= EdtNome.Text;
+        dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
+        DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
+        DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
+        case CbTipo.ItemIndex of
+           0: DM.sql_produtoTIPO_PRODUTO.AsString := 'Compra';
+           1: DM.sql_produtoTIPO_PRODUTO.AsString := 'Venda';
+           2: DM.sql_produtoTIPO_PRODUTO.AsString := 'Todos';
+        end;
+        dm.sql_produto.Post;
+        ShowMessage('Informações Armazenadas com sucesso!');
+        dm.sql_produto.Refresh;
+        Close;
+      end
+      else
+      begin
+        dm.sql_Gen_produto.Close;
+        DM.sql_Gen_produto.Open;
+        DM.sql_produtoID_PRODUTO.AsInteger :=DM.sql_Gen_produtoID.Value;
+        dm.sql_produtoNOME_PRODUTO.AsString:= EdtNome.Text;
+        dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
+        DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
+        //DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
+        case CbTipo.ItemIndex of
+           0: DM.sql_produtoTIPO_PRODUTO.AsString := 'Compra';
+           1: DM.sql_produtoTIPO_PRODUTO.AsString := 'Venda';
+           2: DM.sql_produtoTIPO_PRODUTO.AsString := 'Todos';
+        end;
+        dm.sql_produto.Post;
+        ShowMessage('Informações Armazenadas com sucesso!');
+        dm.sql_produto.Refresh;
+        Close;
+      end;
   end;
 
   if dm.sql_produto.State=dsEdit then
@@ -190,6 +212,7 @@ begin
         LblFornecedor.Enabled:=False;
         LkFornecedor.KeyValue:=Null;
         LkFornecedor.Color := clSilver;
+         DM.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString := '';
     end;
 end;
 

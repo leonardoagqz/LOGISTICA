@@ -161,7 +161,6 @@
     object sql_CadItensID_PESSOA_PROD: TIntegerField
       FieldName = 'ID_PESSOA_PROD'
       Origin = 'ID_PESSOA_PROD'
-      Required = True
     end
     object sql_CadItensVALOR_PRODUTO: TBCDField
       FieldName = 'VALOR_PRODUTO'

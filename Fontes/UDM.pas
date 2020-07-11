@@ -109,18 +109,6 @@ type
     tb_pessoaFONE_PESSOA: TStringField;
     tb_pessoaTIPO_PESSOA: TStringField;
     tb_pessoaID_PAIS_PESSOA: TIntegerField;
-    tb_produtoID_PRODUTO: TIntegerField;
-    tb_produtoNOME_PRODUTO: TStringField;
-    tb_produtoQUANTIDADE_PRODUTO: TIntegerField;
-    tb_produtoID_PESSOA_PROD: TIntegerField;
-    tb_produtoVALOR_PRODUTO: TBCDField;
-    sql_produtoID_PRODUTO: TIntegerField;
-    sql_produtoNOME_PRODUTO: TStringField;
-    sql_produtoQUANTIDADE_PRODUTO: TIntegerField;
-    sql_produtoID_PESSOA_PROD: TIntegerField;
-    sql_produtoVALOR_PRODUTO: TBCDField;
-    sql_produtoTIPO_PRODUTO: TStringField;
-    tb_produtoTIPO_PRODUTO: TStringField;
     tb_formaspgto: TFDTable;
     ds_formaspgto: TDataSource;
     sql_formaspgto: TFDQuery;
@@ -254,6 +242,18 @@ type
     sql_sItensArmNOME_PRODUTO: TStringField;
     sql_MovConsulDESCRICAO_FORMAPGTO: TStringField;
     sql_MovConsulDESCRICAO_TRANSPORTE: TStringField;
+    tb_produtoID_PRODUTO: TIntegerField;
+    tb_produtoNOME_PRODUTO: TStringField;
+    tb_produtoQUANTIDADE_PRODUTO: TIntegerField;
+    tb_produtoID_PESSOA_PROD: TIntegerField;
+    tb_produtoVALOR_PRODUTO: TBCDField;
+    tb_produtoTIPO_PRODUTO: TStringField;
+    sql_produtoID_PRODUTO: TIntegerField;
+    sql_produtoNOME_PRODUTO: TStringField;
+    sql_produtoQUANTIDADE_PRODUTO: TIntegerField;
+    sql_produtoID_PESSOA_PROD: TIntegerField;
+    sql_produtoVALOR_PRODUTO: TBCDField;
+    sql_produtoTIPO_PRODUTO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

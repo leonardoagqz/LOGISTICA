@@ -232,7 +232,7 @@ object FCadmovimento: TFCadmovimento
       TabOrder = 2
     end
     object pnTotal: TFlowPanel
-      Left = 376
+      Left = 452
       Top = 194
       Width = 106
       Height = 24
@@ -263,7 +263,7 @@ object FCadmovimento: TFCadmovimento
       end
     end
     object pnQtd: TFlowPanel
-      Left = 217
+      Left = 398
       Top = 194
       Width = 53
       Height = 24
@@ -296,7 +296,7 @@ object FCadmovimento: TFCadmovimento
   end
   object sql_ItensDelete: TFDQuery
     Connection = DM.BDConnectionFB
-    Left = 504
-    Top = 241
+    Left = 392
+    Top = 265
   end
 end

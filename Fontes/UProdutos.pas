@@ -21,6 +21,8 @@ type
     lkCbxFornecedor: TDBLookupComboBox;
     lblFornecedor: TLabel;
     btnAdicionar: TBitBtn;
+    cbxCompravenda: TComboBox;
+    SpeedButton1: TSpeedButton;
     procedure BtnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BtnIncluirClick(Sender: TObject);
@@ -33,6 +35,8 @@ type
     procedure EdtLocalizarProdutosKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnAdicionarClick(Sender: TObject);
+    procedure lkCbxTipoProdutoClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,7 +66,7 @@ begin
 
   dm.sql_produto.Close;
   DM.sql_produto.IsEmpty;
-  //dm.sql_produto.Open;
+  dm.sql_produto.Open;
 
   dm.sql_pessoa2.Close;
   DM.sql_pessoa2.IsEmpty;
@@ -98,7 +102,70 @@ begin
   end;
 end;
 
+procedure TFProdutos.lkCbxTipoProdutoClick(Sender: TObject);
+begin
+  begin
+    DM.sql_produto.Close;
+    DM.sql_produto.SQL.Clear;
+    DM.sql_produto.SQL.Add ('select * from produtos');
+    DM.sql_produto.SQL.Add('where tipo_produto = :tipoproduto ');
+    DM.sql_produto.ParamByName('tipoproduto').AsString := cbxCompravenda.Text;
+    DM.sql_produto.Open;
+    end;
+end;
+procedure TFProdutos.SpeedButton1Click(Sender: TObject);
+begin
+  if (lkCbxFornecedor.Text <> '') and (cbxCompravenda.Text = '') then
+  begin
+     begin
+    DM.sql_produto.Close;
+    DM.sql_produto.SQL.Clear;
+    DM.sql_produto.SQL.Add ('select * from produtos');
+    DM.sql_produto.SQL.Add('where id_pessoa_prod = :idpessoaprod ');
+    DM.sql_produto.ParamByName('idpessoaprod').AsInteger := DM.sql_pessoa2ID_PESSOA.AsInteger;
+    DM.sql_produto.Open;
+     end;
+  end;
 
+ if (lkCbxFornecedor.Text = '') and (cbxCompravenda.Text = 'Compra') or (cbxCompravenda.Text = 'Venda') then
+ begin
+   DM.sql_produto.Close;
+   DM.sql_produto.SQL.Clear;
+   DM.sql_produto.SQL.Add ('select * from produtos');
+   DM.sql_produto.SQL.Add('where tipo_produto = :tipoproduto ');
+   DM.sql_produto.ParamByName('tipoproduto').AsString := cbxCompravenda.Text;
+   DM.sql_produto.Open;
+ end;
+
+ if (lkCbxFornecedor.Text <> '') and (cbxCompravenda.Text <> '')  then
+ begin
+   DM.sql_produto.Close;
+    DM.sql_produto.SQL.Clear;
+    DM.sql_produto.SQL.Add ('select * from produtos');
+    DM.sql_produto.SQL.Add('where id_pessoa_prod = :idpessoaprod and tipo_produto = :tipoproduto ');
+    DM.sql_produto.ParamByName('idpessoaprod').AsInteger := DM.sql_pessoa2ID_PESSOA.AsInteger;
+    DM.sql_produto.ParamByName('tipoproduto').AsString := cbxCompravenda.Text;
+     DM.sql_produto.Open;
+    if DM.sql_produto.RecordCount = 0 then
+    begin
+    ShowMessage('Nehum Produto foi localizado!');
+
+      {DM.sql_produto.Close;
+      DM.sql_produto.SQL.Clear;
+      DM.sql_produto.SQL.Add ('select * from produtos');
+      DM.sql_produto.SQL.Add('where tipo_produto = :tipoproduto ');
+      DM.sql_produto.ParamByName('tipoproduto').AsString := cbxCompravenda.Text;
+      DM.sql_produto.Open;
+      lkCbxFornecedor.ListField.IsEmpty;}
+    end
+    else
+    begin
+      DM.sql_produto.Open;
+    end;
+
+ end;
+
+end;
 
 procedure TFProdutos.btnAdicionarClick(Sender: TObject);
 begin

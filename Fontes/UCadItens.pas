@@ -201,7 +201,7 @@ begin
     end
     else
     begin
-      sql_CadItens.Params[1].AsInteger := -1;
+      sql_CadItens.Params[1].AsInteger := 0;
     end;
 
     sql_CadItens.Open;
