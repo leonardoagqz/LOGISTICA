@@ -43,6 +43,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,6 +59,24 @@ uses
   UDM, UPessoas, UCadItens;
 
 {$R *.dfm}
+
+procedure TFCadmovimento.btnAlterarClick(Sender: TObject);
+begin
+  if DM.sql_IncluirItensDBG.IsEmpty then //dm.cItens
+  Exit;
+
+ { DM.sql_IncluirItensDBG.Edit;
+  DM.CriarFormulario(TFCadItens,FCadItens); }
+
+  DM.sql_IncluirItens.Active:=True;
+  DM.sql_IncluirItens.Edit;
+
+  DM.sql_itensarm.Active:=True;
+  DM.sql_itensarm.Edit;
+
+  DM.CriarFormulario(TFCadItens,FCadItens);
+
+end;
 
 procedure TFCadmovimento.btnCancelarClick(Sender: TObject);
 begin
@@ -166,10 +185,10 @@ begin
     DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
     if Self.Caption = 'Compra' then
     begin
-      DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'C';
+      DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'Compra';
     end
     else
-      DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'V';
+      DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'Venda';
 
     DM.sql_MovInclusaoDATA_MOVIMENTO.AsDateTime := dtpData.Date;
     dm.sql_MovInclusaoTOTAL_MOVIMENTO.AsFloat   := txtTotalitens.Field.Value;
@@ -208,25 +227,45 @@ begin
       //DM.sql_itensarm.Append;
       DM.sql_itensarm.Edit;
       DM.sql_ItensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
+      DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+      DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+      DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat  ;
+      DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+      DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
       DM.sql_itensarm.Post;
 
       DM.sql_IncluirItensDBG.Next;
 
     end;
+
+      {if DM.sql_IncluirItens.State=dsInsert then
+  begin
+
+    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
+    DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+    DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+    DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat  ;
+    DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+    DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
+    DM.sql_itensarm.Post;
+
+   Close;
+  end;}
+
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
     DM.sql_MovConsul.Close;
     DM.sql_MovConsul.Open;
 
+     //limpando a tabela de itens
     sql_ItensDelete.Close;
-      sql_ItensDelete.SQL.Clear;
-      sql_ItensDelete.SQL.Add('delete from itensmovimentoarm');
-      sql_ItensDelete.SQL.Add('where id_item_movimento = :iditemmovimento ');
-      sql_ItensDelete.ParamByName('iditemmovimento').AsInteger := DM.sql_Gen_ItemID.AsInteger;
-      sql_ItensDelete.ExecSQL;
-      sql_ItensDelete.SQL.Clear;
-      dm.sql_IncluirItensDBG.close;
-      dm.sql_IncluirItensDBG.open;
+    sql_ItensDelete.SQL.Clear;
+    sql_ItensDelete.SQL.Add('delete from itensmovimento');
+    sql_ItensDelete.ExecSQL;
+    sql_ItensDelete.SQL.Clear;
+
+
 
   end;
 
@@ -237,10 +276,10 @@ begin
     DM.sql_MovInclusaoID_PESSOA_MOVIMENTO.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
     if Self.Caption = 'Compra' then
     begin
-      DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'C';
+      DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'Compra';
     end
     else
-      DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'V';
+      DM.sql_MovInclusaoTIPO_MOVIMENTO.AsString := 'Venda';
 
     DM.sql_MovInclusaoDATA_MOVIMENTO.AsDateTime := dtpData.Date;
     dm.sql_MovInclusaoTOTAL_MOVIMENTO.AsFloat   := txtTotalitens.Field.Value;
@@ -264,7 +303,7 @@ begin
       end
      else
       DM.sql_Itens.Edit;
-      DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    :=DM.sql_Gen_ItemID.AsInteger;
+      DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
       DM.sql_ItensID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
       DM.sql_ItensID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
       DM.sql_ItensQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
@@ -279,11 +318,34 @@ begin
       //DM.sql_itensarm.Append;
       DM.sql_itensarm.Edit;
       DM.sql_ItensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger   := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
+      DM.sql_itensarmID_PRODUTO_ITENS.AsInteger    := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+      //DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+      DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
+      DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+      DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
       DM.sql_itensarm.Post;
 
       DM.sql_IncluirItensDBG.Next;
 
     end;
+
+      {if DM.sql_IncluirItens.State=dsEdit then
+  begin
+
+    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger   := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
+    DM.sql_itensarmID_PRODUTO_ITENS.AsInteger    := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+    //DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger;
+    DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+    DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
+    DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+    DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
+    DM.sql_itensarm.Post;
+
+   Close;
+  end; }
+
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
     DM.sql_MovConsul.Close;
@@ -308,6 +370,9 @@ end;
 
 procedure TFCadmovimento.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  //fechando o filtered
+  DM.sql_produto.Filtered := False;
+
   //limpando a tabela de itens
   sql_ItensDelete.Close;
   sql_ItensDelete.SQL.Clear;
@@ -323,7 +388,7 @@ begin
   DM.sql_IncluirItens.close;
   dm.sql_pessoa.Close;
 
-  if dm.sql_MovConsul.Params[2].AsString = 'C'  then
+  if dm.sql_MovConsul.Params[2].AsString = 'Compra'  then
   begin
     Self.Caption:='Compra';
     lblClienteFornecedor.Caption:='Fornecedor';

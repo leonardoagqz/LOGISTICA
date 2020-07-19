@@ -145,13 +145,11 @@ type
     sql_MovConsul: TFDQuery;
     sql_Gen__MovConsul: TFDQuery;
     tb_MovConsulID_MOVIMENTO: TIntegerField;
-    tb_MovConsulTIPO_MOVIMENTO: TStringField;
     tb_MovConsulDATA_MOVIMENTO: TDateField;
     tb_MovConsulTOTAL_MOVIMENTO: TBCDField;
     tb_MovConsulID_PGTO_MOVIMENTO: TIntegerField;
     tb_MovConsulID_TRANSPORTE_MOVIMENTO: TIntegerField;
     sql_MovConsulID_MOVIMENTO: TIntegerField;
-    sql_MovConsulTIPO_MOVIMENTO: TStringField;
     sql_MovConsulDATA_MOVIMENTO: TDateField;
     sql_MovConsulTOTAL_MOVIMENTO: TBCDField;
     sql_MovConsulID_PGTO_MOVIMENTO: TIntegerField;
@@ -161,7 +159,6 @@ type
     ds_MovInclusao: TDataSource;
     sql_MovInclusao: TFDQuery;
     tb_MovInclusaoID_MOVIMENTO: TIntegerField;
-    tb_MovInclusaoTIPO_MOVIMENTO: TStringField;
     tb_MovInclusaoDATA_MOVIMENTO: TDateField;
     tb_MovInclusaoTOTAL_MOVIMENTO: TBCDField;
     tb_MovInclusaoID_PGTO_MOVIMENTO: TIntegerField;
@@ -225,7 +222,6 @@ type
     sql_IncluirItensDBGNOME_PRODUTO_ITENS: TStringField;
     sql_MovConsulID_PESSOA_MOVIMENTO: TIntegerField;
     sql_MovInclusaoID_MOVIMENTO: TIntegerField;
-    sql_MovInclusaoTIPO_MOVIMENTO: TStringField;
     sql_MovInclusaoDATA_MOVIMENTO: TDateField;
     sql_MovInclusaoTOTAL_MOVIMENTO: TBCDField;
     sql_MovInclusaoID_PGTO_MOVIMENTO: TIntegerField;
@@ -254,6 +250,12 @@ type
     sql_produtoID_PESSOA_PROD: TIntegerField;
     sql_produtoVALOR_PRODUTO: TBCDField;
     sql_produtoTIPO_PRODUTO: TStringField;
+    sql_MovConsulTIPO_MOVIMENTO: TStringField;
+    sql_MovInclusaoTIPO_MOVIMENTO: TStringField;
+    tb_MovConsulTIPO_MOVIMENTO: TStringField;
+    tb_MovConsulID_PESSOA_MOVIMENTO: TIntegerField;
+    tb_MovInclusaoTIPO_MOVIMENTO: TStringField;
+    tb_MovInclusaoID_PESSOA_MOVIMENTO: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

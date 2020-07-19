@@ -38,6 +38,7 @@ type
     procedure btnTabelaClick(Sender: TObject);
     procedure edtCodigoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -92,7 +93,7 @@ begin
     Exit;
   end;
 
-  if (edtTotal.Text = '') or (StrToFloat(edtTotal.Text) = 0) then
+  if (edtTotal.Text = '') or (edtTotal.Text = '') then
   begin
     ShowMessage('Total do Produto não informado!');
     edtTotal.SetFocus;
@@ -108,18 +109,42 @@ begin
     DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
     DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
     DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
-    DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat        := StrToFloat(edtTotal.Text);
+    DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat        := StrToFloat(StringReplace(edtTotal.Text,'.','',[rfReplaceAll]));
     DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
     DM.sql_IncluirItens.Post;
 
-
-    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
+    {DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
     DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
     DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
     DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
-    DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := StrToFloat(edtTotal.Text);
+    DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := StrToFloat(StringReplace(edtTotal.Text,'.','',[rfReplaceAll]));
     DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
-    DM.sql_itensarm.Post;
+    DM.sql_itensarm.Post; }
+
+   Close;
+  end;
+
+  if DM.sql_IncluirItens.State=dsEdit then
+  begin
+    {DM.sql_Gen_Item.Close;
+    DM.sql_Gen_Item.Open;
+    DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;}
+    DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+    DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
+    DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
+    DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
+    DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat        := StrToFloat(StringReplace(edtTotal.Text,'.','',[rfReplaceAll]));
+    DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
+    DM.sql_IncluirItens.Post;
+
+    {DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger   := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+    DM.sql_itensarmID_PRODUTO_ITENS.AsInteger    := StrToInt(edtCodigo.Text);
+    //DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger;
+    DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
+    DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
+    DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := StrToFloat(StringReplace(edtTotal.Text,'.','',[rfReplaceAll]));
+    DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
+    DM.sql_itensarm.Post; }
 
    Close;
   end;
@@ -137,7 +162,17 @@ begin
 end;
 
 procedure TFCadItens.btnTabelaClick(Sender: TObject);
+var vkey: Char;
 begin
+  //passando parametro TIPO PRODUTO, para que o cadastro de produtos seja aberto e mostre apenas
+  // os produtos de acordo com o paramentro Compra ou Venda e o parametro ID_PESSOA para mostrar
+  //somente os produtos do fornecedor selecionado
+  DM.sql_produto.Filtered := False;
+  DM.sql_produto.Filter:='TIPO_PRODUTO='+QuotedStr(dm.sql_MovConsul.Params[2].AsString);
+  if dm.sql_MovConsul.Params[2].AsString='Compra' then
+  DM.sql_produto.Filter := DM.sql_produto.Filter + 'and id_pessoa_prod='+ DM.sql_pessoaID_PESSOA.AsString;
+  DM.sql_produto.Filtered := True;
+
   DM.sql_pessoa2.Params.ParamByName('NOME_PESSOA').AsString:='%';
   dm.sql_pessoa2.Params.ParamByName('TIPO_PESSOA').AsString:='F';
 
@@ -148,12 +183,16 @@ begin
     if FProdutos.btnAdicionar.ModalResult = mrOk then
     begin
       edtCodigo.Text := IntToStr(FProdutos.idprod);
+      vkey := #13;
+      edtCodigoKeyPress(Sender,vkey);
+      edtQuantidadeChange(Sender);
       edtCodigo.SetFocus;
     end;
 
   finally
     FreeAndNil(FProdutos);
   end;
+
   //FProdutos := TFProdutos.Create(nil);
   //FProdutos.btnAdicionar.Visible:=False;
 end;
@@ -166,13 +205,13 @@ begin
     sql_CadItens.Close;
     sql_CadItens.Params[0].AsInteger := StrToInt(edtCodigo.Text);
 
-    if dm.sql_MovConsul.Params[2].AsString = 'C'  then
+    if dm.sql_MovConsul.Params[2].AsString = 'Compra'  then
     begin
       sql_CadItens.Params[1].AsInteger := dm.sql_pessoaID_PESSOA.AsInteger;
     end
     else
     begin
-      sql_CadItens.Params[1].AsInteger := -1;
+      sql_CadItens.Params[1].AsInteger := 0;
     end;
 
     sql_CadItens.Open;
@@ -193,9 +232,9 @@ begin
   if Key=#13 then
   begin
     sql_CadItens.Close;
-    sql_CadItens.Params[0].AsInteger := StrToInt(edtCodigo.Text);
+      sql_CadItens.Params[0].AsInteger := StrToInt(edtCodigo.Text);
 
-    if dm.sql_MovConsul.Params[2].AsString = 'C'  then
+    if dm.sql_MovConsul.Params[2].AsString = 'Compra'  then
     begin
       sql_CadItens.Params[1].AsInteger := dm.sql_pessoaID_PESSOA.AsInteger;
     end
@@ -219,7 +258,8 @@ procedure TFCadItens.edtQuantidadeChange(Sender: TObject);
 begin
   if edtQuantidade.Text <> '' then
   begin
-    edtTotal.Text := FloatToStr(StrToFloat(edtValor.Text)*StrToInt(edtQuantidade.Text))
+     edtTotal.Text:= FloatToStr(StrToFloat(edtValor.Text)*StrToInt(edtQuantidade.Text));
+     edtTotal.Text:=  FormatFloat('#,,,0.00',StrToFloat(edtTotal.Text));
   end;
 end;
 
@@ -233,6 +273,28 @@ procedure TFCadItens.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if DM.sql_IncluirItens.State in[dsInsert,dsEdit] then
   DM.sql_IncluirItens.Cancel;
+end;
+
+procedure TFCadItens.FormCreate(Sender: TObject);
+begin
+  if DM.sql_IncluirItensDBG.State=dsEdit then
+  begin
+    edtCodigo.Text     := DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsString;
+    edtDescrição.Text  := DM.sql_IncluirItensDBGNOME_PRODUTO_ITENS.AsString;
+    edtValor.Text      := FloatToStrF(DM.sql_IncluirItensDBGVALOR_MOVIMENTO.AsFloat,ffNumber,7,2);
+    edtQuantidade.Text := DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsString;
+    edtTotal.Text      := FloatToStrF(DM.sql_IncluirItensDBGTOTAL_MOVIMENTO.AsFloat,ffNumber,7,2);
+  end;
+
+  if DM.sql_IncluirItens.State=dsEdit then
+  begin
+    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+    edtCodigo.Text     := DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsString;
+    edtDescrição.Text  := DM.sql_IncluirItensDBGNOME_PRODUTO_ITENS.AsString;
+    edtValor.Text      := FloatToStrF(DM.sql_IncluirItensDBGVALOR_MOVIMENTO.AsFloat,ffNumber,7,2);
+    edtQuantidade.Text := IntToStr(DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsInteger);
+    edtTotal.Text      := FloatToStrF(DM.sql_IncluirItensDBGTOTAL_MOVIMENTO.AsFloat,ffNumber,7,2);
+  end;
 end;
 
 end.

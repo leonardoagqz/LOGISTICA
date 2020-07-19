@@ -802,12 +802,6 @@ object DM: TDM
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object tb_MovConsulTIPO_MOVIMENTO: TStringField
-      FieldName = 'TIPO_MOVIMENTO'
-      Origin = 'TIPO_MOVIMENTO'
-      FixedChar = True
-      Size = 1
-    end
     object tb_MovConsulDATA_MOVIMENTO: TDateField
       FieldName = 'DATA_MOVIMENTO'
       Origin = 'DATA_MOVIMENTO'
@@ -825,6 +819,16 @@ object DM: TDM
     object tb_MovConsulID_TRANSPORTE_MOVIMENTO: TIntegerField
       FieldName = 'ID_TRANSPORTE_MOVIMENTO'
       Origin = 'ID_TRANSPORTE_MOVIMENTO'
+    end
+    object tb_MovConsulTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      Size = 15
+    end
+    object tb_MovConsulID_PESSOA_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PESSOA_MOVIMENTO'
+      Origin = 'ID_PESSOA_MOVIMENTO'
+      Required = True
     end
   end
   object ds_MovConsul: TDataSource
@@ -865,9 +869,9 @@ object DM: TDM
       end
       item
         Name = 'TP'
-        DataType = ftFixedChar
+        DataType = ftString
         ParamType = ptInput
-        Size = 1
+        Size = 15
       end>
     object sql_MovConsulID_MOVIMENTO: TIntegerField
       FieldName = 'ID_MOVIMENTO'
@@ -875,15 +879,14 @@ object DM: TDM
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object sql_MovConsulTIPO_MOVIMENTO: TStringField
-      FieldName = 'TIPO_MOVIMENTO'
-      Origin = 'TIPO_MOVIMENTO'
-      FixedChar = True
-      Size = 1
-    end
     object sql_MovConsulDATA_MOVIMENTO: TDateField
       FieldName = 'DATA_MOVIMENTO'
       Origin = 'DATA_MOVIMENTO'
+    end
+    object sql_MovConsulTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      Size = 15
     end
     object sql_MovConsulTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
@@ -949,12 +952,6 @@ object DM: TDM
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object tb_MovInclusaoTIPO_MOVIMENTO: TStringField
-      FieldName = 'TIPO_MOVIMENTO'
-      Origin = 'TIPO_MOVIMENTO'
-      FixedChar = True
-      Size = 1
-    end
     object tb_MovInclusaoDATA_MOVIMENTO: TDateField
       FieldName = 'DATA_MOVIMENTO'
       Origin = 'DATA_MOVIMENTO'
@@ -972,6 +969,16 @@ object DM: TDM
     object tb_MovInclusaoID_TRANSPORTE_MOVIMENTO: TIntegerField
       FieldName = 'ID_TRANSPORTE_MOVIMENTO'
       Origin = 'ID_TRANSPORTE_MOVIMENTO'
+    end
+    object tb_MovInclusaoTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      Size = 15
+    end
+    object tb_MovInclusaoID_PESSOA_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PESSOA_MOVIMENTO'
+      Origin = 'ID_PESSOA_MOVIMENTO'
+      Required = True
     end
   end
   object ds_MovInclusao: TDataSource
@@ -1004,7 +1011,7 @@ object DM: TDM
       FieldName = 'TIPO_MOVIMENTO'
       Origin = 'TIPO_MOVIMENTO'
       FixedChar = True
-      Size = 1
+      Size = 15
     end
     object sql_MovInclusaoDATA_MOVIMENTO: TDateField
       FieldName = 'DATA_MOVIMENTO'

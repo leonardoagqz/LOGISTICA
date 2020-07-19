@@ -156,7 +156,7 @@ object FProdutos: TFProdutos
         Expanded = False
         FieldName = 'ID_PESSOA_PROD'
         Title.Caption = 'Id Fornec'
-        Visible = True
+        Visible = False
       end
       item
         Expanded = False
@@ -266,9 +266,10 @@ object FProdutos: TFProdutos
     Width = 74
     Height = 21
     TabOrder = 10
-    Text = 'cbxCompravenda'
+    Text = 'Nenhum'
     Items.Strings = (
       'Compra'
-      'Venda')
+      'Venda'
+      'Nenhum')
   end
 end

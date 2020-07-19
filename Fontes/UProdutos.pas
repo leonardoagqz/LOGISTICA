@@ -117,14 +117,26 @@ procedure TFProdutos.SpeedButton1Click(Sender: TObject);
 begin
   if (lkCbxFornecedor.Text <> '') and (cbxCompravenda.Text = '') then
   begin
-     begin
-    DM.sql_produto.Close;
-    DM.sql_produto.SQL.Clear;
-    DM.sql_produto.SQL.Add ('select * from produtos');
-    DM.sql_produto.SQL.Add('where id_pessoa_prod = :idpessoaprod ');
-    DM.sql_produto.ParamByName('idpessoaprod').AsInteger := DM.sql_pessoa2ID_PESSOA.AsInteger;
-    DM.sql_produto.Open;
-     end;
+    begin
+      DM.sql_produto.Close;
+      DM.sql_produto.SQL.Clear;
+      DM.sql_produto.SQL.Add ('select * from produtos');
+      DM.sql_produto.SQL.Add('where id_pessoa_prod = :idpessoaprod ');
+      DM.sql_produto.ParamByName('idpessoaprod').AsInteger := DM.sql_pessoa2ID_PESSOA.AsInteger;
+      DM.sql_produto.Open;
+    end;
+  end;
+
+  if (lkCbxFornecedor.Text <> '') and (cbxCompravenda.Text = 'Nenhum') then
+  begin
+    begin
+      DM.sql_produto.Close;
+      DM.sql_produto.SQL.Clear;
+      DM.sql_produto.SQL.Add ('select * from produtos');
+      DM.sql_produto.SQL.Add('where id_pessoa_prod = :idpessoaprod ');
+      DM.sql_produto.ParamByName('idpessoaprod').AsInteger := DM.sql_pessoa2ID_PESSOA.AsInteger;
+      DM.sql_produto.Open;
+    end;
   end;
 
  if (lkCbxFornecedor.Text = '') and (cbxCompravenda.Text = 'Compra') or (cbxCompravenda.Text = 'Venda') then
@@ -137,7 +149,7 @@ begin
    DM.sql_produto.Open;
  end;
 
- if (lkCbxFornecedor.Text <> '') and (cbxCompravenda.Text <> '')  then
+ if (lkCbxFornecedor.Text <> '') and (cbxCompravenda.Text <> '') and (cbxCompravenda.Text <> 'Nenhum')  then
  begin
    DM.sql_produto.Close;
     DM.sql_produto.SQL.Clear;

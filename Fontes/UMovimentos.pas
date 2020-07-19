@@ -69,11 +69,13 @@ end;
 procedure TFMovimentos.BtnAlterarClick(Sender: TObject);
 begin
    //Firebird
+
+   if DM.sql_MovConsul.IsEmpty then
+   Exit;
+
   Self.Visible :=False;
 
   DM.sql_MovInclusao.Close;
- {passando o valor de -1 para o parametro id_movimento do sql_movinclusao,
-  forçando o sql abrir vazio.}
   DM.sql_MovInclusao.Params[0].AsInteger := DM.sql_MovConsulID_MOVIMENTO.AsInteger;
   DM.sql_MovInclusao.Open;
   DM.sql_MovInclusao.Active:=True;

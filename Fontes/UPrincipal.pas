@@ -123,14 +123,14 @@ end;
 procedure TFPrincipal.Venda1Click(Sender: TObject);
 begin
   DM.sql_MovConsul.Close;
-  dm.sql_MovConsul.Params[2].AsString := 'V' ;
+  dm.sql_MovConsul.Params[2].AsString := 'Venda' ;
   DM.CriarFormulario(TFMovimentos, FMovimentos);
 end;
 
 procedure TFPrincipal.Vendas1Click(Sender: TObject);
 begin
   DM.sql_MovConsul.Close;
-  dm.sql_MovConsul.Params[2].AsString := 'C' ;
+  dm.sql_MovConsul.Params[2].AsString := 'Compra' ;
   DM.CriarFormulario(TFMovimentos, FMovimentos);
 
 end;
