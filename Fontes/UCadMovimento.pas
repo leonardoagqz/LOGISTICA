@@ -62,6 +62,7 @@ uses
 
 procedure TFCadmovimento.btnAlterarClick(Sender: TObject);
 begin
+   //testando se não tem itens
   if DM.sql_IncluirItensDBG.IsEmpty then //dm.cItens
   Exit;
 
@@ -366,6 +367,7 @@ end;
 procedure TFCadmovimento.btnTabelaClick(Sender: TObject);
 begin
   DM.CriarFormulario(TFPessoas,FPessoas);
+  lkCbxClienteFornecedor.KeyValue := DM.sql_pessoaID_PESSOA.AsInteger;
 end;
 
 procedure TFCadmovimento.FormClose(Sender: TObject; var Action: TCloseAction);

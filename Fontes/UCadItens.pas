@@ -185,8 +185,8 @@ begin
       edtCodigo.Text := IntToStr(FProdutos.idprod);
       vkey := #13;
       edtCodigoKeyPress(Sender,vkey);
-      edtQuantidadeChange(Sender);
-      edtCodigo.SetFocus;
+      edtQuantidade.Text := '0';
+      edtQuantidade.SetFocus;
     end;
 
   finally
@@ -277,16 +277,16 @@ end;
 
 procedure TFCadItens.FormCreate(Sender: TObject);
 begin
-  if DM.sql_IncluirItensDBG.State=dsEdit then
+ { if DM.sql_IncluirItensDBG.State=dsEdit then
   begin
     edtCodigo.Text     := DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsString;
     edtDescrição.Text  := DM.sql_IncluirItensDBGNOME_PRODUTO_ITENS.AsString;
     edtValor.Text      := FloatToStrF(DM.sql_IncluirItensDBGVALOR_MOVIMENTO.AsFloat,ffNumber,7,2);
     edtQuantidade.Text := DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsString;
     edtTotal.Text      := FloatToStrF(DM.sql_IncluirItensDBGTOTAL_MOVIMENTO.AsFloat,ffNumber,7,2);
-  end;
+  end;}
 
-  if DM.sql_IncluirItens.State=dsEdit then
+  if DM.sql_IncluirItens.State=dsEdit then //citens
   begin
     DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
     edtCodigo.Text     := DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsString;

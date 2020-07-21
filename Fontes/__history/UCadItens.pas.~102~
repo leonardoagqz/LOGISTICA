@@ -113,14 +113,13 @@ begin
     DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
     DM.sql_IncluirItens.Post;
 
-
-    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
+    {DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
     DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
     DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
     DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
     DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := StrToFloat(StringReplace(edtTotal.Text,'.','',[rfReplaceAll]));
     DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
-    DM.sql_itensarm.Post;
+    DM.sql_itensarm.Post; }
 
    Close;
   end;
@@ -130,6 +129,7 @@ begin
     {DM.sql_Gen_Item.Close;
     DM.sql_Gen_Item.Open;
     DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;}
+    DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
     DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
     DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
     DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
@@ -137,14 +137,14 @@ begin
     DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
     DM.sql_IncluirItens.Post;
 
-
-    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
-    DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := StrToInt(edtCodigo.Text);
+    {DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger   := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger;
+    DM.sql_itensarmID_PRODUTO_ITENS.AsInteger    := StrToInt(edtCodigo.Text);
+    //DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger;
     DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := StrToInt(edtQuantidade.Text);
     DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := StrToFloat(edtValor.Text);
     DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := StrToFloat(StringReplace(edtTotal.Text,'.','',[rfReplaceAll]));
     DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := edtDescrição.Text;
-    DM.sql_itensarm.Post;
+    DM.sql_itensarm.Post; }
 
    Close;
   end;
@@ -162,11 +162,15 @@ begin
 end;
 
 procedure TFCadItens.btnTabelaClick(Sender: TObject);
+var vkey: Char;
 begin
   //passando parametro TIPO PRODUTO, para que o cadastro de produtos seja aberto e mostre apenas
-  // os produtos de acordo com o paramentro Compra ou Venda
+  // os produtos de acordo com o paramentro Compra ou Venda e o parametro ID_PESSOA para mostrar
+  //somente os produtos do fornecedor selecionado
   DM.sql_produto.Filtered := False;
   DM.sql_produto.Filter:='TIPO_PRODUTO='+QuotedStr(dm.sql_MovConsul.Params[2].AsString);
+  if dm.sql_MovConsul.Params[2].AsString='Compra' then
+  DM.sql_produto.Filter := DM.sql_produto.Filter + 'and id_pessoa_prod='+ DM.sql_pessoaID_PESSOA.AsString;
   DM.sql_produto.Filtered := True;
 
   DM.sql_pessoa2.Params.ParamByName('NOME_PESSOA').AsString:='%';
@@ -179,6 +183,9 @@ begin
     if FProdutos.btnAdicionar.ModalResult = mrOk then
     begin
       edtCodigo.Text := IntToStr(FProdutos.idprod);
+      vkey := #13;
+      edtCodigoKeyPress(Sender,vkey);
+      edtQuantidadeChange(Sender);
       edtCodigo.SetFocus;
     end;
 
@@ -281,10 +288,11 @@ begin
 
   if DM.sql_IncluirItens.State=dsEdit then
   begin
+    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
     edtCodigo.Text     := DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsString;
     edtDescrição.Text  := DM.sql_IncluirItensDBGNOME_PRODUTO_ITENS.AsString;
     edtValor.Text      := FloatToStrF(DM.sql_IncluirItensDBGVALOR_MOVIMENTO.AsFloat,ffNumber,7,2);
-    edtQuantidade.Text := DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsString;
+    edtQuantidade.Text := IntToStr(DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsInteger);
     edtTotal.Text      := FloatToStrF(DM.sql_IncluirItensDBGTOTAL_MOVIMENTO.AsFloat,ffNumber,7,2);
   end;
 end;

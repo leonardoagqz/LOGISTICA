@@ -66,6 +66,7 @@ procedure TFPessoas.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
     if key=VK_ESCAPE then //se a tecla ESC for pressionada então
+
     Close;
 end;
 
