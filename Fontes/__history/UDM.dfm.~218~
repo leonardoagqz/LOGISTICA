@@ -2,7 +2,7 @@ object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 898
-  Width = 1106
+  Width = 1195
   object BDConnectionSQL: TADOConnection
     Connected = True
     ConnectionString = 
@@ -802,12 +802,6 @@ object DM: TDM
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object tb_MovConsulTIPO_MOVIMENTO: TStringField
-      FieldName = 'TIPO_MOVIMENTO'
-      Origin = 'TIPO_MOVIMENTO'
-      FixedChar = True
-      Size = 1
-    end
     object tb_MovConsulDATA_MOVIMENTO: TDateField
       FieldName = 'DATA_MOVIMENTO'
       Origin = 'DATA_MOVIMENTO'
@@ -825,6 +819,16 @@ object DM: TDM
     object tb_MovConsulID_TRANSPORTE_MOVIMENTO: TIntegerField
       FieldName = 'ID_TRANSPORTE_MOVIMENTO'
       Origin = 'ID_TRANSPORTE_MOVIMENTO'
+    end
+    object tb_MovConsulTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      Size = 15
+    end
+    object tb_MovConsulID_PESSOA_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PESSOA_MOVIMENTO'
+      Origin = 'ID_PESSOA_MOVIMENTO'
+      Required = True
     end
   end
   object ds_MovConsul: TDataSource
@@ -865,9 +869,9 @@ object DM: TDM
       end
       item
         Name = 'TP'
-        DataType = ftFixedChar
+        DataType = ftString
         ParamType = ptInput
-        Size = 1
+        Size = 15
       end>
     object sql_MovConsulID_MOVIMENTO: TIntegerField
       FieldName = 'ID_MOVIMENTO'
@@ -948,12 +952,6 @@ object DM: TDM
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
-    object tb_MovInclusaoTIPO_MOVIMENTO: TStringField
-      FieldName = 'TIPO_MOVIMENTO'
-      Origin = 'TIPO_MOVIMENTO'
-      FixedChar = True
-      Size = 1
-    end
     object tb_MovInclusaoDATA_MOVIMENTO: TDateField
       FieldName = 'DATA_MOVIMENTO'
       Origin = 'DATA_MOVIMENTO'
@@ -971,6 +969,16 @@ object DM: TDM
     object tb_MovInclusaoID_TRANSPORTE_MOVIMENTO: TIntegerField
       FieldName = 'ID_TRANSPORTE_MOVIMENTO'
       Origin = 'ID_TRANSPORTE_MOVIMENTO'
+    end
+    object tb_MovInclusaoTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      Size = 15
+    end
+    object tb_MovInclusaoID_PESSOA_MOVIMENTO: TIntegerField
+      FieldName = 'ID_PESSOA_MOVIMENTO'
+      Origin = 'ID_PESSOA_MOVIMENTO'
+      Required = True
     end
   end
   object ds_MovInclusao: TDataSource
@@ -1003,7 +1011,7 @@ object DM: TDM
       FieldName = 'TIPO_MOVIMENTO'
       Origin = 'TIPO_MOVIMENTO'
       FixedChar = True
-      Size = 1
+      Size = 15
     end
     object sql_MovInclusaoDATA_MOVIMENTO: TDateField
       FieldName = 'DATA_MOVIMENTO'
@@ -1035,7 +1043,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'ITENSMOVIMENTO'
     TableName = 'ITENSMOVIMENTO'
-    Left = 768
+    Left = 760
     Top = 400
     object tb_ItensID_ITEM_MOVIMENTO: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
@@ -1075,7 +1083,7 @@ object DM: TDM
   end
   object ds_Itens: TDataSource
     DataSet = sql_Itens
-    Left = 768
+    Left = 760
     Top = 464
   end
   object sql_Itens: TFDQuery
@@ -1084,7 +1092,7 @@ object DM: TDM
       'select * from itensmovimento'
       ''
       'where id_item_movimento = :id_item_movimento')
-    Left = 768
+    Left = 760
     Top = 528
     ParamData = <
       item
@@ -1470,5 +1478,43 @@ object DM: TDM
       ReadOnly = True
       Size = 60
     end
+  end
+  object sql_Estoque: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select id_produto, quantidade_produto from produtos'
+      'where id_produto = :id_produto')
+    Left = 1112
+    Top = 536
+    ParamData = <
+      item
+        Name = 'ID_PRODUTO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object sql_EstoqueID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Origin = 'ID_PRODUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_EstoqueQUANTIDADE_PRODUTO: TIntegerField
+      FieldName = 'QUANTIDADE_PRODUTO'
+      Origin = 'QUANTIDADE_PRODUTO'
+    end
+  end
+  object ds_Estoque: TDataSource
+    DataSet = sql_Estoque
+    Left = 1112
+    Top = 472
+  end
+  object tb_Estoque: TFDTable
+    IndexFieldNames = 'ID_ITEM_MOVIMENTO'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'ITENSMOVIMENTO'
+    TableName = 'ITENSMOVIMENTO'
+    Left = 1112
+    Top = 408
   end
 end

@@ -2,7 +2,7 @@ object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 898
-  Width = 1106
+  Width = 1195
   object BDConnectionSQL: TADOConnection
     Connected = True
     ConnectionString = 
@@ -1043,7 +1043,7 @@ object DM: TDM
     Connection = BDConnectionFB
     UpdateOptions.UpdateTableName = 'ITENSMOVIMENTO'
     TableName = 'ITENSMOVIMENTO'
-    Left = 768
+    Left = 760
     Top = 400
     object tb_ItensID_ITEM_MOVIMENTO: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
@@ -1083,7 +1083,7 @@ object DM: TDM
   end
   object ds_Itens: TDataSource
     DataSet = sql_Itens
-    Left = 768
+    Left = 760
     Top = 464
   end
   object sql_Itens: TFDQuery
@@ -1092,7 +1092,7 @@ object DM: TDM
       'select * from itensmovimento'
       ''
       'where id_item_movimento = :id_item_movimento')
-    Left = 768
+    Left = 760
     Top = 528
     ParamData = <
       item
@@ -1477,6 +1477,74 @@ object DM: TDM
       ProviderFlags = []
       ReadOnly = True
       Size = 60
+    end
+  end
+  object sql_Estoque: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select id_produto, quantidade_produto from produtos'
+      'where id_produto = :id_produto')
+    Left = 1112
+    Top = 536
+    ParamData = <
+      item
+        Name = 'ID_PRODUTO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object sql_EstoqueID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Origin = 'ID_PRODUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_EstoqueQUANTIDADE_PRODUTO: TIntegerField
+      FieldName = 'QUANTIDADE_PRODUTO'
+      Origin = 'QUANTIDADE_PRODUTO'
+    end
+  end
+  object ds_Estoque: TDataSource
+    DataSet = sql_Estoque
+    Left = 1112
+    Top = 472
+  end
+  object tb_Estoque: TFDTable
+    IndexFieldNames = 'ID_PRODUTO'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'PRODUTOS'
+    TableName = 'PRODUTOS'
+    Left = 1112
+    Top = 408
+    object tb_EstoqueID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Origin = 'ID_PRODUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tb_EstoqueNOME_PRODUTO: TStringField
+      FieldName = 'NOME_PRODUTO'
+      Origin = 'NOME_PRODUTO'
+      Size = 60
+    end
+    object tb_EstoqueQUANTIDADE_PRODUTO: TIntegerField
+      FieldName = 'QUANTIDADE_PRODUTO'
+      Origin = 'QUANTIDADE_PRODUTO'
+    end
+    object tb_EstoqueID_PESSOA_PROD: TIntegerField
+      FieldName = 'ID_PESSOA_PROD'
+      Origin = 'ID_PESSOA_PROD'
+    end
+    object tb_EstoqueVALOR_PRODUTO: TBCDField
+      FieldName = 'VALOR_PRODUTO'
+      Origin = 'VALOR_PRODUTO'
+      Precision = 18
+      Size = 2
+    end
+    object tb_EstoqueTIPO_PRODUTO: TStringField
+      FieldName = 'TIPO_PRODUTO'
+      Origin = 'TIPO_PRODUTO'
+      Size = 30
     end
   end
 end

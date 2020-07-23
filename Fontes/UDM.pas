@@ -256,6 +256,17 @@ type
     tb_MovConsulID_PESSOA_MOVIMENTO: TIntegerField;
     tb_MovInclusaoTIPO_MOVIMENTO: TStringField;
     tb_MovInclusaoID_PESSOA_MOVIMENTO: TIntegerField;
+    sql_Estoque: TFDQuery;
+    ds_Estoque: TDataSource;
+    tb_Estoque: TFDTable;
+    sql_EstoqueID_PRODUTO: TIntegerField;
+    sql_EstoqueQUANTIDADE_PRODUTO: TIntegerField;
+    tb_EstoqueID_PRODUTO: TIntegerField;
+    tb_EstoqueNOME_PRODUTO: TStringField;
+    tb_EstoqueQUANTIDADE_PRODUTO: TIntegerField;
+    tb_EstoqueID_PESSOA_PROD: TIntegerField;
+    tb_EstoqueVALOR_PRODUTO: TBCDField;
+    tb_EstoqueTIPO_PRODUTO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

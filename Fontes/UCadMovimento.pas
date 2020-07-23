@@ -149,6 +149,9 @@ begin
 end;
 
 procedure TFCadmovimento.btnSalvarClick(Sender: TObject);
+var
+MovInclusao : Boolean;
+
 begin
   if dtpData.Date = 0 then
   begin
@@ -178,8 +181,10 @@ begin
     Exit;
   end;
 
+  MovInclusao:=False;
   if DM.sql_MovInclusao.State=dsInsert then
   begin
+    MovInclusao:=True;
     DM.sql_Gen__MovConsul.Close;
     DM.sql_Gen__MovConsul.Open;
     DM.sql_MovInclusaoID_MOVIMENTO.AsInteger := DM.sql_Gen__MovConsulID.AsInteger;
@@ -235,6 +240,24 @@ begin
       DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
       DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
       DM.sql_itensarm.Post;
+
+      //Controle de Estoque
+      if MovInclusao = True then
+      begin
+        dm.sql_Estoque.Close;
+        DM.sql_Estoque.Params[0].AsInteger := DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsInteger;
+        DM.sql_Estoque.Open;
+        DM.sql_Estoque.Edit;
+        if DM.sql_MovConsul.Params[2].AsString = 'Compra' then
+        begin
+          DM.sql_EstoqueQUANTIDADE_PRODUTO.AsInteger := DM.sql_EstoqueQUANTIDADE_PRODUTO.AsInteger + DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsInteger;
+        end
+        else
+          DM.sql_EstoqueQUANTIDADE_PRODUTO.AsInteger := DM.sql_EstoqueQUANTIDADE_PRODUTO.AsInteger - DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsInteger;
+        DM.sql_Estoque.Post
+
+      end;
+      //
 
       DM.sql_IncluirItensDBG.Next;
 

@@ -43,6 +43,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,6 +59,25 @@ uses
   UDM, UPessoas, UCadItens;
 
 {$R *.dfm}
+
+procedure TFCadmovimento.btnAlterarClick(Sender: TObject);
+begin
+   //testando se não tem itens
+  if DM.sql_IncluirItensDBG.IsEmpty then //dm.cItens
+  Exit;
+
+ { DM.sql_IncluirItensDBG.Edit;
+  DM.CriarFormulario(TFCadItens,FCadItens); }
+
+  DM.sql_IncluirItens.Active:=True;
+  DM.sql_IncluirItens.Edit;
+
+  DM.sql_itensarm.Active:=True;
+  DM.sql_itensarm.Edit;
+
+  DM.CriarFormulario(TFCadItens,FCadItens);
+
+end;
 
 procedure TFCadmovimento.btnCancelarClick(Sender: TObject);
 begin
@@ -208,11 +228,48 @@ begin
       //DM.sql_itensarm.Append;
       DM.sql_itensarm.Edit;
       DM.sql_ItensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
+      DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+      DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+      DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat  ;
+      DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+      DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
       DM.sql_itensarm.Post;
+
+      if DM.sql_MovInclusao.State = dsInsert then
+      begin
+        dm.sql_Estoque.Close;
+        DM.sql_Estoque.Params[0].AsInteger := DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsInteger;
+        DM.sql_Estoque.Open;
+        DM.sql_Estoque.Edit;
+        if DM.sql_MovConsul.Params[2].AsString = 'Compra' then
+        begin
+          DM.sql_EstoqueQUANTIDADE_PRODUTO.AsInteger := DM.sql_EstoqueQUANTIDADE_PRODUTO.AsInteger + DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsInteger;
+        end
+        else
+          DM.sql_EstoqueQUANTIDADE_PRODUTO.AsInteger := DM.sql_EstoqueQUANTIDADE_PRODUTO.AsInteger - DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsInteger;
+        DM.sql_Estoque.Post
+
+      end;
 
       DM.sql_IncluirItensDBG.Next;
 
     end;
+
+      {if DM.sql_IncluirItens.State=dsInsert then
+  begin
+
+    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
+    DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+    DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+    DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat  ;
+    DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+    DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
+    DM.sql_itensarm.Post;
+
+   Close;
+  end;}
+
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
     DM.sql_MovConsul.Close;
@@ -225,7 +282,7 @@ begin
     sql_ItensDelete.ExecSQL;
     sql_ItensDelete.SQL.Clear;
 
-    
+
 
   end;
 
@@ -263,7 +320,7 @@ begin
       end
      else
       DM.sql_Itens.Edit;
-      DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    :=DM.sql_Gen_ItemID.AsInteger;
+      DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    := DM.sql_Gen_ItemID.AsInteger;
       DM.sql_ItensID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
       DM.sql_ItensID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
       DM.sql_ItensQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
@@ -278,11 +335,34 @@ begin
       //DM.sql_itensarm.Append;
       DM.sql_itensarm.Edit;
       DM.sql_ItensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger   := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
+      DM.sql_itensarmID_PRODUTO_ITENS.AsInteger    := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+      //DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger;
+      DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+      DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
+      DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+      DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
       DM.sql_itensarm.Post;
 
       DM.sql_IncluirItensDBG.Next;
 
     end;
+
+      {if DM.sql_IncluirItens.State=dsEdit then
+  begin
+
+    DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger   := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
+    DM.sql_itensarmID_PRODUTO_ITENS.AsInteger    := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
+    //DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger;
+    DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
+    DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat;
+    DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
+    DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
+    DM.sql_itensarm.Post;
+
+   Close;
+  end; }
+
     ShowMessage('Informações Armazenadas com Sucesso!');
     Close;
     DM.sql_MovConsul.Close;
@@ -303,10 +383,14 @@ end;
 procedure TFCadmovimento.btnTabelaClick(Sender: TObject);
 begin
   DM.CriarFormulario(TFPessoas,FPessoas);
+  lkCbxClienteFornecedor.KeyValue := DM.sql_pessoaID_PESSOA.AsInteger;
 end;
 
 procedure TFCadmovimento.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  //fechando o filtered
+  DM.sql_produto.Filtered := False;
+
   //limpando a tabela de itens
   sql_ItensDelete.Close;
   sql_ItensDelete.SQL.Clear;
