@@ -267,6 +267,7 @@ type
     tb_EstoqueID_PESSOA_PROD: TIntegerField;
     tb_EstoqueVALOR_PRODUTO: TBCDField;
     tb_EstoqueTIPO_PRODUTO: TStringField;
+    ds_sItensArm: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

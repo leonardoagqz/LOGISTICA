@@ -1,0 +1,152 @@
+object FQuickRomaneio: TFQuickRomaneio
+  Left = 0
+  Top = 0
+  Caption = 'Romaneio'
+  ClientHeight = 413
+  ClientWidth = 878
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object qkRelatorio: TRLReport
+    Left = 8
+    Top = 0
+    Width = 794
+    Height = 1123
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 75
+      BandType = btTitle
+      object RLLabel1: TRLLabel
+        Left = 280
+        Top = 53
+        Width = 155
+        Height = 16
+        Alignment = taCenter
+        Caption = 'ROMANEIO N'#195'O FISCAL'
+      end
+      object RLLabel2: TRLLabel
+        Left = 307
+        Top = 3
+        Width = 104
+        Height = 18
+        Alignment = taCenter
+        Caption = 'Logistica Ltda'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RLLabel3: TRLLabel
+        Left = 301
+        Top = 31
+        Width = 118
+        Height = 16
+        Caption = '00.000.000/0000-00'
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 113
+      Width = 718
+      Height = 88
+      BandType = btTitle
+      BeforePrint = RLBand2BeforePrint
+      object RLLabel4: TRLLabel
+        Left = 19
+        Top = 6
+        Width = 28
+        Height = 16
+        Caption = 'Tipo'
+      end
+      object RLLabel5: TRLLabel
+        Left = 163
+        Top = 6
+        Width = 31
+        Height = 16
+        Caption = 'Data'
+      end
+      object RLLabel6: TRLLabel
+        Left = 427
+        Top = 3
+        Width = 44
+        Height = 16
+        Caption = 'Pedido'
+      end
+      object lbPessoa: TRLLabel
+        Left = 19
+        Top = 50
+        Width = 113
+        Height = 16
+        Caption = 'Cliente/Fornecedor'
+      end
+      object RLDBText1: TRLDBText
+        Left = 53
+        Top = 6
+        Width = 52
+        Height = 16
+        DataField = 'TIPO_MOVIMENTO'
+        DataSource = DM.ds_MovInclusao
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 200
+        Top = 6
+        Width = 73
+        Height = 16
+        DataField = 'DATA_MOVIMENTO'
+        DataSource = DM.ds_MovInclusao
+        Text = ''
+      end
+      object RLDBText3: TRLDBText
+        Left = 477
+        Top = 3
+        Width = 102
+        Height = 16
+        DataField = 'ID_MOVIMENTO'
+        DataSource = DM.ds_MovInclusao
+        Text = ''
+      end
+    end
+    object RLSubDetail1: TRLSubDetail
+      Left = 38
+      Top = 201
+      Width = 718
+      Height = 88
+    end
+  end
+  object qryPessoa: TFDQuery
+    Connection = DM.BDConnectionFB
+    SQL.Strings = (
+      'select nome_pessoa from pessoas where id_pessoa = :id_pessoa')
+    Left = 686
+    Top = 49
+    ParamData = <
+      item
+        Name = 'ID_PESSOA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qryPessoaNOME_PESSOA: TStringField
+      FieldName = 'NOME_PESSOA'
+      Origin = 'NOME_PESSOA'
+      Size = 50
+    end
+  end
+end

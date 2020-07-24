@@ -199,4 +199,13 @@ object FMovimentos: TFMovimentos
     TabOrder = 9
     OnClick = btnBuscarmovClick
   end
+  object BitBtn1: TBitBtn
+    Left = 512
+    Top = 280
+    Width = 75
+    Height = 25
+    Caption = 'BitBtn1'
+    TabOrder = 10
+    OnClick = BitBtn1Click
+  end
 end

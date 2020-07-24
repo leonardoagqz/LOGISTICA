@@ -1425,15 +1425,14 @@ object DM: TDM
       ''
       'on I.id_produto_itens = p.id_produto'
       ''
-      'where id_movimento_itens = :id_movimento_itenss')
+      'where id_movimento_itens = :id_movimento_itens')
     Left = 912
     Top = 696
     ParamData = <
       item
-        Name = 'ID_MOVIMENTO_ITENSS'
+        Name = 'ID_MOVIMENTO_ITENS'
         DataType = ftInteger
         ParamType = ptInput
-        Value = Null
       end>
     object sql_sItensArmID_ITEM_MOVIMENTO: TIntegerField
       FieldName = 'ID_ITEM_MOVIMENTO'
@@ -1546,5 +1545,10 @@ object DM: TDM
       Origin = 'TIPO_PRODUTO'
       Size = 30
     end
+  end
+  object ds_sItensArm: TDataSource
+    DataSet = sql_sItensArm
+    Left = 912
+    Top = 640
   end
 end

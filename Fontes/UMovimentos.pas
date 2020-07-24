@@ -21,6 +21,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     btnBuscarmov: TBitBtn;
+    BitBtn1: TBitBtn;
     procedure BtnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BtnIncluirClick(Sender: TObject);
@@ -29,6 +30,7 @@ type
     procedure BtnExcluirClick(Sender: TObject);
     procedure dbgMovimentosDblClick(Sender: TObject);
     procedure btnBuscarmovClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,7 +44,7 @@ implementation
 
 {$R *.dfm}
 
-uses UDM, UCadMovimento;{units que podem ser acessadas e utilizadas}
+uses UDM, UCadMovimento, UQuickRomaneio;{units que podem ser acessadas e utilizadas}
 
 procedure TFMovimentos.FormCreate(Sender: TObject);//ao abrir tela de produtos
 begin                                            //inicie
@@ -65,6 +67,21 @@ begin
 end;
 
 //fim
+
+procedure TFMovimentos.BitBtn1Click(Sender: TObject);
+begin
+  DM.sql_MovInclusao.Close;
+  DM.sql_MovInclusao.Params[0].AsInteger := DM.sql_MovConsulID_MOVIMENTO.AsInteger;
+  dm.sql_MovInclusao.Open;
+
+  dm.sql_sItensArm.Close;
+  dm.sql_sItensArm.Params[0].AsInteger := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+  dm.sql_sItensArm.Open;
+
+  Application.CreateForm(TFQuickRomaneio,FQuickRomaneio);
+  FQuickRomaneio.Free;
+  DM.sql_MovInclusao.Close;
+end;
 
 procedure TFMovimentos.BtnAlterarClick(Sender: TObject);
 begin

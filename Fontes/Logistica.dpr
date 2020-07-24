@@ -19,7 +19,8 @@ uses
   UMovimentos in 'UMovimentos.pas' {FMovimentos},
   UProdutos in 'UProdutos.pas' {FProdutos},
   UCadMovimento in 'UCadMovimento.pas' {FCadmovimento},
-  UCadItens in 'UCadItens.pas' {FCadItens};
+  UCadItens in 'UCadItens.pas' {FCadItens},
+  UQuickRomaneio in 'UQuickRomaneio.pas' {FQuickRomaneio};
 
 {$R *.res}
 
@@ -27,5 +28,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
+  Application.CreateForm(TFQuickRomaneio, FQuickRomaneio);
   Application.Run;
 end.
