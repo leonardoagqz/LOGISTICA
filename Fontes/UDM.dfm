@@ -1417,6 +1417,7 @@ object DM: TDM
     end
   end
   object sql_sItensArm: TFDQuery
+    Active = True
     Connection = BDConnectionFB
     SQL.Strings = (
       

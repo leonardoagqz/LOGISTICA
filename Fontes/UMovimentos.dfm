@@ -199,13 +199,66 @@ object FMovimentos: TFMovimentos
     TabOrder = 9
     OnClick = btnBuscarmovClick
   end
-  object BitBtn1: TBitBtn
-    Left = 512
+  object btnImprimirPedido: TBitBtn
+    Left = 503
     Top = 280
-    Width = 75
+    Width = 89
     Height = 25
-    Caption = 'BitBtn1'
+    Caption = 'Imprimir Pedido'
     TabOrder = 10
-    OnClick = BitBtn1Click
+    OnClick = btnImprimirPedidoClick
+  end
+  object sql_ItensDelete: TFDQuery
+    Connection = DM.BDConnectionFB
+    Left = 392
+    Top = 265
+  end
+  object sql_ImprimirPedidos: TFDQuery
+    Active = True
+    Connection = DM.BDConnectionFB
+    SQL.Strings = (
+      'select * from itensmovimentoarm')
+    Left = 144
+    Top = 192
+    object sql_ImprimirPedidosID_ITEM_MOVIMENTO: TIntegerField
+      FieldName = 'ID_ITEM_MOVIMENTO'
+      Origin = 'ID_ITEM_MOVIMENTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_ImprimirPedidosID_MOVIMENTO_ITENS: TIntegerField
+      FieldName = 'ID_MOVIMENTO_ITENS'
+      Origin = 'ID_MOVIMENTO_ITENS'
+    end
+    object sql_ImprimirPedidosID_PRODUTO_ITENS: TIntegerField
+      FieldName = 'ID_PRODUTO_ITENS'
+      Origin = 'ID_PRODUTO_ITENS'
+    end
+    object sql_ImprimirPedidosQUANTIDADE_MOVIMENTO: TIntegerField
+      FieldName = 'QUANTIDADE_MOVIMENTO'
+      Origin = 'QUANTIDADE_MOVIMENTO'
+    end
+    object sql_ImprimirPedidosVALOR_MOVIMENTO: TBCDField
+      FieldName = 'VALOR_MOVIMENTO'
+      Origin = 'VALOR_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_ImprimirPedidosTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sql_ImprimirPedidosNOME_PRODUTO_ITENS: TStringField
+      FieldName = 'NOME_PRODUTO_ITENS'
+      Origin = 'NOME_PRODUTO_ITENS'
+      Size = 60
+    end
+  end
+  object ds_ImprimirPedidos: TDataSource
+    DataSet = sql_ImprimirPedidos
+    Left = 144
+    Top = 248
   end
 end

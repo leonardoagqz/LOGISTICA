@@ -218,7 +218,7 @@ begin
       end
       else
       DM.sql_Itens.Edit;
-      DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    :=DM.sql_Gen_ItemID.AsInteger;
+      DM.sql_ItensID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensDBGID_ITEM_MOVIMENTO.AsInteger;//DM.sql_Gen_ItemID.AsInteger;
       DM.sql_ItensID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
       DM.sql_ItensID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
       DM.sql_ItensQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
@@ -233,12 +233,12 @@ begin
       //DM.sql_itensarm.Append;
       DM.sql_itensarm.Edit;
       DM.sql_ItensarmID_MOVIMENTO_ITENS.AsInteger   := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
-      DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensID_ITEM_MOVIMENTO.AsInteger ;
-      DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensID_PRODUTO_ITENS.AsInteger;
-      DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensQUANTIDADE_MOVIMENTO.AsInteger;
-      DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensVALOR_MOVIMENTO.AsFloat  ;
-      DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensTOTAL_MOVIMENTO.AsFloat;
-      DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensNOME_PRODUTO_ITENS.AsString;
+      DM.sql_itensarmID_ITEM_MOVIMENTO.AsInteger    := DM.sql_IncluirItensDBGID_ITEM_MOVIMENTO.AsInteger ;
+      DM.sql_itensarmID_PRODUTO_ITENS.AsInteger     := DM.sql_IncluirItensDBGID_PRODUTO_ITENS.AsInteger;
+      DM.sql_itensarmQUANTIDADE_MOVIMENTO.AsInteger := DM.sql_IncluirItensDBGQUANTIDADE_MOVIMENTO.AsInteger;
+      DM.sql_itensarmVALOR_MOVIMENTO.AsFloat        := DM.sql_IncluirItensDBGVALOR_MOVIMENTO.AsFloat  ;
+      DM.sql_itensarmTOTAL_MOVIMENTO.AsFloat        := DM.sql_IncluirItensDBGTOTAL_MOVIMENTO.AsFloat;
+      DM.sql_itensarmNOME_PRODUTO_ITENS.AsString    := DM.sql_IncluirItensDBGNOME_PRODUTO_ITENS.AsString;
       DM.sql_itensarm.Post;
 
       //Controle de Estoque

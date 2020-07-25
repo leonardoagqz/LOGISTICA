@@ -29,7 +29,7 @@ object FQuickRomaneio: TFQuickRomaneio
       Top = 38
       Width = 718
       Height = 75
-      BandType = btTitle
+      BandType = btHeader
       object RLLabel1: TRLLabel
         Left = 280
         Top = 53
@@ -65,7 +65,7 @@ object FQuickRomaneio: TFQuickRomaneio
       Top = 113
       Width = 718
       Height = 88
-      BandType = btTitle
+      BandType = btColumnHeader
       BeforePrint = RLBand2BeforePrint
       object RLLabel4: TRLLabel
         Left = 19
@@ -198,48 +198,48 @@ object FQuickRomaneio: TFQuickRomaneio
       Left = 38
       Top = 201
       Width = 718
-      Height = 40
-    end
-    object RLDBText9: TRLDBText
-      Left = 52
-      Top = 205
-      Width = 139
-      Height = 16
-      DataField = 'ID_ITEM_MOVIMENTO'
-      DataSource = DM.ds_sItensArm
-      Text = ''
+      Height = 32
+      object RLDBText9: TRLDBText
+        Left = 19
+        Top = 13
+        Width = 139
+        Height = 16
+        DataField = 'ID_ITEM_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
     end
     object RLDBText10: TRLDBText
-      Left = 219
-      Top = 205
+      Left = 208
+      Top = 324
       Width = 157
       Height = 16
       DataField = 'NOME_PRODUTO_ITENS'
-      DataSource = DM.ds_sItensArm
+      DataSource = FMovimentos.ds_ImprimirPedidos
       Text = ''
     end
     object RLDBText11: TRLDBText
-      Left = 442
-      Top = 205
-      Width = 101
+      Left = 432
+      Top = 326
+      Width = 84
       Height = 16
       DataField = 'VALOR_MOVIMENTO'
       DataSource = DM.ds_sItensArm
       Text = ''
     end
     object RLDBText12: TRLDBText
-      Left = 580
-      Top = 205
-      Width = 77
+      Left = 569
+      Top = 323
+      Width = 61
       Height = 16
       DataField = 'QUANTIDADE_MOVIMENTO'
       DataSource = DM.ds_sItensArm
       Text = ''
     end
     object RLDBText13: TRLDBText
-      Left = 675
-      Top = 205
-      Width = 73
+      Left = 665
+      Top = 326
+      Width = 69
       Height = 16
       DataField = 'TOTAL_MOVIMENTO'
       DataSource = DM.ds_sItensArm
