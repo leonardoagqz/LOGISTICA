@@ -26,17 +26,19 @@ type
     RLDBText3: TRLDBText;
     qryPessoa: TFDQuery;
     qryPessoaNOME_PESSOA: TStringField;
-    RLSubDetail1: TRLSubDetail;
     RLDraw1: TRLDraw;
     RLLabel7: TRLLabel;
     RLLabel8: TRLLabel;
     RLLabel9: TRLLabel;
     RLLabel10: TRLLabel;
     RLLabel11: TRLLabel;
+    RLBand3: TRLBand;
+    RLDBText9: TRLDBText;
     RLDBText4: TRLDBText;
     RLDBText5: TRLDBText;
     RLDBText6: TRLDBText;
     RLDBText7: TRLDBText;
+    RLBand4: TRLBand;
     RLDBText8: TRLDBText;
     function NomePessoa(idPessoa: integer): string;
     procedure RLBand2BeforePrint(Sender: TObject; var PrintIt: Boolean);
@@ -53,7 +55,7 @@ var
 implementation
 
 uses
-  UDM;
+  UDM, UMovimentos;
 
 {$R *.dfm}
 

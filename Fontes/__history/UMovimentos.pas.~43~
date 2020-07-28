@@ -5,7 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls;
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TFMovimentos = class(TForm)
@@ -21,7 +24,18 @@ type
     Label1: TLabel;
     Label2: TLabel;
     btnBuscarmov: TBitBtn;
-    BitBtn1: TBitBtn;
+    btnImprimirPedido: TBitBtn;
+    sql_ItensDelete: TFDQuery;
+    sql_ImprimirPedidos: TFDQuery;
+    ds_ImprimirPedidos: TDataSource;
+    sql_ImprimirPedidosID_ITEM_MOVIMENTO: TIntegerField;
+    sql_ImprimirPedidosID_MOVIMENTO_ITENS: TIntegerField;
+    sql_ImprimirPedidosID_PRODUTO_ITENS: TIntegerField;
+    sql_ImprimirPedidosQUANTIDADE_MOVIMENTO: TIntegerField;
+    sql_ImprimirPedidosVALOR_MOVIMENTO: TBCDField;
+    sql_ImprimirPedidosTOTAL_MOVIMENTO: TBCDField;
+    sql_ImprimirPedidosNOME_PRODUTO_ITENS: TStringField;
+    DBGrid2: TDBGrid;
     procedure BtnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BtnIncluirClick(Sender: TObject);
@@ -30,7 +44,7 @@ type
     procedure BtnExcluirClick(Sender: TObject);
     procedure dbgMovimentosDblClick(Sender: TObject);
     procedure btnBuscarmovClick(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
+    procedure btnImprimirPedidoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,15 +82,22 @@ end;
 
 //fim
 
-procedure TFMovimentos.BitBtn1Click(Sender: TObject);
+procedure TFMovimentos.btnImprimirPedidoClick(Sender: TObject);
 begin
   DM.sql_MovInclusao.Close;
   DM.sql_MovInclusao.Params[0].AsInteger := DM.sql_MovConsulID_MOVIMENTO.AsInteger;
   dm.sql_MovInclusao.Open;
 
-  dm.sql_itensarm.Close;
-  dm.sql_itensarm.Params[0].AsInteger := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
-  dm.sql_itensarm.Open;
+  {dm.sql_sItensArm.Close;
+  dm.sql_sItensArm.Params[0].AsInteger := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+  dm.sql_sItensArm.Open;}
+
+   sql_ImprimirPedidos.Close;
+   sql_ImprimirPedidos.SQL.Clear;
+   sql_ImprimirPedidos.SQL.Add('select * from itensmovimentoarm');
+   sql_ImprimirPedidos.SQL.Add('where id_movimento_itens = :idmovimentoitens');
+   sql_ImprimirPedidos.ParamByName('idmovimentoitens').AsInteger := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+   sql_ImprimirPedidos.Open;
 
   Application.CreateForm(TFQuickRomaneio,FQuickRomaneio);
   FQuickRomaneio.Free;
@@ -121,6 +142,21 @@ begin
     //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
     begin
       dm.sql_MovConsul.Delete;
+
+      //deletando o mesmo item na itensmovimentoarm
+      sql_ItensDelete.Close;
+      sql_ItensDelete.SQL.Clear;
+      sql_ItensDelete.SQL.Add('delete from itensmovimentoarm');
+      sql_ItensDelete.SQL.Add('where id_movimento_itens = :idmovimentoitens ');
+      sql_ItensDelete.ParamByName('idmovimentoitens').AsInteger := DM.sql_MovInclusaoID_MOVIMENTO.AsInteger;
+      sql_ItensDelete.ExecSQL;
+      sql_ItensDelete.SQL.Clear;
+      dm.sql_IncluirItensDBG.close;
+      dm.sql_IncluirItensDBG.open;
+
+
+
+
       ShowMessage('Informações Excluídas com Sucesso!');
       dm.sql_MovConsul.close;
       dm.sql_MovConsul.open;

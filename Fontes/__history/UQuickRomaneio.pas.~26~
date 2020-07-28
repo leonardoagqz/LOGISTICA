@@ -33,11 +33,14 @@ type
     RLLabel10: TRLLabel;
     RLLabel11: TRLLabel;
     RLBand3: TRLBand;
+    RLDBText9: TRLDBText;
     RLDBText4: TRLDBText;
     RLDBText5: TRLDBText;
     RLDBText6: TRLDBText;
     RLDBText7: TRLDBText;
+    RLBand4: TRLBand;
     RLDBText8: TRLDBText;
+    RLLabel12: TRLLabel;
     function NomePessoa(idPessoa: integer): string;
     procedure RLBand2BeforePrint(Sender: TObject; var PrintIt: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -53,7 +56,7 @@ var
 implementation
 
 uses
-  UDM;
+  UDM, UMovimentos;
 
 {$R *.dfm}
 

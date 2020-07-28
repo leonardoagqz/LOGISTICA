@@ -14,7 +14,6 @@ type
     qkRelatorio: TRLReport;
     RLBand1: TRLBand;
     RLBand2: TRLBand;
-    RLBand3: TRLBand;
     RLLabel1: TRLLabel;
     RLLabel2: TRLLabel;
     RLLabel3: TRLLabel;
@@ -27,6 +26,23 @@ type
     RLDBText3: TRLDBText;
     qryPessoa: TFDQuery;
     qryPessoaNOME_PESSOA: TStringField;
+    RLDraw1: TRLDraw;
+    RLLabel7: TRLLabel;
+    RLLabel8: TRLLabel;
+    RLLabel9: TRLLabel;
+    RLLabel10: TRLLabel;
+    RLLabel11: TRLLabel;
+    RLBand3: TRLBand;
+    RLDBText9: TRLDBText;
+    RLDBText4: TRLDBText;
+    RLDBText5: TRLDBText;
+    RLDBText6: TRLDBText;
+    RLDBText7: TRLDBText;
+    RLDBText8: TRLDBText;
+    RLDBText10: TRLDBText;
+    RLDBText11: TRLDBText;
+    RLDBText12: TRLDBText;
+    RLDBText13: TRLDBText;
     function NomePessoa(idPessoa: integer): string;
     procedure RLBand2BeforePrint(Sender: TObject; var PrintIt: Boolean);
     procedure FormCreate(Sender: TObject);
@@ -42,7 +58,7 @@ var
 implementation
 
 uses
-  UDM;
+  UDM, UMovimentos;
 
 {$R *.dfm}
 

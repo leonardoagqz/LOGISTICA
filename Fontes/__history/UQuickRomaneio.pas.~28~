@@ -34,6 +34,13 @@ type
     RLLabel11: TRLLabel;
     RLBand3: TRLBand;
     RLDBText9: TRLDBText;
+    RLDBText4: TRLDBText;
+    RLDBText5: TRLDBText;
+    RLDBText6: TRLDBText;
+    RLDBText7: TRLDBText;
+    RLBand4: TRLBand;
+    RLDBText8: TRLDBText;
+    RLLabel12: TRLLabel;
     RLDBText10: TRLDBText;
     RLDBText11: TRLDBText;
     RLDBText12: TRLDBText;
@@ -53,7 +60,7 @@ var
 implementation
 
 uses
-  UDM;
+  UDM, UMovimentos;
 
 {$R *.dfm}
 

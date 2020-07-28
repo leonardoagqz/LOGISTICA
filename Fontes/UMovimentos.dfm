@@ -214,7 +214,6 @@ object FMovimentos: TFMovimentos
     Top = 265
   end
   object sql_ImprimirPedidos: TFDQuery
-    Active = True
     Connection = DM.BDConnectionFB
     SQL.Strings = (
       'select * from itensmovimentoarm')
@@ -241,12 +240,14 @@ object FMovimentos: TFMovimentos
     object sql_ImprimirPedidosVALOR_MOVIMENTO: TBCDField
       FieldName = 'VALOR_MOVIMENTO'
       Origin = 'VALOR_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end
     object sql_ImprimirPedidosTOTAL_MOVIMENTO: TBCDField
       FieldName = 'TOTAL_MOVIMENTO'
       Origin = 'TOTAL_MOVIMENTO'
+      DisplayFormat = '###,##0.00'
       Precision = 18
       Size = 2
     end

@@ -15,10 +15,11 @@ object FQuickRomaneio: TFQuickRomaneio
   PixelsPerInch = 96
   TextHeight = 13
   object qkRelatorio: TRLReport
-    Left = 8
-    Top = 8
+    Left = 0
+    Top = -16
     Width = 794
     Height = 1123
+    DataSource = FMovimentos.ds_ImprimirPedidos
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
@@ -181,7 +182,7 @@ object FQuickRomaneio: TFQuickRomaneio
         ParentFont = False
       end
       object RLLabel11: TRLLabel
-        Left = 638
+        Left = 634
         Top = 70
         Width = 36
         Height = 16
@@ -194,6 +195,39 @@ object FQuickRomaneio: TFQuickRomaneio
         ParentFont = False
       end
     end
+    object RLBand4: TRLBand
+      Left = 38
+      Top = 233
+      Width = 718
+      Height = 32
+      BandType = btColumnFooter
+      object RLLabel12: TRLLabel
+        Left = 0
+        Top = -10
+        Width = 1040
+        Height = 16
+        Caption = 
+          '________________________________________________________________' +
+          '________________________________________________________________' +
+          '____________________'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLDBResult1: TRLDBResult
+        Left = 638
+        Top = 12
+        Width = 77
+        Height = 16
+        DataField = 'TOTAL_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Info = riSum
+        Text = ''
+      end
+    end
     object RLBand3: TRLBand
       Left = 38
       Top = 201
@@ -202,48 +236,48 @@ object FQuickRomaneio: TFQuickRomaneio
       object RLDBText9: TRLDBText
         Left = 19
         Top = 13
-        Width = 139
+        Width = 86
         Height = 16
         DataField = 'ID_ITEM_MOVIMENTO'
         DataSource = FMovimentos.ds_ImprimirPedidos
         Text = ''
       end
-    end
-    object RLDBText10: TRLDBText
-      Left = 208
-      Top = 324
-      Width = 157
-      Height = 16
-      DataField = 'NOME_PRODUTO_ITENS'
-      DataSource = FMovimentos.ds_ImprimirPedidos
-      Text = ''
-    end
-    object RLDBText11: TRLDBText
-      Left = 432
-      Top = 326
-      Width = 84
-      Height = 16
-      DataField = 'VALOR_MOVIMENTO'
-      DataSource = DM.ds_sItensArm
-      Text = ''
-    end
-    object RLDBText12: TRLDBText
-      Left = 569
-      Top = 323
-      Width = 61
-      Height = 16
-      DataField = 'QUANTIDADE_MOVIMENTO'
-      DataSource = DM.ds_sItensArm
-      Text = ''
-    end
-    object RLDBText13: TRLDBText
-      Left = 665
-      Top = 326
-      Width = 69
-      Height = 16
-      DataField = 'TOTAL_MOVIMENTO'
-      DataSource = DM.ds_sItensArm
-      Text = ''
+      object RLDBText4: TRLDBText
+        Left = 181
+        Top = 13
+        Width = 157
+        Height = 16
+        DataField = 'NOME_PRODUTO_ITENS'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
+      object RLDBText5: TRLDBText
+        Left = 405
+        Top = 13
+        Width = 101
+        Height = 16
+        DataField = 'VALOR_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
+      object RLDBText6: TRLDBText
+        Left = 543
+        Top = 13
+        Width = 51
+        Height = 16
+        DataField = 'QUANTIDADE_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
+      object RLDBText7: TRLDBText
+        Left = 638
+        Top = 13
+        Width = 67
+        Height = 16
+        DataField = 'TOTAL_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
     end
   end
   object qryPessoa: TFDQuery
