@@ -46,6 +46,7 @@ type
     procedure Fornecedores1Click(Sender: TObject);
     procedure Vendas1Click(Sender: TObject);
     procedure Venda1Click(Sender: TObject);
+    procedure Caixa1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,7 +60,12 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas, UMovimentos;
+uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas, UMovimentos, UCadCaixa, UCaixa;
+
+procedure TFPrincipal.Caixa1Click(Sender: TObject);
+begin
+   Dm.CriarFormulario(TFCaixa,FCaixa);
+end;
 
 procedure TFPrincipal.Clientes1Click(Sender: TObject);
 begin

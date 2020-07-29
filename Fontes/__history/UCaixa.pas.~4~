@@ -1,0 +1,176 @@
+unit UCaixa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.ComCtrls;
+
+type
+  TFCaixa = class(TForm)
+    LblLocalizarUsuarios: TLabel;
+    G1Grid: TDBGrid;
+    PainelUsuarios1: TPanel;
+    PainelUsuarios2: TPanel;
+    BtnIncluir: TBitBtn;
+    BtnAlterar: TBitBtn;
+    BtnExcluir: TBitBtn;
+    BtnSair: TButton;
+    lblFornecedor: TLabel;
+    btnAdicionar: TBitBtn;
+    Label1: TLabel;
+    Label2: TLabel;
+    dtpInicial: TDateTimePicker;
+    dtpFinal: TDateTimePicker;
+    btnBuscarmov: TBitBtn;
+    procedure BtnSairClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BtnIncluirClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure BtnAlterarClick(Sender: TObject);
+    procedure BtnExcluirClick(Sender: TObject);
+    procedure G1GridDblClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnAdicionarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    idprod : Integer;
+  end;
+
+var
+  FCaixa: TFCaixa;
+
+implementation
+
+{$R *.dfm}
+
+uses UDM, UCadProduto, UCadItens;{units que podem ser acessadas e utilizadas}
+
+procedure TFCaixa.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+
+  Close;
+end;
+
+procedure TFCaixa.FormCreate(Sender: TObject);
+begin
+  {dm.cdsProdutos.Close;
+  dm.cdsProdutos.Open; }
+
+  dm.sql_produto.Close;
+  DM.sql_produto.IsEmpty;
+  dm.sql_produto.Open;
+
+  dm.sql_pessoa2.Close;
+  DM.sql_pessoa2.IsEmpty;
+  dm.sql_pessoa2.Open;
+
+
+
+
+
+end;
+
+procedure TFCaixa.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    if key=VK_ESCAPE then //se a tecla ESC for pressionada então
+    Close;
+end;
+
+procedure TFCaixa.G1GridDblClick(Sender: TObject);
+begin
+  BtnAlterar.Click;
+end;
+
+procedure TFCaixa.btnAdicionarClick(Sender: TObject);
+begin
+  idprod := DM.sql_produtoID_PRODUTO.AsInteger;
+  Close;
+  btnAdicionar.ModalResult:= mrOk;
+end;
+
+procedure TFCaixa.BtnAlterarClick(Sender: TObject);
+begin
+  {if not dm.cdsProdutos.IsEmpty then                //se não estiver vazio então
+  begin                                             //inicie
+  Self.Visible:=False;                              //esconde formulario UUsuario
+  dm.cdsProdutos.Edit;
+
+  dm.CriarFormulario(TFCadProduto,FCadProduto);     //criar form
+  Self.Visible:=True;                               //mostrar formulario UUsuario
+  end; }
+
+  if not DM.sql_Caixa.IsEmpty then
+  begin
+  Self.Visible :=False;
+  DM.sql_Caixa.Edit;
+  //dm.CriarFormulario(TFCadProduto,FCadProduto);
+  Self.Visible:=True;
+  end;
+
+
+end;
+
+procedure TFCaixa.BtnExcluirClick(Sender: TObject);
+begin
+    {if not dm.cdsProdutos.IsEmpty then                  //se não estiver vazio então
+    begin                                             //inicie
+        if MessageDlg('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+     //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
+        begin                                         //inicie
+            dm.cdsProdutos.Delete;                    //delete o registro na tabela usuario
+            dm.cdsProdutos.ApplyUpdates(0);           //aplicar modificações na tabela
+            ShowMessage('Informações Excluídas com Sucesso!'); //exibir mensagem
+        end;                                          //fimse
+
+    end; }
+
+    if not dm.sql_Caixa.IsEmpty then
+    begin
+        if dm.MessageDlgDefault('Confirmar a Exclusão',mtInformation,[mbYes,mbNo],0)=mrYes  then
+      //se ao informar a mensagem 'Confirmar a Exclusão' for igual a Yes então
+        begin
+            dm.sql_Caixa.Delete;
+            ShowMessage('Informações Excluídas com Sucesso!');
+        end;
+
+    end;
+
+
+end;
+
+procedure TFCaixa.BtnIncluirClick(Sender: TObject);//incluir produto
+begin                                                 //inicie
+    {Self.Visible :=False;                             //esconde formulario UProduto
+    dm.cdsProdutos.Append;                            //acrescentar em uma nova linha
+    dm.cdsProdutosQUANTIDADE.AsFloat:=0;              //campo QUANTIDADE iniciar com 0
+    dm.cdsProdutosVALOR.AsFloat:=0;                   //campo VALOR iniciar com 0
+    dm.cdsProdutosTIPO.AsString:='T';                 //campo TIPO iniciar com T
+    dm.CriarFormulario(TFCadProduto,FCadProduto);     //chamar procedimento para criar/abrir formulario UCadUProduto
+    Self.Visible:=True;  }                             //mostrar formulario UProduto
+
+    //Firebird
+  {Self.Visible :=False;
+  DM.sql_Caixa.Active := True;
+  DM.sql_Caixa.Insert;
+  dm.CriarFormulario(TFCadProduto,FCadProduto);
+  Self.Visible:=True; }
+
+
+
+
+
+end;
+
+procedure TFCaixa.BtnSairClick(Sender: TObject);//clique botão sair
+begin
+
+  Close;
+
+end;                                               //fim
+
+end.

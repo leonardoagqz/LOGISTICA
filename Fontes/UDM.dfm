@@ -2,7 +2,7 @@ object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 898
-  Width = 1195
+  Width = 1283
   object BDConnectionSQL: TADOConnection
     Connected = True
     ConnectionString = 
@@ -1551,5 +1551,120 @@ object DM: TDM
     DataSet = sql_sItensArm
     Left = 912
     Top = 640
+  end
+  object tb_Caixa: TFDTable
+    IndexFieldNames = 'ID_CAIXA'
+    Connection = BDConnectionFB
+    UpdateOptions.UpdateTableName = 'CAIXA'
+    TableName = 'CAIXA'
+    Left = 1200
+    Top = 408
+    object tb_CaixaID_CAIXA: TIntegerField
+      FieldName = 'ID_CAIXA'
+      Origin = 'ID_CAIXA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tb_CaixaTIPO_CAIXA: TStringField
+      FieldName = 'TIPO_CAIXA'
+      Origin = 'TIPO_CAIXA'
+      FixedChar = True
+      Size = 1
+    end
+    object tb_CaixaDATA_CAIXA: TDateField
+      FieldName = 'DATA_CAIXA'
+      Origin = 'DATA_CAIXA'
+    end
+    object tb_CaixaDESCRICAO_CAIXA: TStringField
+      FieldName = 'DESCRICAO_CAIXA'
+      Origin = 'DESCRICAO_CAIXA'
+      Size = 50
+    end
+    object tb_CaixaVALOR_CAIXA: TBCDField
+      FieldName = 'VALOR_CAIXA'
+      Origin = 'VALOR_CAIXA'
+      Precision = 18
+      Size = 2
+    end
+    object tb_CaixaSALDO_CAIXA: TBCDField
+      FieldName = 'SALDO_CAIXA'
+      Origin = 'SALDO_CAIXA'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object ds_Caixa: TDataSource
+    DataSet = sql_Caixa
+    Left = 1200
+    Top = 472
+  end
+  object sql_Caixa: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select * from caixa'
+      ''
+      'where data_caixa between :D1 and :D2')
+    Left = 1200
+    Top = 536
+    ParamData = <
+      item
+        Name = 'D1'
+        DataType = ftDate
+        ParamType = ptInput
+      end
+      item
+        Name = 'D2'
+        DataType = ftDate
+        ParamType = ptInput
+      end>
+    object sql_CaixaID_CAIXA: TIntegerField
+      FieldName = 'ID_CAIXA'
+      Origin = 'ID_CAIXA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sql_CaixaTIPO_CAIXA: TStringField
+      FieldName = 'TIPO_CAIXA'
+      Origin = 'TIPO_CAIXA'
+      FixedChar = True
+      Size = 1
+    end
+    object sql_CaixaDATA_CAIXA: TDateField
+      FieldName = 'DATA_CAIXA'
+      Origin = 'DATA_CAIXA'
+    end
+    object sql_CaixaDESCRICAO_CAIXA: TStringField
+      FieldName = 'DESCRICAO_CAIXA'
+      Origin = 'DESCRICAO_CAIXA'
+      Size = 50
+    end
+    object sql_CaixaVALOR_CAIXA: TBCDField
+      FieldName = 'VALOR_CAIXA'
+      Origin = 'VALOR_CAIXA'
+      DisplayFormat = '###,##0.00'
+      Precision = 18
+      Size = 2
+    end
+    object sql_CaixaSALDO_CAIXA: TBCDField
+      FieldName = 'SALDO_CAIXA'
+      Origin = 'SALDO_CAIXA'
+      DisplayFormat = '###,##0.00'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object sql_Gen_caixa: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select gen_id(id_caixa,1)as id from rdb$database')
+    Left = 1200
+    Top = 608
+    object sql_Gen_caixaID: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
   end
 end

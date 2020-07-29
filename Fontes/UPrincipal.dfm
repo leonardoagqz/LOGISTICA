@@ -16480,6 +16480,7 @@ object FPrincipal: TFPrincipal
       Caption = 'Financeiro'
       object Caixa1: TMenuItem
         Caption = 'Caixa'
+        OnClick = Caixa1Click
       end
       object Receitas1: TMenuItem
         Caption = 'Receitas'

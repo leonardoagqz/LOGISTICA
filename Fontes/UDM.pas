@@ -268,6 +268,23 @@ type
     tb_EstoqueVALOR_PRODUTO: TBCDField;
     tb_EstoqueTIPO_PRODUTO: TStringField;
     ds_sItensArm: TDataSource;
+    tb_Caixa: TFDTable;
+    ds_Caixa: TDataSource;
+    sql_Caixa: TFDQuery;
+    sql_CaixaID_CAIXA: TIntegerField;
+    sql_CaixaTIPO_CAIXA: TStringField;
+    sql_CaixaDATA_CAIXA: TDateField;
+    sql_CaixaDESCRICAO_CAIXA: TStringField;
+    sql_CaixaVALOR_CAIXA: TBCDField;
+    sql_CaixaSALDO_CAIXA: TBCDField;
+    tb_CaixaID_CAIXA: TIntegerField;
+    tb_CaixaTIPO_CAIXA: TStringField;
+    tb_CaixaDATA_CAIXA: TDateField;
+    tb_CaixaDESCRICAO_CAIXA: TStringField;
+    tb_CaixaVALOR_CAIXA: TBCDField;
+    tb_CaixaSALDO_CAIXA: TBCDField;
+    sql_Gen_caixa: TFDQuery;
+    sql_Gen_caixaID: TLargeintField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

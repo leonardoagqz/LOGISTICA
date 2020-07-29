@@ -88,8 +88,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="UCadProduto.pas">
-            <Form>FCadProduto</Form>
+        <DCCReference Include="UCadCaixa.pas">
+            <Form>FCadCaixa</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UCadPessoa.pas">
@@ -149,8 +149,8 @@
             <Form>FMovimentos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UProdutos.pas">
-            <Form>FProdutos</Form>
+        <DCCReference Include="UCaixa.pas">
+            <Form>FCaixa</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UCadMovimento.pas">
@@ -163,6 +163,14 @@
         </DCCReference>
         <DCCReference Include="UQuickRomaneio.pas">
             <Form>FQuickRomaneio</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UProdutos.pas">
+            <Form>FProdutos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UCadProduto.pas">
+            <Form>FCadProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -576,13 +584,13 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
                 <Platform value="Win32">True</Platform>

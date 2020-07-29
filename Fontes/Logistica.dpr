@@ -2,7 +2,7 @@ program Logistica;
 
 uses
   Vcl.Forms,
-  UCadProduto in 'UCadProduto.pas' {FCadProduto},
+  UCadCaixa in 'UCadCaixa.pas' {FCadCaixa},
   UCadPessoa in 'UCadPessoa.pas' {FCadPessoas},
   UDM in 'UDM.pas' {tb_pessoa: TDataModule},
   ULogin in 'ULogin.pas' {FLogin},
@@ -17,10 +17,12 @@ uses
   UUsuarios in 'UUsuarios.pas' {FUsuarios},
   UCadUsuario in 'UCadUsuario.pas' {FCadUsuarios},
   UMovimentos in 'UMovimentos.pas' {FMovimentos},
-  UProdutos in 'UProdutos.pas' {FProdutos},
+  UCaixa in 'UCaixa.pas' {FCaixa},
   UCadMovimento in 'UCadMovimento.pas' {FCadmovimento},
   UCadItens in 'UCadItens.pas' {FCadItens},
-  UQuickRomaneio in 'UQuickRomaneio.pas' {FQuickRomaneio};
+  UQuickRomaneio in 'UQuickRomaneio.pas' {FQuickRomaneio},
+  UProdutos in 'UProdutos.pas' {FProdutos},
+  UCadProduto in 'UCadProduto.pas' {FCadProduto};
 
 {$R *.res}
 
@@ -28,6 +30,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TFQuickRomaneio, FQuickRomaneio);
   Application.Run;
 end.
