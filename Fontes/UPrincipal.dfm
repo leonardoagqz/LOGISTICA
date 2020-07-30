@@ -16466,14 +16466,13 @@ object FPrincipal: TFPrincipal
     end
     object Relatrios1: TMenuItem
       Caption = 'Relat'#243'rios'
+      object Grfico1: TMenuItem
+        Caption = 'Gr'#225'fico'
+        OnClick = Grfico1Click
+      end
       object Vendas2: TMenuItem
-        Caption = 'Vendas'
-      end
-      object Compras1: TMenuItem
-        Caption = 'Compras'
-      end
-      object Estoque1: TMenuItem
-        Caption = 'Estoque'
+        Caption = 'Movimenta'#231#227'o'
+        OnClick = Vendas2Click
       end
     end
     object Financeiro1: TMenuItem

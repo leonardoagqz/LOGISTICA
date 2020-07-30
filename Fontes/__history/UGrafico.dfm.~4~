@@ -1,0 +1,54 @@
+object FGrafico: TFGrafico
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'Gr'#225'fico de Vendas'
+  ClientHeight = 403
+  ClientWidth = 738
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBChart1: TDBChart
+    Left = 0
+    Top = 0
+    Width = 738
+    Height = 403
+    Title.Text.Strings = (
+      'Gr'#225'fico de Vendas por Per'#237'odo')
+    LeftAxis.LabelStyle = talMark
+    Align = alClient
+    TabOrder = 0
+    ExplicitLeft = 72
+    ExplicitTop = 24
+    ExplicitWidth = 400
+    ExplicitHeight = 250
+    DefaultCanvas = 'TGDIPlusCanvas'
+    ColorPaletteIndex = 13
+    object Series1: TBarSeries
+      Legend.Visible = False
+      Marks.Style = smsValue
+      DataSource = DM.sGrafico
+      ShowInLegend = False
+      XLabelsSource = 'DATA_MOVIMENTO'
+      XValues.DateTime = True
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      XValues.ValueSource = 'DATA_MOVIMENTO'
+      YValues.Name = 'Bar'
+      YValues.Order = loNone
+      YValues.ValueSource = 'QTD'
+    end
+  end
+  object dsGrafico_: TDataSource
+    DataSet = DM.sGrafico
+    Left = 544
+    Top = 224
+  end
+end

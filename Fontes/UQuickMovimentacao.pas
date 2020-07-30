@@ -1,0 +1,49 @@
+unit UQuickMovimentacao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport;
+
+type
+  TFQuickMovimentacao = class(TForm)
+    qkRelatorio: TRLReport;
+    RLBand1: TRLBand;
+    RLLabel1: TRLLabel;
+    RLLabel2: TRLLabel;
+    RLLabel3: TRLLabel;
+    RLBand2: TRLBand;
+    RLLabel8: TRLLabel;
+    RLLabel9: TRLLabel;
+    RLBand4: TRLBand;
+    RLLabel12: TRLLabel;
+    RLDBResult1: TRLDBResult;
+    RLBand3: TRLBand;
+    RLDBText4: TRLDBText;
+    RLDBText5: TRLDBText;
+    RLDBText2: TRLDBText;
+    RLLabel5: TRLLabel;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FQuickMovimentacao: TFQuickMovimentacao;
+
+implementation
+
+uses
+  UDM;
+
+{$R *.dfm}
+
+procedure TFQuickMovimentacao.FormCreate(Sender: TObject);
+begin
+  qkRelatorio.Preview;
+end;
+
+end.

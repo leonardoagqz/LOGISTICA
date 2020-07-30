@@ -22,7 +22,11 @@ uses
   UCadItens in 'UCadItens.pas' {FCadItens},
   UQuickRomaneio in 'UQuickRomaneio.pas' {FQuickRomaneio},
   UProdutos in 'UProdutos.pas' {FProdutos},
-  UCadProduto in 'UCadProduto.pas' {FCadProduto};
+  UCadProduto in 'UCadProduto.pas' {FCadProduto},
+  UPeriodoMovimentacao in 'UPeriodoMovimentacao.pas' {FPeriodoMovimentacao},
+  UGrafico in 'UGrafico.pas' {FGrafico},
+  UPeriodografico in 'UPeriodografico.pas' {FPeriodoGrafico},
+  UQuickMovimentacao in 'UQuickMovimentacao.pas' {FQuickMovimentacao};
 
 {$R *.res}
 

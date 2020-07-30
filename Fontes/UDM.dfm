@@ -1427,8 +1427,8 @@ object DM: TDM
       'on I.id_produto_itens = p.id_produto'
       ''
       'where id_movimento_itens = :id_movimento_itens')
-    Left = 912
-    Top = 696
+    Left = 888
+    Top = 720
     ParamData = <
       item
         Name = 'ID_MOVIMENTO_ITENS'
@@ -1549,8 +1549,8 @@ object DM: TDM
   end
   object ds_sItensArm: TDataSource
     DataSet = sql_sItensArm
-    Left = 912
-    Top = 640
+    Left = 888
+    Top = 664
   end
   object tb_Caixa: TFDTable
     IndexFieldNames = 'ID_CAIXA'
@@ -1666,5 +1666,111 @@ object DM: TDM
       ProviderFlags = []
       ReadOnly = True
     end
+  end
+  object sGrafico: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select data_movimento,count(id_movimento)as qtd from movimentos'
+      'where tipo_movimento = '#39'Venda'#39
+      'and data_movimento between :D1 and :D2'
+      ''
+      'group by 1 '
+      '')
+    Left = 984
+    Top = 720
+    ParamData = <
+      item
+        Name = 'D1'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'D2'
+        DataType = ftDate
+        ParamType = ptInput
+      end>
+    object sGraficoDATA_MOVIMENTO: TDateField
+      FieldName = 'DATA_MOVIMENTO'
+      Origin = 'DATA_MOVIMENTO'
+    end
+    object sGraficoQTD: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'QTD'
+      Origin = 'QTD'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object dsSGrafico: TDataSource
+    DataSet = sGrafico
+    Left = 984
+    Top = 664
+  end
+  object sRelatmovimentacao: TFDQuery
+    Connection = BDConnectionFB
+    SQL.Strings = (
+      'select tipo_movimento, data_movimento, total_movimento,'
+      ''
+      'case tipo_movimento'
+      'when '#39'Venda'#39' then '#39'Noata de Venda'#39
+      'when '#39'Compra'#39' then '#39'Nota de Compra'#39
+      'end as descricao'
+      ''
+      'from movimentos'
+      ''
+      'where data_movimento between :D1 and :D2'
+      ''
+      'union'
+      ''
+      
+        'select tipo_caixa,data_caixa,valor_caixa,descricao_caixa from ca' +
+        'ixa'
+      ''
+      'where  data_caixa between :D1 and :D2'
+      ''
+      'order by 2')
+    Left = 1072
+    Top = 728
+    ParamData = <
+      item
+        Name = 'D1'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'D2'
+        DataType = ftDate
+        ParamType = ptInput
+      end>
+    object sRelatmovimentacaoTIPO_MOVIMENTO: TStringField
+      FieldName = 'TIPO_MOVIMENTO'
+      Origin = 'TIPO_MOVIMENTO'
+      Size = 15
+    end
+    object sRelatmovimentacaoDATA_MOVIMENTO: TDateField
+      FieldName = 'DATA_MOVIMENTO'
+      Origin = 'DATA_MOVIMENTO'
+    end
+    object sRelatmovimentacaoTOTAL_MOVIMENTO: TBCDField
+      FieldName = 'TOTAL_MOVIMENTO'
+      Origin = 'TOTAL_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object sRelatmovimentacaoDESCRICAO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
+    end
+  end
+  object dsRelatmovimentacao: TDataSource
+    DataSet = sRelatmovimentacao
+    Left = 1072
+    Top = 672
   end
 end

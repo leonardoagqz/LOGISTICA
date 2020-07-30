@@ -67,7 +67,6 @@ begin
   end;
 
 
-
   if DM.sql_CaixaVALOR_CAIXA.AsFloat = 0 then
   begin
     ShowMessage('Valor não Informada!');
@@ -89,54 +88,53 @@ begin
   end;
 
   if dm.sql_Caixa.State=dsInsert then
-   begin
-      sqlSaldo.Close;
-      sqlSaldo.Open;
-      if dm.sql_CaixaTIPO_CAIXA.AsString = 'R' then
-      begin
-          DM.sql_CaixaSALDO_CAIXA.AsFloat:=sqlSaldoSALDO_CAIXA.AsFloat+dm.sql_CaixaVALOR_CAIXA.AsFloat;
-      end
-      else
-       DM.sql_CaixaSALDO_CAIXA.AsFloat:=sqlSaldoSALDO_CAIXA.AsFloat-dm.sql_CaixaVALOR_CAIXA.AsFloat;
+  begin
+    sqlSaldo.Close;
+    sqlSaldo.Open;
+    if dm.sql_CaixaTIPO_CAIXA.AsString = 'R' then
+    begin
+      DM.sql_CaixaSALDO_CAIXA.AsFloat:=sqlSaldoSALDO_CAIXA.AsFloat+dm.sql_CaixaVALOR_CAIXA.AsFloat;
+    end
+    else
+    DM.sql_CaixaSALDO_CAIXA.AsFloat:=sqlSaldoSALDO_CAIXA.AsFloat-dm.sql_CaixaVALOR_CAIXA.AsFloat;
 
 
-      begin
-        dm.sql_Gen_caixa.Close;
-        DM.sql_Gen_caixa.Open;
-        DM.sql_CaixaID_CAIXA.AsInteger :=DM.sql_Gen_caixaID.Value;
-        dm.sql_CaixaDATA_CAIXA.AsString:= edtData.Text;
-        dm.sql_CaixaDESCRICAO_CAIXA.AsString:=EdtDescricao.Text;
-        DM.sql_CaixaVALOR_CAIXA.AsFloat := StrToFloat(EdtValor.Text);
+    begin
+      dm.sql_Gen_caixa.Close;
+      DM.sql_Gen_caixa.Open;
+      DM.sql_CaixaID_CAIXA.AsInteger :=DM.sql_Gen_caixaID.Value;
+      dm.sql_CaixaDATA_CAIXA.AsString:= edtData.Text;
+      dm.sql_CaixaDESCRICAO_CAIXA.AsString:=EdtDescricao.Text;
+      DM.sql_CaixaVALOR_CAIXA.AsFloat := StrToFloat(StringReplace(EdtValor.Text,'.','',[rfReplaceAll]));
 
-        case CbTipo.ItemIndex of
-           0: DM.sql_CaixaTIPO_CAIXA.AsString := 'R';
-           1: DM.sql_CaixaTIPO_CAIXA.AsString := 'D';
-
-        end;
-        dm.sql_Caixa.Post;
-        ShowMessage('Informações Armazenadas com sucesso!');
-        dm.sql_Caixa.Refresh;
-        Close;
+      case CbTipo.ItemIndex of
+      0: DM.sql_CaixaTIPO_CAIXA.AsString := 'R';
+      1: DM.sql_CaixaTIPO_CAIXA.AsString := 'D';
       end;
-      {else
-      begin
-        dm.sql_Gen_produto.Close;
-        DM.sql_Gen_produto.Open;
-        DM.sql_produtoID_PRODUTO.AsInteger :=DM.sql_Gen_produtoID.Value;
-        dm.sql_produtoNOME_PRODUTO.AsString:= EdtNome.Text;
-        dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
-        DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
-        //DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
-        case CbTipo.ItemIndex of
-           0: DM.sql_produtoTIPO_PRODUTO.AsString := 'Compra';
-           1: DM.sql_produtoTIPO_PRODUTO.AsString := 'Venda';
-           2: DM.sql_produtoTIPO_PRODUTO.AsString := 'Todos';
-        end;
-        dm.sql_produto.Post;
-        ShowMessage('Informações Armazenadas com sucesso!');
-        dm.sql_produto.Refresh;
-        Close;
-      end;}
+      dm.sql_Caixa.Post;
+      ShowMessage('Informações Armazenadas com sucesso!');
+      dm.sql_Caixa.Refresh;
+      Close;
+    end;
+    {else
+    begin
+    dm.sql_Gen_produto.Close;
+    DM.sql_Gen_produto.Open;
+    DM.sql_produtoID_PRODUTO.AsInteger :=DM.sql_Gen_produtoID.Value;
+    dm.sql_produtoNOME_PRODUTO.AsString:= EdtNome.Text;
+    dm.sql_produtoQUANTIDADE_PRODUTO.AsInteger:=StrToInt(EdtQtd.Text);
+    DM.sql_produtoVALOR_PRODUTO.AsFloat := StrToFloat(EdtValor.Text);
+    //DM.sql_produtoID_PESSOA_PROD.AsInteger := DM.sql_pessoaID_PESSOA.AsInteger;
+    case CbTipo.ItemIndex of
+    0: DM.sql_produtoTIPO_PRODUTO.AsString := 'Compra';
+    1: DM.sql_produtoTIPO_PRODUTO.AsString := 'Venda';
+    2: DM.sql_produtoTIPO_PRODUTO.AsString := 'Todos';
+    end;
+    dm.sql_produto.Post;
+    ShowMessage('Informações Armazenadas com sucesso!');
+    dm.sql_produto.Refresh;
+    Close;
+    end;}
   end;
 
   if dm.sql_Caixa.State=dsEdit then

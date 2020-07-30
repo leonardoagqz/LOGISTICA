@@ -18,8 +18,6 @@ type
     Vendas1: TMenuItem;
     Relatrios1: TMenuItem;
     Vendas2: TMenuItem;
-    Compras1: TMenuItem;
-    Estoque1: TMenuItem;
     Financeiro1: TMenuItem;
     Caixa1: TMenuItem;
     Receitas1: TMenuItem;
@@ -34,6 +32,7 @@ type
     Panel1: TPanel;
     Image1: TImage;
     Venda1: TMenuItem;
+    Grfico1: TMenuItem;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
@@ -47,6 +46,8 @@ type
     procedure Vendas1Click(Sender: TObject);
     procedure Venda1Click(Sender: TObject);
     procedure Caixa1Click(Sender: TObject);
+    procedure Grfico1Click(Sender: TObject);
+    procedure Vendas2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -60,7 +61,7 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas, UMovimentos, UCadCaixa, UCaixa;
+uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas, UMovimentos, UCadCaixa, UCaixa, UPeriodografico, UPeriodoMovimentacao;
 
 procedure TFPrincipal.Caixa1Click(Sender: TObject);
 begin
@@ -97,6 +98,11 @@ begin
   dm.sql_pessoa.Close;
   dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString:='F';
   Dm.CriarFormulario(TFPessoas ,FPessoas);
+end;
+
+procedure TFPrincipal.Grfico1Click(Sender: TObject);
+begin
+  DM.CriarFormulario(TFPeriodoGrafico,FPeriodoGrafico);
 end;
 
 procedure TFPrincipal.Meiosdetransportes2Click(Sender: TObject);
@@ -139,6 +145,11 @@ begin
   dm.sql_MovConsul.Params[2].AsString := 'Compra' ;
   DM.CriarFormulario(TFMovimentos, FMovimentos);
 
+end;
+
+procedure TFPrincipal.Vendas2Click(Sender: TObject);
+begin
+ DM.CriarFormulario(TFPeriodoMovimentacao,FPeriodoMovimentacao);
 end;
 
 end.

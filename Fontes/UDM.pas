@@ -285,6 +285,16 @@ type
     tb_CaixaSALDO_CAIXA: TBCDField;
     sql_Gen_caixa: TFDQuery;
     sql_Gen_caixaID: TLargeintField;
+    sGrafico: TFDQuery;
+    dsSGrafico: TDataSource;
+    sGraficoDATA_MOVIMENTO: TDateField;
+    sGraficoQTD: TIntegerField;
+    sRelatmovimentacao: TFDQuery;
+    dsRelatmovimentacao: TDataSource;
+    sRelatmovimentacaoTIPO_MOVIMENTO: TStringField;
+    sRelatmovimentacaoDATA_MOVIMENTO: TDateField;
+    sRelatmovimentacaoTOTAL_MOVIMENTO: TBCDField;
+    sRelatmovimentacaoDESCRICAO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;

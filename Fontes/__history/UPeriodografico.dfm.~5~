@@ -1,0 +1,58 @@
+object FPeriodoGrafico: TFPeriodoGrafico
+  Left = 0
+  Top = 0
+  Caption = 'Relat'#243'rio Gr'#225'fico'
+  ClientHeight = 207
+  ClientWidth = 277
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pn2: TPanel
+    Left = 0
+    Top = 166
+    Width = 277
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvSpace
+    TabOrder = 0
+    ExplicitLeft = 264
+    ExplicitTop = 56
+    ExplicitWidth = 185
+    object btnVisualizar: TBitBtn
+      Left = 32
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Visualizar'
+      TabOrder = 0
+    end
+    object btnFechar: TBitBtn
+      Left = 168
+      Top = 6
+      Width = 75
+      Height = 25
+      Caption = 'Fechar'
+      TabOrder = 1
+      OnClick = btnFecharClick
+    end
+  end
+  object pn1: TPanel
+    Left = 0
+    Top = 0
+    Width = 277
+    Height = 166
+    Align = alClient
+    BevelOuter = bvSpace
+    TabOrder = 1
+    ExplicitLeft = 280
+    ExplicitTop = 272
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+  end
+end

@@ -1,0 +1,266 @@
+object FQuickMovimentacao: TFQuickMovimentacao
+  Left = 0
+  Top = 0
+  Caption = 'FQuickMovimentacao'
+  ClientHeight = 393
+  ClientWidth = 834
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesigned
+  PixelsPerInch = 96
+  TextHeight = 13
+  object qkRelatorio: TRLReport
+    Left = 8
+    Top = -2
+    Width = 794
+    Height = 1123
+    DataSource = FMovimentos.ds_ImprimirPedidos
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 75
+      BandType = btHeader
+      object RLLabel1: TRLLabel
+        Left = 254
+        Top = 53
+        Width = 206
+        Height = 16
+        Alignment = taCenter
+        Caption = 'ROMANEIO DE MOVIMENTA'#199#195'O'
+      end
+      object RLLabel2: TRLLabel
+        Left = 307
+        Top = 3
+        Width = 104
+        Height = 18
+        Alignment = taCenter
+        Caption = 'Logistica Ltda'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RLLabel3: TRLLabel
+        Left = 301
+        Top = 31
+        Width = 118
+        Height = 16
+        Caption = '00.000.000/0000-00'
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 113
+      Width = 718
+      Height = 32
+      BandType = btColumnHeader
+      object RLLabel6: TRLLabel
+        Left = 3
+        Top = 10
+        Width = 44
+        Height = 16
+        Caption = 'Pedido'
+      end
+      object RLLabel7: TRLLabel
+        Left = 78
+        Top = 10
+        Width = 49
+        Height = 16
+        Caption = 'C'#243'digo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel8: TRLLabel
+        Left = 229
+        Top = 10
+        Width = 66
+        Height = 16
+        Caption = 'Descri'#231#227'o'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel9: TRLLabel
+        Left = 422
+        Top = 10
+        Width = 38
+        Height = 16
+        Caption = 'Valor'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel10: TRLLabel
+        Left = 542
+        Top = 10
+        Width = 30
+        Height = 16
+        Caption = 'Qtd.'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel11: TRLLabel
+        Left = 634
+        Top = 10
+        Width = 36
+        Height = 16
+        Caption = 'Total'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel4: TRLLabel
+        Left = 141
+        Top = 10
+        Width = 28
+        Height = 16
+        Caption = 'Tipo'
+      end
+      object RLLabel5: TRLLabel
+        Left = 328
+        Top = 10
+        Width = 31
+        Height = 16
+        Caption = 'Data'
+      end
+    end
+    object RLBand4: TRLBand
+      Left = 38
+      Top = 177
+      Width = 718
+      Height = 32
+      BandType = btColumnFooter
+      object RLLabel12: TRLLabel
+        Left = 0
+        Top = -10
+        Width = 1040
+        Height = 16
+        Caption = 
+          '________________________________________________________________' +
+          '________________________________________________________________' +
+          '____________________'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLDBResult1: TRLDBResult
+        Left = 638
+        Top = 12
+        Width = 169
+        Height = 16
+        DataField = 'TOTAL_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Info = riSum
+        Text = ''
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Top = 145
+      Width = 718
+      Height = 32
+      object RLDBText9: TRLDBText
+        Left = 83
+        Top = 13
+        Width = 44
+        Height = 16
+        DataField = 'ID_ITEM_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
+      object RLDBText4: TRLDBText
+        Left = 229
+        Top = 13
+        Width = 66
+        Height = 16
+        DataField = 'NOME_PRODUTO_ITENS'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
+      object RLDBText5: TRLDBText
+        Left = 427
+        Top = 13
+        Width = 92
+        Height = 16
+        DataField = 'VALOR_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
+      object RLDBText6: TRLDBText
+        Left = 543
+        Top = 13
+        Width = 66
+        Height = 16
+        DataField = 'QUANTIDADE_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
+      object RLDBText7: TRLDBText
+        Left = 638
+        Top = 13
+        Width = 67
+        Height = 16
+        DataField = 'TOTAL_MOVIMENTO'
+        DataSource = FMovimentos.ds_ImprimirPedidos
+        Text = ''
+      end
+      object RLDBText1: TRLDBText
+        Left = 141
+        Top = 10
+        Width = 52
+        Height = 16
+        DataField = 'TIPO_MOVIMENTO'
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 328
+        Top = 13
+        Width = 73
+        Height = 16
+        DataField = 'DATA_MOVIMENTO'
+        Text = ''
+      end
+      object RLDBText3: TRLDBText
+        Left = 3
+        Top = 13
+        Width = 74
+        Height = 16
+        DataField = 'ID_MOVIMENTO'
+        Text = ''
+      end
+    end
+  end
+end
