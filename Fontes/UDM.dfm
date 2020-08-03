@@ -1731,7 +1731,7 @@ object DM: TDM
       ''
       'order by 2')
     Left = 1072
-    Top = 728
+    Top = 712
     ParamData = <
       item
         Name = 'D1'
@@ -1771,6 +1771,6 @@ object DM: TDM
   object dsRelatmovimentacao: TDataSource
     DataSet = sRelatmovimentacao
     Left = 1072
-    Top = 672
+    Top = 664
   end
 end

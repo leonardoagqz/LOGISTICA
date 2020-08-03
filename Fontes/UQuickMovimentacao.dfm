@@ -16,8 +16,8 @@ object FQuickMovimentacao: TFQuickMovimentacao
   PixelsPerInch = 96
   TextHeight = 13
   object qkRelatorio: TRLReport
-    Left = -8
-    Top = -18
+    Left = 8
+    Top = 8
     Width = 794
     Height = 1123
     DataSource = DM.dsRelatmovimentacao
@@ -33,12 +33,12 @@ object FQuickMovimentacao: TFQuickMovimentacao
       Height = 75
       BandType = btHeader
       object RLLabel1: TRLLabel
-        Left = 254
+        Left = 228
         Top = 53
-        Width = 206
+        Width = 258
         Height = 16
         Alignment = taCenter
-        Caption = 'ROMANEIO DE MOVIMENTA'#199#195'O'
+        Caption = 'RELAT'#211'RIO GERAL DE MOVIMENTA'#199#195'O'
       end
       object RLLabel2: TRLLabel
         Left = 307
@@ -95,23 +95,31 @@ object FQuickMovimentacao: TFQuickMovimentacao
         ParentFont = False
       end
       object RLLabel5: TRLLabel
-        Left = 24
+        Left = 117
         Top = 10
         Width = 31
         Height = 16
         Caption = 'Data'
       end
+      object RLLabel4: TRLLabel
+        Left = 3
+        Top = 13
+        Width = 28
+        Height = 16
+        Caption = 'Tipo'
+      end
     end
-    object RLBand4: TRLBand
+    object Sumario: TRLBand
       Left = 38
       Top = 177
       Width = 718
       Height = 32
       BandType = btColumnFooter
+      BeforePrint = SumarioBeforePrint
       object RLLabel12: TRLLabel
         Left = 0
-        Top = -10
-        Width = 1040
+        Top = -14
+        Width = 720
         Height = 16
         Caption = 
           '________________________________________________________________' +
@@ -124,22 +132,26 @@ object FQuickMovimentacao: TFQuickMovimentacao
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object RLDBResult1: TRLDBResult
-        Left = 546
-        Top = 12
-        Width = 169
+      object lblSaldo: TRLLabel
+        Left = 565
+        Top = 8
+        Width = 65
         Height = 16
-        DataField = 'TOTAL_MOVIMENTO'
-        DataSource = DM.dsRelatmovimentacao
-        Info = riSum
-        Text = ''
+        Caption = 'Saldo >> '
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
     end
-    object RLBand3: TRLBand
+    object Subdetail: TRLBand
       Left = 38
       Top = 145
       Width = 718
       Height = 32
+      BeforePrint = SubdetailBeforePrint
       object RLDBText4: TRLDBText
         Left = 301
         Top = 10
@@ -152,19 +164,34 @@ object FQuickMovimentacao: TFQuickMovimentacao
       object RLDBText5: TRLDBText
         Left = 611
         Top = 10
-        Width = 130
+        Width = 88
         Height = 16
         DataField = 'TOTAL_MOVIMENTO'
         DataSource = DM.dsRelatmovimentacao
         Text = ''
       end
       object RLDBText2: TRLDBText
-        Left = 24
+        Left = 117
         Top = 10
         Width = 124
         Height = 16
         DataField = 'DATA_MOVIMENTO'
         DataSource = DM.dsRelatmovimentacao
+        Text = ''
+      end
+      object lblTipo: TRLDBText
+        Left = 6
+        Top = 10
+        Width = 122
+        Height = 16
+        DataField = 'TIPO_MOVIMENTO'
+        DataSource = DM.dsRelatmovimentacao
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
         Text = ''
       end
     end

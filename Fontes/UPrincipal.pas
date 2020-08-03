@@ -5,19 +5,19 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ComCtrls, Vcl.ExtCtrls,
-  Vcl.Imaging.jpeg;
+  Vcl.Imaging.jpeg, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   TFPrincipal = class(TForm)
     Menu: TMainMenu;
     Cadastro1: TMenuItem;
-    Clientes1: TMenuItem;
-    Fornecedores1: TMenuItem;
-    Produtos1: TMenuItem;
+    MenuClientes: TMenuItem;
+    MenuFornecedores: TMenuItem;
+    MenuProdutos: TMenuItem;
     Consulta1: TMenuItem;
-    Vendas1: TMenuItem;
+    MenuCompra: TMenuItem;
     Relatrios1: TMenuItem;
-    Vendas2: TMenuItem;
+    MenuRelatMovi: TMenuItem;
     Financeiro1: TMenuItem;
     Caixa1: TMenuItem;
     Receitas1: TMenuItem;
@@ -31,23 +31,37 @@ type
     StatusBar1: TStatusBar;
     Panel1: TPanel;
     Image1: TImage;
-    Venda1: TMenuItem;
-    Grfico1: TMenuItem;
+    MenuVenda: TMenuItem;
+    Menurelatgrafi: TMenuItem;
+    btnClientes: TBitBtn;
+    btnFornecedores: TBitBtn;
+    btnProdutos: TBitBtn;
+    btnMovCompra: TBitBtn;
+    btnVenda: TBitBtn;
+    btnRelatGrafi: TBitBtn;
+    BitBtn1: TBitBtn;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
-    procedure Produtos1Click(Sender: TObject);
+    procedure MenuProdutosClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormasdePagamento1Click(Sender: TObject);
     procedure Meiosdetransportes2Click(Sender: TObject);
     procedure Pases2Click(Sender: TObject);
-    procedure Clientes1Click(Sender: TObject);
-    procedure Fornecedores1Click(Sender: TObject);
-    procedure Vendas1Click(Sender: TObject);
-    procedure Venda1Click(Sender: TObject);
+    procedure MenuClientesClick(Sender: TObject);
+    procedure MenuFornecedoresClick(Sender: TObject);
+    procedure MenuCompraClick(Sender: TObject);
+    procedure MenuVendaClick(Sender: TObject);
     procedure Caixa1Click(Sender: TObject);
-    procedure Grfico1Click(Sender: TObject);
-    procedure Vendas2Click(Sender: TObject);
+    procedure MenurelatgrafiClick(Sender: TObject);
+    procedure MenuRelatMoviClick(Sender: TObject);
+    procedure btnClientesClick(Sender: TObject);
+    procedure btnFornecedoresClick(Sender: TObject);
+    procedure btnMovCompraClick(Sender: TObject);
+    procedure btnVendaClick(Sender: TObject);
+    procedure btnProdutosClick(Sender: TObject);
+    procedure btnRelatGrafiClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,12 +77,47 @@ implementation
 
 uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas, UMovimentos, UCadCaixa, UCaixa, UPeriodografico, UPeriodoMovimentacao;
 
+procedure TFPrincipal.BitBtn1Click(Sender: TObject);
+begin
+  MenuRelatMovi.Click;
+end;
+
+procedure TFPrincipal.btnClientesClick(Sender: TObject);
+begin
+  MenuClientes.Click;
+end;
+
+procedure TFPrincipal.btnFornecedoresClick(Sender: TObject);
+begin
+  MenuFornecedores.Click;
+end;
+
+procedure TFPrincipal.btnMovCompraClick(Sender: TObject);
+begin
+  MenuCompra.Click;
+end;
+
+procedure TFPrincipal.btnProdutosClick(Sender: TObject);
+begin
+  MenuProdutos.Click;
+end;
+
+procedure TFPrincipal.btnRelatGrafiClick(Sender: TObject);
+begin
+  Menurelatgrafi.Click;
+end;
+
+procedure TFPrincipal.btnVendaClick(Sender: TObject);
+begin
+  MenuVenda.Click;
+end;
+
 procedure TFPrincipal.Caixa1Click(Sender: TObject);
 begin
    Dm.CriarFormulario(TFCaixa,FCaixa);
 end;
 
-procedure TFPrincipal.Clientes1Click(Sender: TObject);
+procedure TFPrincipal.MenuClientesClick(Sender: TObject);
 begin
   dm.sql_pessoa.Close;
   dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString:='C';
@@ -93,14 +142,14 @@ begin
   Application.Terminate;
 end;
 
-procedure TFPrincipal.Fornecedores1Click(Sender: TObject);
+procedure TFPrincipal.MenuFornecedoresClick(Sender: TObject);
 begin
   dm.sql_pessoa.Close;
   dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString:='F';
   Dm.CriarFormulario(TFPessoas ,FPessoas);
 end;
 
-procedure TFPrincipal.Grfico1Click(Sender: TObject);
+procedure TFPrincipal.MenurelatgrafiClick(Sender: TObject);
 begin
   DM.CriarFormulario(TFPeriodoGrafico,FPeriodoGrafico);
 end;
@@ -115,7 +164,7 @@ begin
   Dm.CriarFormulario(TFPaises,FPaises);
 end;
 
-procedure TFPrincipal.Produtos1Click(Sender: TObject);
+procedure TFPrincipal.MenuProdutosClick(Sender: TObject);
 begin
   DM.sql_pessoa2.Params.ParamByName('NOME_PESSOA').AsString:='%';
   dm.sql_pessoa2.Params.ParamByName('TIPO_PESSOA').AsString:='F';
@@ -132,14 +181,14 @@ begin
   DM.CriarFormulario(TFUsuarios,FUsuarios);
 end;
 
-procedure TFPrincipal.Venda1Click(Sender: TObject);
+procedure TFPrincipal.MenuVendaClick(Sender: TObject);
 begin
   DM.sql_MovConsul.Close;
   dm.sql_MovConsul.Params[2].AsString := 'Venda' ;
   DM.CriarFormulario(TFMovimentos, FMovimentos);
 end;
 
-procedure TFPrincipal.Vendas1Click(Sender: TObject);
+procedure TFPrincipal.MenuCompraClick(Sender: TObject);
 begin
   DM.sql_MovConsul.Close;
   dm.sql_MovConsul.Params[2].AsString := 'Compra' ;
@@ -147,7 +196,7 @@ begin
 
 end;
 
-procedure TFPrincipal.Vendas2Click(Sender: TObject);
+procedure TFPrincipal.MenuRelatMoviClick(Sender: TObject);
 begin
  DM.CriarFormulario(TFPeriodoMovimentacao,FPeriodoMovimentacao);
 end;

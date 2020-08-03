@@ -53,7 +53,7 @@ begin
 
   end
   else
-   dm.CriarFormulario(TFQuickMovimentacao,FQuickMovimentacao);
+   Application.CreateForm(TFQuickMovimentacao,FQuickMovimentacao);
    FQuickMovimentacao.free;
    DM.sRelatmovimentacao.Close;
 
