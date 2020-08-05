@@ -40,6 +40,7 @@ type
     btnVenda: TBitBtn;
     btnRelatGrafi: TBitBtn;
     BitBtn1: TBitBtn;
+    ControledeUsurio1: TMenuItem;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
@@ -62,6 +63,7 @@ type
     procedure btnProdutosClick(Sender: TObject);
     procedure btnRelatGrafiClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
+    procedure ControledeUsurio1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -75,7 +77,7 @@ implementation
 
 {$R *.dfm}
 
-uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas, UMovimentos, UCadCaixa, UCaixa, UPeriodografico, UPeriodoMovimentacao;
+uses UUsuarios, UDM, UProdutos, ULogin, UFormasPgto, UMeiosTransportes, UPaises, UPessoas, UMovimentos, UCadCaixa, UCaixa, UPeriodografico, UPeriodoMovimentacao, U_Usuarios, U_funcoes;
 
 procedure TFPrincipal.BitBtn1Click(Sender: TObject);
 begin
@@ -114,11 +116,22 @@ end;
 
 procedure TFPrincipal.Caixa1Click(Sender: TObject);
 begin
+ if TestarPermissao('FCaixa') = false then
+   Exit;
    Dm.CriarFormulario(TFCaixa,FCaixa);
+end;
+
+procedure TFPrincipal.ControledeUsurio1Click(Sender: TObject);
+begin
+  if TestarPermissao('F_usuarios') = false then
+   Exit;
+  Dm.CriarFormulario(TF_usuarios ,F_usuarios);
 end;
 
 procedure TFPrincipal.MenuClientesClick(Sender: TObject);
 begin
+   if TestarPermissao('FPessoas') = false then
+   Exit;
   dm.sql_pessoa.Close;
   dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString:='C';
   Dm.CriarFormulario(TFPessoas ,FPessoas);
@@ -126,6 +139,8 @@ end;
 
 procedure TFPrincipal.FormasdePagamento1Click(Sender: TObject);
 begin
+  if TestarPermissao('FFormasPgto') = false then
+   Exit;
   Dm.CriarFormulario(TFFormasPgto,FFormasPgto);
 end;
 
@@ -144,6 +159,8 @@ end;
 
 procedure TFPrincipal.MenuFornecedoresClick(Sender: TObject);
 begin
+  if TestarPermissao('FPessoas') = false then
+   Exit;
   dm.sql_pessoa.Close;
   dm.sql_pessoa.Params.ParamByName('TIPO_PESSOA').AsString:='F';
   Dm.CriarFormulario(TFPessoas ,FPessoas);
@@ -151,21 +168,29 @@ end;
 
 procedure TFPrincipal.MenurelatgrafiClick(Sender: TObject);
 begin
+  if TestarPermissao('FPeriodoGrafico') = false then
+   Exit;
   DM.CriarFormulario(TFPeriodoGrafico,FPeriodoGrafico);
 end;
 
 procedure TFPrincipal.Meiosdetransportes2Click(Sender: TObject);
 begin
+  if TestarPermissao('FMeiosTransportes') = false then
+   Exit;
   Dm.CriarFormulario(TFMeiosTransportes,FMeiosTransportes);
 end;
 
 procedure TFPrincipal.Pases2Click(Sender: TObject);
 begin
+  if TestarPermissao('FPaises') = false then
+   Exit;
   Dm.CriarFormulario(TFPaises,FPaises);
 end;
 
 procedure TFPrincipal.MenuProdutosClick(Sender: TObject);
 begin
+  if TestarPermissao('FProdutos') = false then
+   Exit;
   DM.sql_pessoa2.Params.ParamByName('NOME_PESSOA').AsString:='%';
   dm.sql_pessoa2.Params.ParamByName('TIPO_PESSOA').AsString:='F';
   Dm.CriarFormulario(TFProdutos,FProdutos);
@@ -178,11 +203,15 @@ end;
 
 procedure TFPrincipal.Usurios1Click(Sender: TObject);
 begin
+  if TestarPermissao('FUsuarios') = false then
+   Exit;
   DM.CriarFormulario(TFUsuarios,FUsuarios);
 end;
 
 procedure TFPrincipal.MenuVendaClick(Sender: TObject);
 begin
+  if TestarPermissao('FMovimentos') = false then
+   Exit;
   DM.sql_MovConsul.Close;
   dm.sql_MovConsul.Params[2].AsString := 'Venda' ;
   DM.CriarFormulario(TFMovimentos, FMovimentos);
@@ -190,6 +219,8 @@ end;
 
 procedure TFPrincipal.MenuCompraClick(Sender: TObject);
 begin
+  if TestarPermissao('FMovimentos') = false then
+  Exit;
   DM.sql_MovConsul.Close;
   dm.sql_MovConsul.Params[2].AsString := 'Compra' ;
   DM.CriarFormulario(TFMovimentos, FMovimentos);
@@ -198,7 +229,9 @@ end;
 
 procedure TFPrincipal.MenuRelatMoviClick(Sender: TObject);
 begin
- DM.CriarFormulario(TFPeriodoMovimentacao,FPeriodoMovimentacao);
+  if TestarPermissao('FPeriodoMovimentacao') = false then
+  Exit;
+  DM.CriarFormulario(TFPeriodoMovimentacao,FPeriodoMovimentacao);
 end;
 
 end.

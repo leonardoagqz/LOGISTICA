@@ -26,7 +26,9 @@ uses
   UPeriodoMovimentacao in 'UPeriodoMovimentacao.pas' {FPeriodoMovimentacao},
   UGrafico in 'UGrafico.pas' {FGrafico},
   UPeriodografico in 'UPeriodografico.pas' {FPeriodoGrafico},
-  UQuickMovimentacao in 'UQuickMovimentacao.pas' {FQuickMovimentacao};
+  UQuickMovimentacao in 'UQuickMovimentacao.pas' {FQuickMovimentacao},
+  U_Usuarios in 'U_Usuarios.pas' {F_usuarios},
+  U_funcoes in 'U_funcoes.pas';
 
 {$R *.res}
 
@@ -34,5 +36,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
+  Application.CreateForm(TF_usuarios, F_usuarios);
   Application.Run;
 end.

@@ -295,6 +295,15 @@ type
     sRelatmovimentacaoDATA_MOVIMENTO: TDateField;
     sRelatmovimentacaoTOTAL_MOVIMENTO: TBCDField;
     sRelatmovimentacaoDESCRICAO: TStringField;
+    SQL_acesso: TFDQuery;
+    sql_Gen_acesso: TFDQuery;
+    SQL_acessoACESSO_ID: TIntegerField;
+    SQL_acessoACESSO_USER: TIntegerField;
+    SQL_acessoACESSO_TELA: TIntegerField;
+    SQL_acessoFORMS_ID: TIntegerField;
+    SQL_acessoFORMS_NOME: TStringField;
+    SQL_acessoFORMS_DESCR: TStringField;
+    sql_Gen_acessoID: TLargeintField;
     procedure DataModuleCreate(Sender: TObject);
     procedure CriarFormulario(T: TformClass; F: Tform); //criando procedimento para criação de formularios
    function MessageDlgDefault(Msg :String; AType: TMsgDlgType; AButtons: TMsgDlgButtons;
