@@ -45,7 +45,7 @@ uses UDM, UUsuarios;
 
 procedure TFCadUsuarios.BtnCancelarClick(Sender: TObject); //procedimento ao clicar em cancelar
 begin                                                     //inicie
-    dm.cdsUsuarios.Cancel;                                //cancelar o estado da tabela
+    dm.sql_usuario.Cancel;                                //cancelar o estado da tabela
     Close;                                                //fechar
 end;                                                      //fimbegin
 

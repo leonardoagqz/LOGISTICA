@@ -36,6 +36,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TF_usuarios, F_usuarios);
   Application.Run;
 end.

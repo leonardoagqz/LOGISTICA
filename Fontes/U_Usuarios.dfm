@@ -23,7 +23,7 @@ object F_usuarios: TF_usuarios
     Top = 0
     Width = 491
     Height = 426
-    ActivePage = tb_controle
+    ActivePage = tb_cadastrar
     Align = alClient
     TabOrder = 0
     TabWidth = 200

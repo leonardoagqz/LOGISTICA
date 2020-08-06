@@ -144,7 +144,6 @@ object FLogin: TFLogin
     TabOrder = 7
   end
   object dsUsuarios: TDataSource
-    DataSet = DM.cdsUsuarios
     Left = 8
     Top = 176
   end

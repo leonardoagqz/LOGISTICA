@@ -45,7 +45,7 @@ implementation
 
 {$R *.dfm}
 
-uses UDM, UPrincipal;
+uses UDM, UPrincipal, UCadUsuario;
 
 procedure TFLogin.ApplicationEvents1Message(var Msg: tagMSG;
   var Handled: Boolean);
@@ -98,8 +98,9 @@ begin
   if EdtSenha.Text = DM.sql_usuarioSENHA.AsString then
     begin
       dm.vLogin:=True;
-     FLogin.hide;
+      FLogin.hide;
       Application.CreateForm(TFPrincipal,FPrincipal);
+      FPrincipal.statusbar.Panels[1].Text:=DM.sql_usuarioLOGIN.AsString;
       FPrincipal.ShowModal;
       FPrincipal.Free;
     end
@@ -120,13 +121,18 @@ end;
 
 procedure TFLogin.FormCreate(Sender: TObject);
 begin
-  //sql server
-  DM.cdsUsuarios.Close;
-  DM.cdsUsuarios.Open;
-
   //firebird
   DM.sql_usuario.Close;
   DM.sql_usuario.Open;
+
+  if dm.sql_usuario.IsEmpty then
+  begin
+    DM.sql_usuario.Active:= True;
+    DM.sql_usuario.Insert;
+    DM.sql_usuarioID_USUARIO.AsInteger:=1;
+    DM.sql_usuarioMASTER.AsString := 'S';
+    DM.CriarFormulario(TFCadUsuarios,FCadUsuarios);
+  end;
 
 end;
 

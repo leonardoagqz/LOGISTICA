@@ -20,15 +20,13 @@ type
     MenuRelatMovi: TMenuItem;
     Financeiro1: TMenuItem;
     Caixa1: TMenuItem;
-    Receitas1: TMenuItem;
-    Despesas1: TMenuItem;
     Configuraes1: TMenuItem;
     Usurios1: TMenuItem;
     Sair1: TMenuItem;
     FormasdePagamento1: TMenuItem;
     Meiosdetransportes2: TMenuItem;
     Pases2: TMenuItem;
-    StatusBar1: TStatusBar;
+    statusbar: TStatusBar;
     Panel1: TPanel;
     Image1: TImage;
     MenuVenda: TMenuItem;
@@ -41,6 +39,7 @@ type
     btnRelatGrafi: TBitBtn;
     BitBtn1: TBitBtn;
     ControledeUsurio1: TMenuItem;
+    btnLogof: TBitBtn;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Sair1Click(Sender: TObject);
     procedure Usurios1Click(Sender: TObject);
@@ -64,6 +63,7 @@ type
     procedure btnRelatGrafiClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure ControledeUsurio1Click(Sender: TObject);
+    procedure btnLogofClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -92,6 +92,21 @@ end;
 procedure TFPrincipal.btnFornecedoresClick(Sender: TObject);
 begin
   MenuFornecedores.Click;
+end;
+
+procedure TFPrincipal.btnLogofClick(Sender: TObject);
+begin
+  DM.vLogin:=False;
+  DM.CriarFormulario(TFLogin,FLogin);
+  if dm.vLogin=True then
+  begin
+    statusbar.Panels[1].Text:=DM.sql_usuarioLOGIN.AsString;
+    ShowMessage('Login efetuado com Sucesso!');
+  end
+  else
+  begin
+     Application.Terminate;
+  end;
 end;
 
 procedure TFPrincipal.btnMovCompraClick(Sender: TObject);

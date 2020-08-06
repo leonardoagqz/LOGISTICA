@@ -14,67 +14,6 @@ uses
 
 type
   TDM = class(TDataModule)
-    BDConnectionSQL: TADOConnection;
-    DtsUsuarios: TADODataSet;
-    DtsUsuariosID_USUARIO: TAutoIncField;
-    DtsUsuariosLOGIN: TStringField;
-    DtsUsuariosSENHA: TStringField;
-    DtsUsuariosMASTER: TStringField;
-    dspUsuarios: TDataSetProvider;
-    cdsUsuarios: TClientDataSet;
-    cdsUsuariosID_USUARIO: TAutoIncField;
-    cdsUsuariosLOGIN: TStringField;
-    cdsUsuariosSENHA: TStringField;
-    cdsUsuariosMASTER: TStringField;
-    QryIdUsuario: TADOQuery;
-    QryIdUsuarioID_USUARIO: TAutoIncField;
-    QryIdUsuarioLOGIN: TStringField;
-    QryIdUsuarioSENHA: TStringField;
-    QryIdUsuarioMASTER: TStringField;
-    DtsProdutos: TADODataSet;
-    dspProdutos: TDataSetProvider;
-    cdsProdutos: TClientDataSet;
-    QryIdProduto: TADOQuery;
-    QryIdProdutoID_PRODUTO: TAutoIncField;
-    QryIdProdutoNOME: TStringField;
-    QryIdProdutoQUANTIDADE: TIntegerField;
-    QryIdProdutoID_PESSOA: TIntegerField;
-    QryIdProdutoVALOR: TBCDField;
-    QryIdProdutoTIPO: TStringField;
-    DtsProdutosID_PRODUTO: TAutoIncField;
-    DtsProdutosNOME: TStringField;
-    DtsProdutosQUANTIDADE: TIntegerField;
-    DtsProdutosID_PESSOA: TIntegerField;
-    DtsProdutosVALOR: TBCDField;
-    DtsProdutosTIPO: TStringField;
-    cdsProdutosID_PRODUTO: TAutoIncField;
-    cdsProdutosNOME: TStringField;
-    cdsProdutosQUANTIDADE: TIntegerField;
-    cdsProdutosID_PESSOA: TIntegerField;
-    cdsProdutosVALOR: TBCDField;
-    cdsProdutosTIPO: TStringField;
-    DtsPessoas: TADODataSet;
-    dspPessoas: TDataSetProvider;
-    cdsPessoas: TClientDataSet;
-    QryIdPessoa: TADOQuery;
-    DtsPessoasID_PESSOA: TAutoIncField;
-    DtsPessoasNOME: TStringField;
-    DtsPessoasDOCUMENTO: TStringField;
-    DtsPessoasTELEFONE: TStringField;
-    DtsPessoasTIPO: TStringField;
-    DtsPessoasID_PAIS: TIntegerField;
-    cdsPessoasID_PESSOA: TAutoIncField;
-    cdsPessoasNOME: TStringField;
-    cdsPessoasDOCUMENTO: TStringField;
-    cdsPessoasTELEFONE: TStringField;
-    cdsPessoasTIPO: TStringField;
-    cdsPessoasID_PAIS: TIntegerField;
-    QryIdPessoaID_PESSOA: TAutoIncField;
-    QryIdPessoaNOME: TStringField;
-    QryIdPessoaDOCUMENTO: TStringField;
-    QryIdPessoaTELEFONE: TStringField;
-    QryIdPessoaTIPO: TStringField;
-    QryIdPessoaID_PAIS: TIntegerField;
     BDConnectionFB: TFDConnection;
     ds_usuario: TDataSource;
     sql_usuario: TFDQuery;
@@ -352,6 +291,7 @@ begin
     //variavel as informações que esta dentro do Config.txt
 
     BDConnectionFB.Close;
+    BDConnectionFB.DriverName := 'FB';
     BDConnectionFB.Params.LoadFromFile(vPath);
     BDConnectionFB.Open;
 

@@ -32,7 +32,7 @@ begin
   Result := False;
   dm.SQL_acesso.Close;
   dm.SQL_acesso.SQL.Clear;
-  dm.SQL_acesso.SQL.Add('select * from view_testar_permissao');
+  dm.SQL_acesso.SQL.Add('select * from VIEW_TESTAR_PERMISSAO');
   dm.SQL_acesso.SQL.Add('where acesso_user = :user');
   dm.SQL_acesso.SQL.Add('and forms_nome = :forms');
   dm.SQL_acesso.ParamByName('user').AsInteger := dm.sql_usuarioID_USUARIO.AsInteger;
